@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Leon Xu — Mechanical Engineering</title>
+<meta name="description" content="Leon Xu — Mechanical Engineering student at the University of Michigan. Design, simulation, and fabrication: robotic arms, custom FEA tools, and championship robotics." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;
+    --bg-soft:#f5f7fa;
+    --ink:#0f1a2b;
+    --muted:#5c6675;
+    --line:#e5e9f0;
+    --accent:#1e50e0;
+    --accent-soft:#eaf0ff;
+    --gold:#f6b21b;
+    --card:#ffffff;
+    --shadow:0 1px 2px rgba(16,26,43,.04), 0 8px 24px rgba(16,26,43,.06);
+    --shadow-lg:0 12px 40px rgba(16,26,43,.14);
+    --radius:16px;
+    --maxw:1120px;
+    --font-body:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    --font-head:'Space Grotesk','Inter',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font-body);color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .kicker{font-family:var(--font-head);font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+  section{padding:88px 0}
+  h1,h2,h3{font-family:var(--font-head);line-height:1.15;letter-spacing:-.01em}
+  h2{font-size:clamp(1.7rem,3.2vw,2.4rem);margin:.35rem 0 .5rem}
+  .section-head{max-width:620px;margin-bottom:44px}
+  .section-head p{color:var(--muted);font-size:1.05rem}
+
+  /* NAV */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.82);backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{font-family:var(--font-head);font-weight:700;font-size:1.15rem;letter-spacing:-.02em;display:flex;align-items:center;gap:10px}
+  .logo .dot{width:11px;height:11px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+  .nav-links{display:flex;align-items:center;gap:30px}
+  .nav-links a{font-size:.94rem;font-weight:500;color:var(--muted);transition:color .15s}
+  .nav-links a:hover{color:var(--ink)}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:.92rem;padding:11px 20px;border-radius:999px;border:1px solid transparent;transition:transform .12s ease,box-shadow .15s,background .15s;cursor:pointer}
+  .btn-primary{background:var(--accent);color:#fff;box-shadow:0 6px 18px rgba(30,80,224,.28)}
+  .btn-primary:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(30,80,224,.34)}
+  .btn-ghost{background:transparent;border-color:var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+  .nav-toggle{display:none;background:none;border:0;cursor:pointer;padding:6px}
+  .nav-toggle span{display:block;width:22px;height:2px;background:var(--ink);margin:4px 0;transition:.2s}
+
+  /* HERO */
+  .hero{position:relative;padding:104px 0 84px;overflow:hidden}
+  .hero:before{content:"";position:absolute;inset:0;background:
+     radial-gradient(60% 60% at 85% 0%, rgba(30,80,224,.10), transparent 60%),
+     radial-gradient(40% 50% at 0% 20%, rgba(246,178,27,.10), transparent 60%);
+     z-index:-1}
+  .hero-grid{position:absolute;inset:0;z-index:-1;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:44px 44px;-webkit-mask-image:radial-gradient(70% 60% at 50% 30%,#000,transparent 75%);mask-image:radial-gradient(70% 60% at 50% 30%,#000,transparent 75%);opacity:.5}
+  .hero .badge{display:inline-flex;align-items:center;gap:8px;background:var(--bg-soft);border:1px solid var(--line);color:var(--muted);font-size:.86rem;font-weight:500;padding:6px 14px;border-radius:999px;margin-bottom:22px}
+  .hero .badge .live{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,.2)}
+  .hero h1{font-size:clamp(2.6rem,6vw,4.3rem);letter-spacing:-.03em;margin-bottom:18px}
+  .hero h1 .grad{background:linear-gradient(100deg,var(--accent),#4f78ff 40%,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero .lede{font-size:clamp(1.05rem,1.6vw,1.28rem);color:var(--muted);max-width:640px;margin-bottom:32px}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+  .hero-stats{display:flex;gap:38px;margin-top:52px;flex-wrap:wrap}
+  .hero-stats .s{min-width:90px}
+  .hero-stats .n{font-family:var(--font-head);font-size:1.9rem;font-weight:700;letter-spacing:-.02em}
+  .hero-stats .l{font-size:.85rem;color:var(--muted)}
+
+  /* ABOUT */
+  #about{background:var(--bg-soft)}
+  .about-grid{display:grid;grid-template-columns:1.4fr .9fr;gap:48px;align-items:start}
+  .about-grid p{color:var(--muted);font-size:1.06rem;margin-bottom:16px}
+  .about-grid p strong{color:var(--ink);font-weight:600}
+  .facts{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px 28px}
+  .facts h3{font-size:1rem;margin-bottom:16px}
+  .facts dl{display:grid;grid-template-columns:auto 1fr;gap:10px 16px;font-size:.94rem}
+  .facts dt{color:var(--muted)}
+  .facts dd{text-align:right;font-weight:600}
+
+  /* PROJECTS */
+  .filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px}
+  .chip{font-size:.86rem;font-weight:600;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;transition:.15s}
+  .chip:hover{border-color:var(--accent);color:var(--accent)}
+  .chip.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:26px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform .18s ease,box-shadow .2s ease;display:flex;flex-direction:column}
+  .card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+  .ph{position:relative;aspect-ratio:16/10;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:#fff;text-align:center}
+  .ph .ico{width:30px;height:30px;opacity:.9}
+  .ph .ph-label{font-size:.8rem;font-weight:500;opacity:.92;letter-spacing:.02em}
+  .ph .tag{position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);color:var(--ink);font-size:.72rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;padding:5px 10px;border-radius:999px}
+  .ph--robotics{background:linear-gradient(135deg,#173a9c,#2f6bf0)}
+  .ph--sim{background:linear-gradient(135deg,#0d6d64,#17b3a3)}
+  .ph--fab{background:linear-gradient(135deg,#a4530a,#f39c12)}
+  .ph--aero{background:linear-gradient(135deg,#5a21b0,#8b5cf6)}
+  .card-body{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1}
+  .card-body h3{font-size:1.16rem;margin-bottom:8px}
+  .card-body p{color:var(--muted);font-size:.95rem;flex:1}
+  .tools{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+  .tools span{font-size:.76rem;font-weight:500;color:var(--muted);background:var(--bg-soft);border:1px solid var(--line);padding:4px 10px;border-radius:7px}
+  .card-link{margin-top:16px;font-size:.9rem;font-weight:600;color:var(--accent);display:inline-flex;align-items:center;gap:6px}
+  .card-link .arrow{transition:transform .15s}
+  .card:hover .card-link .arrow{transform:translateX(3px)}
+  .more-note{margin-top:28px;font-size:.95rem;color:var(--muted);text-align:center}
+
+  /* SKILLS */
+  #skills{background:var(--bg-soft)}
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px}
+  .skillcol{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+  .skillcol h3{font-size:1.02rem;margin-bottom:14px;display:flex;align-items:center;gap:9px}
+  .skillcol h3 .bar{width:22px;height:3px;border-radius:3px;background:var(--accent)}
+  .skillcol ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+  .skillcol li{font-size:.86rem;background:var(--bg-soft);border:1px solid var(--line);padding:6px 11px;border-radius:8px;color:#374253}
+
+  /* CONTACT */
+  .contact{text-align:center;max-width:640px;margin:0 auto}
+  .contact h2{margin-bottom:14px}
+  .contact p{color:var(--muted);font-size:1.08rem;margin-bottom:30px}
+  .contact-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .mail{font-family:var(--font-head);font-size:clamp(1.2rem,3vw,1.8rem);font-weight:600;color:var(--accent);display:inline-block;margin-bottom:26px;border-bottom:2px solid transparent;transition:border-color .15s}
+  .mail:hover{border-color:var(--accent)}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--line);padding:30px 0}
+  .foot-inner{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:.9rem}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+  /* responsive */
+  @media (max-width:820px){
+    .about-grid{grid-template-columns:1fr;gap:28px}
+    .nav-links{position:fixed;inset:64px 0 auto 0;background:#fff;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;gap:0;padding:8px 24px 18px;transform:translateY(-140%);transition:transform .25s ease;box-shadow:var(--shadow)}
+    .nav-links.open{transform:none}
+    .nav-links a{padding:12px 0;width:100%;border-bottom:1px solid var(--line)}
+    .nav-links .btn{margin-top:12px}
+    .nav-toggle{display:block}
+    section{padding:64px 0}
+    .hero{padding:72px 0 60px}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="logo"><span class="dot"></span>Leon&nbsp;Xu</a>
+    <nav class="nav-links" id="navlinks">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+      <a href="#" class="btn btn-primary" data-resume>Résumé</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<a id="top"></a>
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="wrap">
+    <span class="badge"><span class="live"></span>Available for Summer 2027 internships</span>
+    <h1>I design, simulate,<br>and <span class="grad">build.</span></h1>
+    <p class="lede">Mechanical Engineering student at the University of Michigan — from 6-DOF robotic arms and custom FEA tools to a two-time World Championship FRC robot. I take projects from a blank CAD file all the way to a working, tested build.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View projects →</a>
+      <a href="https://github.com/lxu062" class="btn btn-ghost" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:lxu062@gmail.com" class="btn btn-ghost">Email me</a>
+    </div>
+    <div class="hero-stats">
+      <div class="s"><div class="n">6+</div><div class="l">years 3D printing</div></div>
+      <div class="s"><div class="n">2×</div><div class="l">FRC World Championship</div></div>
+      <div class="s"><div class="n">10+</div><div class="l">design &amp; build projects</div></div>
+      <div class="s"><div class="n">1</div><div class="l">module shipped to production</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="reveal">
+      <span class="kicker">About</span>
+      <h2>Hands-on from CAD to finished build</h2>
+      <p>I'm Leon Xu, a mechanical engineering student at the <strong>University of Michigan</strong> focused on design, simulation, and fabrication. I've been 3D printing since 2019, shipped a production CAD module at a commercial simulation-software company, and led controls for a <strong>two-time FIRST World Championship</strong> robotics team.</p>
+      <p>What I enjoy most is owning the full pipeline — defining requirements, designing in CAD, validating with simulation, then actually machining, printing, welding, and wiring the thing together and testing it. I'm now pursuing a Business minor to pair that engineering depth with product and commercial thinking.</p>
+    </div>
+    <aside class="facts reveal">
+      <h3>Quick facts</h3>
+      <dl>
+        <dt>School</dt><dd>U-Michigan</dd>
+        <dt>Degree</dt><dd>B.S.E. Mech. Eng.</dd>
+        <dt>Grad</dt><dd>May 2029</dd>
+        <dt>Focus</dt><dd>Design · Sim · Fab</dd>
+        <dt>Based in</dt><dd>Michigan, USA</dd>
+      </dl>
+    </aside>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="kicker">Selected Work</span>
+      <h2>Projects</h2>
+      <p>A mix of independent builds, coursework, and design-team work. Filter by area, or scan the highlights below.</p>
+    </div>
+
+    <div class="filters reveal" id="filters">
+      <button class="chip active" data-filter="all">All</button>
+      <button class="chip" data-filter="robotics">Robotics</button>
+      <button class="chip" data-filter="sim">Simulation &amp; Software</button>
+      <button class="chip" data-filter="fab">Fabrication</button>
+      <button class="chip" data-filter="aero">Aerospace &amp; Autos</button>
+    </div>
+
+    <div class="grid" id="grid">
+
+      <article class="card reveal" data-cat="robotics">
+        <div class="ph ph--robotics"><span class="tag">Robotics</span>
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="9" width="16" height="10" rx="2"/><path d="M12 9V5m0 0a2 2 0 100-4 2 2 0 000 4zM9 14h.01M15 14h.01"/></svg>
+          <span class="ph-label">Add photo / render</span>
+        </div>
+        <div class="card-body">
+          <h3>6-DOF Robotic Arm</h3>
+          <p>A six-degree-of-freedom arm using visual servoing to automatically load and unload my 3D printer (~2&nbsp;kg payload, 600&nbsp;mm reach). Owned end-to-end: requirements → CAD → simulation → fabrication → integration.</p>
+          <div class="tools"><span>Fusion 360</span><span>Vision servoing</span><span>Python</span><span>3D printing</span></div>
+          <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
+        </div>
+      </article>
+
+      <article class="card reveal" data-cat="sim">
+        <div class="ph ph--sim"><span class="tag">Simulation</span>
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3v18h18"/><path d="M7 15l3-4 3 2 4-6"/></svg>
+          <span class="ph-label">Add screenshot</span>
+        </div>
+        <div class="card-body">
+          <h3>3DPrintSim — Anisotropic FEA</h3>
+          <p>A custom FEA tool that models the anisotropic behavior of FDM prints — directional strength (XY vs. Z) and shell-vs-infill structure — to predict how orientation and print settings affect part strength.</p>
+          <div class="tools"><span>Python</span><span>FEA</span><span>AI-assisted dev</span></div>
+          <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
+        </div>
+      </article>
+
+      <article class="card reveal" data-cat="fab">
+        <div class="ph ph--fab"><span class="tag">Fabrication</span>
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          <span class="ph-label">Add photo</span>
+        </div>
+        <div class="card-body">
+          <h3>Motorized Vehicle — Record Attempt</h3>
+          <p>A go-kart-engine-powered vehicle chasing a world speed record (rolling chassis complete). Notable for reverse-engineering complex geometry into CAD via iPhone LiDAR, Gaussian-splat photogrammetry, and AI mesh generation.</p>
+          <div class="tools"><span>Fusion 360</span><span>Welding</span><span>3D scanning</span></div>
+          <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
+        </div>
+      </article>
+
+      <article class="card reveal" data-cat="robotics">
+        <div class="ph ph--robotics"><span class="tag">Robotics</span>
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="11" width="18" height="9" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4M9 16h.01M15 16h.01"/></svg>
+          <span class="ph-label">Add robot photo</span>
+        </div>
+        <div class="card-body">
+          <h3>FRC Robotics — Team 503 “Frog Force”</h3>
+          <p>Four seasons on a ~100-student team: Controls Group Lead, lead CAD for the electrical system, drive-team operator, and founder of the 3D-printing group. Two-time FIRST World Championship qualifier.</p>
+          <div class="tools"><span>CAD</span><span>Electrical</span><span>Pneumatics</span><span>Leadership</span></div>
+          <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
+        </div>
+      </article>
+
+      <article class="card reveal" data-cat="aero">
+        <div class="ph ph--aero"><span class="tag">Aerospace</span>
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2c2.5 3 3.5 6 3.5 10 0 3-1 6-3.5 9-2.5-3-3.5-6-3.5-9 0-4 1-7 3.5-10z"/><path d="M8.5 14L5 17l1 2 3-1M15.5 14L19 17l-1 2-3-1"/></svg>
+          <span class="ph-label">Add flight photo</span>
+        </div>
+        <div class="card-body">
+          <h3>Instrumented Model Rocket</h3>
+          <p>An ENGR 100 team project: a nearly fully 3D-printed rocket carrying a sensor payload — 3-axis acceleration, barometric pressure, temperature, and humidity — to capture in-flight data. Lead designer/CAD.</p>
+          <div class="tools"><span>CAD</span><span>3D printing</span><span>Sensors</span></div>
+          <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
+        </div>
+      </article>
+
+      <article class="card reveal" data-cat="aero">
+        <div class="ph ph--aero"><span class="tag">Aerospace</span>
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16M4 12l4-4M4 12l4 4M20 6v12"/></svg>
+          <span class="ph-label">Add CAD render</span>
+        </div>
+        <div class="card-body">
+          <h3>MASA — LGSE Purge Subsystem</h3>
+          <p>With the Michigan Aeronautical Science Association: reverse-engineered and CAD-modeled a purge / pre-press subsystem of the launch ground-support equipment from schematics, and supported fabrication.</p>
+          <div class="tools"><span>Siemens NX</span><span>Reverse engineering</span><span>Fabrication</span></div>
+          <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
+        </div>
+      </article>
+
+      <article class="card reveal" data-cat="aero fab">
+        <div class="ph ph--fab"><span class="tag">Automotive</span>
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 13l2-5h14l2 5v5h-3M3 13v5h3M3 13h18M7 18a1.5 1.5 0 103 0 1.5 1.5 0 00-3 0zm7 0a1.5 1.5 0 103 0 1.5 1.5 0 00-3 0z"/></svg>
+          <span class="ph-label">Add model photo</span>
+        </div>
+        <div class="card-body">
+          <h3>MRacing — Scale Aero Model</h3>
+          <p>For Michigan's Formula SAE team: fabricated and assembled a 3D-printed scale model of the MR25 car for wind-tunnel aerodynamic testing.</p>
+          <div class="tools"><span>3D printing</span><span>Assembly</span><span>Aero</span></div>
+          <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
+        </div>
+      </article>
+
+      <article class="card reveal" data-cat="sim">
+        <div class="ph ph--sim"><span class="tag">Software</span>
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3M13 6l-2 12"/></svg>
+          <span class="ph-label">Add UI screenshot</span>
+        </div>
+        <div class="card-body">
+          <h3>Software &amp; Tools</h3>
+          <p>Built-and-shipped tools, including a production CAD defeaturing module at Pera Global, 3DPrintSim, and custom developer GUIs — built with AI-assisted workflows. More on GitHub.</p>
+          <div class="tools"><span>Python</span><span>C++</span><span>Claude Code</span></div>
+          <a class="card-link" href="https://github.com/lxu062" target="_blank" rel="noopener">View GitHub <span class="arrow">→</span></a>
+        </div>
+      </article>
+
+    </div>
+    <p class="more-note">More builds — a high-school go-kart, an AP-physics catapult, an Orange Pi cooling case, a wall-climbing pneumatic robot — can be added as their own cards once photos are in.</p>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="kicker">Toolbox</span>
+      <h2>Skills &amp; tools</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skillcol reveal"><h3><span class="bar"></span>CAD</h3><ul><li>Fusion 360</li><li>Inventor</li><li>SolidWorks</li><li>Siemens NX</li><li>FreeCAD</li><li>Creo</li></ul></div>
+      <div class="skillcol reveal"><h3><span class="bar"></span>Simulation</h3><ul><li>ANSYS Mechanical</li><li>Fusion structural</li><li>Thermal / cooling</li><li>Custom FEA</li></ul></div>
+      <div class="skillcol reveal"><h3><span class="bar"></span>Fabrication</h3><ul><li>3D printing (FDM)</li><li>MIG &amp; stick welding</li><li>Lathe</li><li>Machining</li><li>DFM</li></ul></div>
+      <div class="skillcol reveal"><h3><span class="bar"></span>Software</h3><ul><li>Python</li><li>C++</li><li>MATLAB</li><li>Claude Code · Codex · Cursor</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap contact">
+    <span class="kicker">Get in touch</span>
+    <h2>Let's build something</h2>
+    <p>Open to Summer 2027 mechanical engineering internships and interesting projects.</p>
+    <a class="mail" href="mailto:lxu062@gmail.com">lxu062@gmail.com</a>
+    <div class="contact-links">
+      <a href="https://github.com/lxu062" class="btn btn-ghost" target="_blank" rel="noopener">GitHub</a>
+      <a href="#" class="btn btn-ghost" data-resume>Résumé (PDF)</a>
+      <a href="#" class="btn btn-ghost" data-soon>LinkedIn (soon)</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <span>© <span id="yr"></span> Leon Xu · Mechanical Engineering</span>
+    <span>Designed &amp; built from scratch · <a href="#top" style="color:var(--accent);font-weight:600">Back to top ↑</a></span>
+  </div>
+</footer>
+
+<script>
+  // year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // mobile nav
+  var toggle = document.getElementById('navToggle'), links = document.getElementById('navlinks');
+  toggle.addEventListener('click', function(){ links.classList.toggle('open'); });
+  links.addEventListener('click', function(e){ if(e.target.tagName==='A') links.classList.remove('open'); });
+
+  // project filter
+  var chips = document.querySelectorAll('.chip'), cards = document.querySelectorAll('#grid .card');
+  chips.forEach(function(chip){
+    chip.addEventListener('click', function(){
+      chips.forEach(function(c){c.classList.remove('active');});
+      chip.classList.add('active');
+      var f = chip.dataset.filter;
+      cards.forEach(function(card){
+        var show = f==='all' || card.dataset.cat.split(' ').indexOf(f)>-1;
+        card.style.display = show ? '' : 'none';
+      });
+    });
+  });
+
+  // placeholder links (until pages / assets exist)
+  document.querySelectorAll('[data-soon],[data-resume]').forEach(function(el){
+    el.addEventListener('click', function(e){ e.preventDefault(); });
+  });
+
+  // reveal on scroll
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} });
+  }, {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+</script>
+</body>
+</html>
