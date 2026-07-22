@@ -131,6 +131,49 @@
   footer{border-top:1px solid var(--line);padding:30px 0}
   .foot-inner{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:.9rem}
 
+  /* CASE STUDY MODAL */
+  .cs-overlay{position:fixed;inset:0;z-index:80;background:rgba(15,26,43,.55);display:none;align-items:flex-start;justify-content:center;padding:4vh 16px;overflow-y:auto}
+  .cs-overlay.open{display:flex}
+  .cs-panel{background:#fff;border-radius:20px;max-width:840px;width:100%;box-shadow:var(--shadow-lg);padding:34px 38px 38px;position:relative}
+  .cs-close{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:1rem;color:var(--muted);display:flex;align-items:center;justify-content:center;transition:.15s}
+  .cs-close:hover{color:var(--ink);border-color:var(--accent)}
+  .cs-meta{color:var(--muted);font-size:.92rem;margin:6px 0 16px}
+  .card--go{cursor:pointer}
+  .cs-panel>p{color:var(--muted);font-size:.97rem;margin-bottom:12px}
+  .cs-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:20px 0 24px}
+  .cs-stat{background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+  .cs-stat .n{font-family:var(--font-head);font-weight:700;font-size:1.25rem}
+  .cs-stat .l{font-size:.8rem;color:var(--muted);margin-top:2px}
+  .cs-panel h4{font-family:var(--font-head);font-size:1.05rem;margin:24px 0 6px}
+  .cs-panel figure{margin:16px 0}
+  .cs-panel figure img{border-radius:12px;border:1px solid var(--line);width:100%}
+  .cs-panel figcaption{font-size:.82rem;color:var(--muted);margin-top:8px}
+  .cs-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin:16px 0}
+  .cs-gallery figure{margin:0}
+  .cs-chart{border:1px solid var(--line);border-radius:12px;padding:18px 18px 12px;margin:16px 0;position:relative}
+  .cs-chart .t{font-family:var(--font-head);font-weight:600;font-size:1rem;color:var(--ink)}
+  .cs-chart .st{font-size:.84rem;color:var(--muted);margin:2px 0 14px}
+  .cs-chart .sc{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .cs-chart .sc svg{min-width:560px}
+  .cs-tip{position:absolute;pointer-events:none;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);border-radius:8px;padding:7px 10px;font-size:.78rem;color:var(--ink);display:none;white-space:nowrap;z-index:2}
+  /* 3D viewer */
+  .cs-3d{border:1px solid var(--line);border-radius:12px;padding:18px 18px 14px;margin:16px 0}
+  .cs-3d-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+  .cs-3d-head .t{font-family:var(--font-head);font-weight:600;font-size:1rem;color:var(--ink)}
+  .cs-3d-head .st{font-size:.84rem;color:var(--muted);margin-top:2px}
+  .btn3d{font-size:.86rem;font-weight:600;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;transition:.15s;white-space:nowrap}
+  .btn3d:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
+  .btn3d.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .btn3d:disabled{opacity:.45;cursor:default}
+  .cs-3d-stage{position:relative;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:radial-gradient(115% 115% at 50% 35%,#3d4552,#262b33 75%)}
+  .cs-3d-stage canvas{position:absolute;inset:0;display:block}
+  .cs-3d-load{position:absolute;inset:0;margin:auto;width:max-content;height:max-content;display:flex;flex-direction:column;align-items:center;gap:5px;padding:14px 26px;border-radius:12px;border:1px solid rgba(255,255,255,.3);background:rgba(15,26,43,.55);color:#fff;font-weight:600;font-size:.95rem;font-family:var(--font-body);cursor:pointer;backdrop-filter:blur(4px);transition:.15s}
+  .cs-3d-load span{font-size:.78rem;font-weight:500;opacity:.78}
+  .cs-3d-load:hover{border-color:#fff}
+  .cs-3d-msg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#cfd6e0;font-size:.9rem;padding:24px;text-align:center}
+  body.cs-lock{overflow:hidden}
+  @media (max-width:640px){.cs-panel{padding:26px 20px 28px}}
+
   /* reveal */
   .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
   .reveal.in{opacity:1;transform:none}
@@ -277,16 +320,16 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="aero">
-        <div class="ph ph--aero"><span class="tag">Aerospace</span>
-          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2c2.5 3 3.5 6 3.5 10 0 3-1 6-3.5 9-2.5-3-3.5-6-3.5-9 0-4 1-7 3.5-10z"/><path d="M8.5 14L5 17l1 2 3-1M15.5 14L19 17l-1 2-3-1"/></svg>
-          <span class="ph-label">Add flight photo</span>
+      <article class="card reveal card--go" data-cat="aero">
+        <div class="ph ph--aero">
+          <img src="img/rocket/cover-side.jpg" alt="CAD side profile of the full rocket — nose cone, payload bay, body tube, and fin can" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" loading="lazy">
+          <span class="tag">Aerospace</span>
         </div>
         <div class="card-body">
           <h3>Instrumented Model Rocket</h3>
-          <p>An ENGR 100 team project: a nearly fully 3D-printed rocket carrying a sensor payload — 3-axis acceleration, barometric pressure, temperature, and humidity — to capture in-flight data. Lead designer/CAD.</p>
-          <div class="tools"><span>CAD</span><span>3D printing</span><span>Sensors</span></div>
-          <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
+          <p>An ENGR 100 team project: a nearly fully 3D-printed rocket carrying a sensor payload — 3-axis acceleration, barometric pressure, temperature, and humidity. Lead designer/CAD; the flight log captures every stage — a 4.5&nbsp;g boost to a ≈800&nbsp;ft apogee, chute-out, and a descent that ended 50&nbsp;ft up a tree.</p>
+          <div class="tools"><span>Inventor</span><span>3D printing</span><span>Sensors</span><span>Flight data</span></div>
+          <a class="card-link" href="#" data-study="rocket">Details <span class="arrow">→</span></a>
         </div>
       </article>
 
@@ -316,21 +359,85 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="sim">
-        <div class="ph ph--sim"><span class="tag">Software</span>
-          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3M13 6l-2 12"/></svg>
-          <span class="ph-label">Add UI screenshot</span>
+      <article class="card reveal" data-cat="fab">
+        <div class="ph ph--fab"><span class="tag">Fabrication</span>
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 13l2-5h14l2 5v5h-3M3 13v5h3M3 13h18M7 18a1.5 1.5 0 103 0 1.5 1.5 0 00-3 0zm7 0a1.5 1.5 0 103 0 1.5 1.5 0 00-3 0z"/></svg>
+          <span class="ph-label">Add photo</span>
         </div>
         <div class="card-body">
-          <h3>Software &amp; Tools</h3>
-          <p>Built-and-shipped tools, including a production CAD defeaturing module at Pera Global, 3DPrintSim, and custom developer GUIs — built with AI-assisted workflows. More on GitHub.</p>
-          <div class="tools"><span>Python</span><span>C++</span><span>Claude Code</span></div>
-          <a class="card-link" href="https://github.com/lxu062" target="_blank" rel="noopener">View GitHub <span class="arrow">→</span></a>
+          <h3>Welded Go-Kart</h3>
+          <p>A drivable go-kart for a high-school engineering fabrication class: lead designer/CAD, then hand-bent, cut, and welded the steel tube-and-sheet chassis before road-testing it with the team.</p>
+          <div class="tools"><span>CAD</span><span>Steel welding</span><span>Fabrication</span></div>
+          <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
+        </div>
+      </article>
+
+      <article class="card reveal" data-cat="sim">
+        <div class="ph ph--sim"><span class="tag">Thermal Sim</span>
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M9 3v3M12 3v3M15 3v3M9 18v3M12 18v3M15 18v3M3 9h3M3 12h3M3 15h3M18 9h3M18 12h3M18 15h3"/></svg>
+          <span class="ph-label">Add render</span>
+        </div>
+        <div class="card-body">
+          <h3>Orange Pi Cooling Case</h3>
+          <p>A 3D-printed cooling enclosure for an Orange Pi single-board computer — designed the housing in CAD, ran a thermal simulation to check heat dissipation and airflow, and printed the final part. Solo project.</p>
+          <div class="tools"><span>Fusion 360</span><span>Thermal sim</span><span>3D printing</span></div>
+          <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
+        </div>
+      </article>
+
+      <article class="card reveal" data-cat="robotics">
+        <div class="ph ph--robotics"><span class="tag">Robotics</span>
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="9" width="16" height="10" rx="2"/><path d="M12 9V5m0 0a2 2 0 100-4 2 2 0 000 4zM9 14h.01M15 14h.01"/></svg>
+          <span class="ph-label">Add photo</span>
+        </div>
+        <div class="card-body">
+          <h3>Wall-Climbing Pneumatic Robot</h3>
+          <p>A robot that scales vertical walls using pneumatic cylinders and suction cups — lead designer/CAD for the climbing mechanism, with 3D-printed components. Small-team build.</p>
+          <div class="tools"><span>CAD</span><span>Pneumatics</span><span>3D printing</span></div>
+          <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
+        </div>
+      </article>
+
+      <article class="card reveal" data-cat="fab">
+        <div class="ph ph--fab"><span class="tag">Mechanisms</span>
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3.2"/><path d="M12 2v3.5M12 18.5V22M4.2 4.2l2.5 2.5M17.3 17.3l2.5 2.5M2 12h3.5M18.5 12H22M4.2 19.8l2.5-2.5M17.3 6.7l2.5-2.5"/></svg>
+          <span class="ph-label">Add photo</span>
+        </div>
+        <div class="card-body">
+          <h3>Tennis-Ball Catapult</h3>
+          <p>A launcher built to fling a tennis ball for AP Physics — lead designer/CAD, sourced materials, and ran rapid design iterations and test launches under a tight deadline. Team project.</p>
+          <div class="tools"><span>CAD</span><span>Prototyping</span><span>Testing</span></div>
+          <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
+        </div>
+      </article>
+
+      <article class="card reveal" data-cat="fab">
+        <div class="ph ph--fab"><span class="tag">Build</span>
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 9V3h12v6M6 9h12a2 2 0 012 2v5H4v-5a2 2 0 012-2zM8 16v5h8v-5"/></svg>
+          <span class="ph-label">Add photo</span>
+        </div>
+        <div class="card-body">
+          <h3>Journey Maker Portable 3D Printer</h3>
+          <p>Built an open-source “Journey Maker” portable 3D printer from the community design — sourcing the parts, assembling the machine, and calibrating it into a working printer.</p>
+          <div class="tools"><span>Assembly</span><span>3D printing</span><span>Calibration</span></div>
+          <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
+        </div>
+      </article>
+
+      <article class="card reveal" data-cat="robotics">
+        <div class="ph ph--robotics"><span class="tag">3D Printing</span>
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          <span class="ph-label">Add photo</span>
+        </div>
+        <div class="card-body">
+          <h3>FRC 3D-Printed Jigs &amp; Mounts</h3>
+          <p>Designed and 3D-printed a range of custom jigs, mounts, and wire-management fixtures for Team 503’s competition robot, supporting the pneumatic and electrical subsystems.</p>
+          <div class="tools"><span>CAD</span><span>3D printing</span><span>DFM</span></div>
+          <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
         </div>
       </article>
 
     </div>
-    <p class="more-note">More builds — a high-school go-kart, an AP-physics catapult, an Orange Pi cooling case, a wall-climbing pneumatic robot — can be added as their own cards once photos are in.</p>
   </div>
 </section>
 
@@ -362,6 +469,79 @@
     </div>
   </div>
 </section>
+
+<!-- DETAILS: Instrumented Model Rocket -->
+<div class="cs-overlay" id="study-rocket" role="dialog" aria-modal="true" aria-labelledby="csRocketTitle">
+  <div class="cs-panel">
+    <button class="cs-close" aria-label="Close details">✕</button>
+    <span class="kicker">Details</span>
+    <h3 id="csRocketTitle" style="font-size:1.6rem;margin-top:6px">Instrumented Model Rocket</h3>
+    <p class="cs-meta">ENGR 100 · University of Michigan · team of 5 · Role: lead designer / CAD</p>
+    <p>A low-power rocket with an almost entirely 3D-printed airframe, built to carry a live sensor payload and bring back real flight data. I owned the CAD — nose cone, payload bay, body tube, fin can, launch lugs, and engine mount — and did the physical integration, soldering the sensor stack and mounting it in the nose-cone bay. A teammate designed the PCB; the payload logs 3-axis acceleration, barometric pressure, temperature, and humidity at 25&nbsp;Hz.</p>
+    <div class="cs-stats">
+      <div class="cs-stat"><div class="n">≈800 ft</div><div class="l">apogee, barometric</div></div>
+      <div class="cs-stat"><div class="n">4.5 g</div><div class="l">peak recorded at liftoff</div></div>
+      <div class="cs-stat"><div class="n">25 Hz</div><div class="l">sensor logging rate</div></div>
+      <div class="cs-stat"><div class="n">26 min</div><div class="l">logged, pad to recovery</div></div>
+    </div>
+    <figure>
+      <img src="img/rocket/cad-wireframe.jpg" alt="Wireframe CAD view showing the rocket's internal layout" loading="lazy">
+      <figcaption>Wireframe of the full assembly in Autodesk Inventor — sensor payload in the nose cone, open body tube for the recovery system, and the engine mount aft.</figcaption>
+    </figure>
+    <div class="cs-chart">
+      <div class="t">Flight 2 — the full flight, stage by stage</div>
+      <div class="st">Onboard log · t&nbsp;=&nbsp;0 at motor ignition · altitude is barometric, above the field · hover for values</div>
+      <div class="sc"><svg id="flightSvg" viewBox="0 0 720 432" role="img" aria-label="Flight 2 data: boost to about 800 feet in 9 seconds, parachute deployment at apogee, a 15 foot per second descent, ending caught in a tree about 50 feet up" style="width:100%;height:auto;display:block">
+  <g stroke="#e5e9f0" stroke-width="1"><line x1="48" y1="244.0" x2="708" y2="244.0"/><line x1="48" y1="190.3" x2="708" y2="190.3"/><line x1="48" y1="136.7" x2="708" y2="136.7"/><line x1="48" y1="83.0" x2="708" y2="83.0"/><line x1="48" y1="29.4" x2="708" y2="29.4"/><line x1="48" y1="396.0" x2="708" y2="396.0"/><line x1="48" y1="352.0" x2="708" y2="352.0"/><line x1="48" y1="308.0" x2="708" y2="308.0"/></g>
+  <g font-family="Inter,system-ui,sans-serif" font-size="11" fill="#5c6675" font-variant-numeric="tabular-nums"><text x="40" y="248.0" text-anchor="end">0</text><text x="40" y="194.3" text-anchor="end">200</text><text x="40" y="140.7" text-anchor="end">400</text><text x="40" y="87.0" text-anchor="end">600</text><text x="40" y="33.4" text-anchor="end">800</text><text x="40" y="400.0" text-anchor="end">0</text><text x="40" y="356.0" text-anchor="end">2</text><text x="40" y="312.0" text-anchor="end">4</text><text x="76.7" y="414" text-anchor="middle">0</text><text x="172.3" y="414" text-anchor="middle">10</text><text x="268.0" y="414" text-anchor="middle">20</text><text x="363.7" y="414" text-anchor="middle">30</text><text x="459.3" y="414" text-anchor="middle">40</text><text x="555.0" y="414" text-anchor="middle">50</text><text x="650.6" y="414" text-anchor="middle">60&#8201;s</text></g>
+  <text x="48" y="15" font-family="Inter,system-ui,sans-serif" font-size="12.5" font-weight="600" fill="#0f1a2b">Altitude &#183; ft above the field</text>
+  <text x="48" y="277" font-family="Inter,system-ui,sans-serif" font-size="12.5" font-weight="600" fill="#0f1a2b">Acceleration &#183; g</text>
+  <path d="M48.4 243.9L49.4 243.9L50.6 243.8L51.6 243.8L52.6 243.8L53.7 243.8L54.8 243.8L55.8 243.8L56.9 243.8L57.9 243.8L59.0 243.8L60.1 243.8L61.1 243.8L62.1 243.8L63.3 243.8L64.3 243.9L65.4 243.9L66.4 243.9L67.5 243.8L68.5 243.8L69.6 243.8L70.6 243.8L71.8 243.8L72.8 243.8L73.8 243.8L74.9 243.8L76.0 244.0L77.0 244.0L78.1 244.0L79.1 243.9L80.2 243.9L81.3 243.5L82.3 243.5L83.4 242.2L84.5 242.2L85.5 239.6L86.5 239.6L87.7 236.1L88.7 236.1L89.7 236.1L90.8 231.5L92.0 231.5L93.0 226.4L94.1 226.4L95.1 223.6L96.2 223.6L97.3 219.5L98.3 219.5L99.4 214.3L100.5 214.3L101.5 208.6L102.6 208.6L103.6 208.6L104.7 201.6L105.8 201.6L106.8 194.4L107.8 194.4L109.0 185.1L110.0 185.1L111.0 175.1L112.1 175.1L113.3 164.1L114.3 164.1L115.4 164.1L116.5 152.9L117.6 152.9L118.7 138.1L119.7 138.1L120.8 124.9L121.9 124.9L122.9 112.8L123.9 112.8L125.1 102.0L126.1 102.0L127.1 102.0L128.2 92.5L129.3 92.5L130.3 83.8L131.4 83.8L132.4 76.0L134.7 69.0L135.8 69.0L136.9 62.7L137.9 62.7L139.1 57.1L140.1 57.1L141.1 52.2L142.2 52.2L143.3 47.7L144.4 47.7L145.4 47.7L146.4 43.8L147.6 43.8L148.6 40.4L149.6 40.4L150.8 37.5L151.8 37.5L152.9 35.2L153.9 35.2L155.0 33.3L156.1 33.3L157.1 33.3L158.1 31.9L159.3 31.9L160.3 31.0L161.3 31.0L162.4 30.6L163.5 30.6L164.6 30.6L165.6 30.6L166.6 31.2L167.8 31.2L168.8 32.2L169.8 32.2L170.9 32.2L172.0 33.1L173.0 33.1L174.1 34.2L175.1 34.2L176.4 35.1L177.4 35.1L178.6 36.0L179.6 36.0L180.7 36.8L181.8 36.8L182.8 37.7L183.9 37.7L185.0 38.5L186.0 38.5L187.0 38.5L188.2 39.3L189.2 39.3L190.2 40.3L191.3 40.3L192.4 41.1L193.4 41.1L194.5 42.2L195.5 42.2L196.6 43.1L197.7 43.1L198.7 43.1L199.7 44.0L200.9 44.0L201.9 45.1L202.9 45.1L204.0 45.9L205.2 45.9L206.2 46.9L207.3 46.9L208.3 47.7L209.6 47.7L210.6 48.6L211.6 48.6L212.6 48.6L213.8 49.4L214.8 49.4L215.9 50.2L216.9 50.2L218.0 51.2L219.1 51.2L220.1 52.1L221.3 52.1L222.4 53.2L223.4 53.2L224.4 53.2L225.6 54.1L226.6 54.1L227.6 55.1L228.7 55.1L229.8 56.1L230.8 56.1L231.9 56.9L232.9 56.9L234.0 58.0L235.1 58.0L236.1 58.0L237.1 58.8L238.3 58.8L239.3 59.8L240.3 59.8L241.4 60.7L242.5 60.7L243.5 61.6L244.5 61.6L245.6 62.5L246.7 62.5L247.7 62.5L248.8 63.4L249.8 63.4L250.9 64.5L252.0 64.5L253.0 65.3L254.1 65.3L255.2 66.3L256.2 66.3L257.2 67.1L258.4 67.1L259.4 68.0L260.4 68.0L261.4 68.0L262.6 68.8L263.7 68.8L264.8 69.8L265.8 69.8L266.9 70.9L267.9 70.9L268.9 71.8L270.0 71.8L271.1 72.7L272.1 72.7L273.2 72.7L274.2 73.7L275.3 73.7L276.4 74.7L277.4 74.7L278.5 75.5L279.6 75.5L280.6 76.4L281.7 76.4L282.7 77.3L283.8 77.3L284.9 77.3L285.9 78.3L287.1 78.3L288.1 79.4L289.1 79.4L290.2 80.4L291.3 80.4L292.3 81.4L293.4 81.4L294.4 82.4L295.7 82.4L296.7 83.5L297.7 83.5L298.8 83.5L300.0 84.4L301.0 84.4L302.1 85.5L303.1 85.5L304.3 86.5L305.3 86.5L306.4 87.5L307.5 87.5L308.6 88.5L309.6 88.5L310.7 88.5L311.7 89.4L312.9 89.4L313.9 90.5L314.9 90.5L316.0 91.5L317.1 91.5L318.1 92.7L319.2 92.7L320.3 93.6L321.3 93.6L322.4 93.6L323.4 94.6L324.5 94.6L325.6 95.6L326.6 95.6L327.7 96.5L328.8 96.5L329.8 97.5L330.9 97.5L331.9 98.4L333.0 98.4L334.1 99.5L335.1 99.5L336.1 99.5L337.3 100.6L338.3 100.6L339.3 101.6L340.4 101.6L341.5 102.7L342.5 102.7L343.6 103.7L344.6 103.7L345.7 104.8L346.8 104.8L347.8 104.8L348.8 105.8L350.1 105.8L351.1 106.9L352.1 106.9L353.2 108.0L354.3 108.0L355.3 109.0L356.4 109.0L357.5 109.9L358.5 109.9L359.6 109.9L360.6 111.0L361.7 111.0L362.8 112.1L363.8 112.1L364.8 113.1L366.0 113.1L367.0 114.0L368.0 114.0L369.1 114.9L370.2 114.9L371.2 115.7L372.3 115.7L373.3 115.7L374.4 116.6L375.5 116.6L376.5 117.6L377.5 117.6L378.7 118.4L379.7 118.4L380.7 119.2L381.7 119.2L382.9 120.1L383.9 120.1L385.1 120.9L386.1 120.9L387.2 121.7L388.3 121.7L389.4 122.5L390.5 122.5L391.7 123.2L392.7 123.2L393.7 123.2L394.9 124.0L395.9 124.0L396.9 125.0L397.9 125.0L400.0 125.8L401.1 125.8L402.3 127.0L403.4 127.0L404.6 128.0L405.7 128.0L406.9 129.0L408.0 129.0L409.3 130.1L410.4 130.1L411.5 131.2L412.6 131.2L413.9 132.2L415.0 132.2L416.2 133.2L417.3 133.2L418.5 134.2L419.6 134.2L420.8 135.3L421.9 135.3L423.1 136.3L424.2 136.3L425.4 137.3L426.6 137.3L427.7 138.3L428.9 138.3L430.0 139.5L431.2 139.5L432.4 140.7L433.5 140.7L434.6 141.7L435.9 141.7L437.0 142.8L438.1 142.8L439.4 143.9L440.6 143.9L441.7 145.1L442.8 145.1L444.0 146.3L445.2 146.3L446.3 147.2L447.4 147.2L448.6 148.4L449.8 148.4L450.9 149.5L452.1 149.5L453.2 150.7L454.4 150.7L455.6 151.7L456.7 151.7L457.8 152.8L459.0 152.8L460.2 153.9L461.3 153.9L462.5 154.9L463.6 154.9L464.8 156.0L465.9 156.0L467.1 157.1L468.2 157.1L469.4 158.2L470.5 158.2L471.7 159.2L472.9 159.2L474.0 160.4L475.1 160.4L476.3 161.6L477.5 161.6L478.6 162.7L479.7 162.7L481.0 163.8L482.1 163.8L483.3 164.9L484.4 164.9L485.8 165.9L486.9 165.9L488.2 167.2L489.3 167.2L490.5 168.5L491.6 168.5L492.8 169.5L493.9 169.5L495.1 170.5L496.2 170.5L497.4 171.8L498.5 171.8L499.7 173.0L500.8 173.0L502.0 174.1L503.2 174.1L504.3 175.3L505.5 175.3L506.6 176.5L507.8 176.5L509.0 177.7L510.1 177.7L511.2 178.7L512.4 178.7L513.6 179.7L514.7 179.7L515.8 180.7L517.0 180.7L518.2 181.8L519.3 181.8L520.4 182.8L521.6 182.8L522.8 183.8L523.9 183.8L525.0 184.8L526.2 184.8L527.4 185.7L528.5 185.7L529.6 186.7L530.9 186.7L532.1 187.5L533.2 187.5L534.3 188.4L535.6 188.4L536.7 189.3L537.8 189.3L539.0 190.0L540.2 190.0L541.3 190.8L542.4 190.8L543.6 191.5L544.7 191.5L545.9 192.2L547.0 192.2L548.2 193.0L549.3 193.0L550.5 193.7L551.6 193.7L552.8 194.4L553.9 194.4L555.1 195.0L556.2 195.0L557.5 195.8L558.6 195.8L559.7 196.5L560.8 196.5L562.1 197.2L563.2 197.2L564.3 198.0L565.5 198.0L566.7 198.9L567.8 198.9L569.0 199.8L570.1 199.8L571.3 200.7L572.4 200.7L573.6 201.5L574.8 201.5L575.9 202.4L577.1 202.4L578.2 203.3L579.5 203.3L580.7 204.2L581.9 204.2L583.0 205.2L584.2 205.2L585.4 206.0L586.8 206.0L587.9 207.0L589.1 207.0L590.2 207.9L591.4 207.9L592.5 208.8L593.7 208.8L594.9 209.8L596.0 209.8L597.1 210.8L598.3 210.8L599.5 211.8L600.6 211.8L601.7 212.8L603.0 212.8L604.1 213.7L605.2 213.7L606.4 214.6L607.6 214.6L608.7 215.5L609.8 215.5L611.1 216.5L612.2 216.5L613.3 217.4L614.5 217.4L615.7 218.4L616.8 218.4L618.0 219.1L619.1 219.1L620.3 220.1L621.4 220.1L622.6 221.0L623.7 221.0L625.0 221.8L626.1 221.8L627.3 222.6L628.4 222.6L629.6 223.4L630.8 223.4L631.9 224.2L633.0 224.2L634.2 225.1L635.4 225.1L636.5 225.8L637.6 225.8L638.8 226.4L640.0 226.4L641.1 227.0L642.2 227.0L643.5 227.5L644.6 227.5L645.7 228.1L646.8 228.1L648.1 228.7L649.2 228.7L650.3 229.0L651.5 229.0L652.7 229.4L653.8 229.4L654.9 229.6L656.1 229.6L657.3 229.7L658.4 229.7L659.5 229.7L660.7 229.7L661.9 229.8L663.0 229.8L664.1 229.8L665.3 229.8L666.5 229.9L667.6 229.9L668.7 230.0L669.9 230.0L671.1 230.0L672.3 230.0L673.4 230.0L674.6 230.0L675.8 230.0L676.9 230.0L678.0 230.0L679.4 230.0L680.5 230.0L681.6 230.0L682.7 230.1L684.1 230.1L685.2 230.0L686.3 230.0L687.6 230.0L688.8 230.0L689.9 230.0L691.0 230.0L692.2 230.1L693.4 230.1L694.5 230.1L695.6 230.1L696.9 230.1L698.0 230.1L699.1 230.1L700.3 230.1L701.5 230.1L702.6 230.1L703.7 230.1L704.9 230.1L706.1 230.0L707.2 230.0L707.2 244L48.4 244Z" fill="#1e50e0" opacity=".08"/>
+  <path d="M48.4 243.9L49.4 243.9L50.6 243.8L51.6 243.8L52.6 243.8L53.7 243.8L54.8 243.8L55.8 243.8L56.9 243.8L57.9 243.8L59.0 243.8L60.1 243.8L61.1 243.8L62.1 243.8L63.3 243.8L64.3 243.9L65.4 243.9L66.4 243.9L67.5 243.8L68.5 243.8L69.6 243.8L70.6 243.8L71.8 243.8L72.8 243.8L73.8 243.8L74.9 243.8L76.0 244.0L77.0 244.0L78.1 244.0L79.1 243.9L80.2 243.9L81.3 243.5L82.3 243.5L83.4 242.2L84.5 242.2L85.5 239.6L86.5 239.6L87.7 236.1L88.7 236.1L89.7 236.1L90.8 231.5L92.0 231.5L93.0 226.4L94.1 226.4L95.1 223.6L96.2 223.6L97.3 219.5L98.3 219.5L99.4 214.3L100.5 214.3L101.5 208.6L102.6 208.6L103.6 208.6L104.7 201.6L105.8 201.6L106.8 194.4L107.8 194.4L109.0 185.1L110.0 185.1L111.0 175.1L112.1 175.1L113.3 164.1L114.3 164.1L115.4 164.1L116.5 152.9L117.6 152.9L118.7 138.1L119.7 138.1L120.8 124.9L121.9 124.9L122.9 112.8L123.9 112.8L125.1 102.0L126.1 102.0L127.1 102.0L128.2 92.5L129.3 92.5L130.3 83.8L131.4 83.8L132.4 76.0L134.7 69.0L135.8 69.0L136.9 62.7L137.9 62.7L139.1 57.1L140.1 57.1L141.1 52.2L142.2 52.2L143.3 47.7L144.4 47.7L145.4 47.7L146.4 43.8L147.6 43.8L148.6 40.4L149.6 40.4L150.8 37.5L151.8 37.5L152.9 35.2L153.9 35.2L155.0 33.3L156.1 33.3L157.1 33.3L158.1 31.9L159.3 31.9L160.3 31.0L161.3 31.0L162.4 30.6L163.5 30.6L164.6 30.6L165.6 30.6L166.6 31.2L167.8 31.2L168.8 32.2L169.8 32.2L170.9 32.2L172.0 33.1L173.0 33.1L174.1 34.2L175.1 34.2L176.4 35.1L177.4 35.1L178.6 36.0L179.6 36.0L180.7 36.8L181.8 36.8L182.8 37.7L183.9 37.7L185.0 38.5L186.0 38.5L187.0 38.5L188.2 39.3L189.2 39.3L190.2 40.3L191.3 40.3L192.4 41.1L193.4 41.1L194.5 42.2L195.5 42.2L196.6 43.1L197.7 43.1L198.7 43.1L199.7 44.0L200.9 44.0L201.9 45.1L202.9 45.1L204.0 45.9L205.2 45.9L206.2 46.9L207.3 46.9L208.3 47.7L209.6 47.7L210.6 48.6L211.6 48.6L212.6 48.6L213.8 49.4L214.8 49.4L215.9 50.2L216.9 50.2L218.0 51.2L219.1 51.2L220.1 52.1L221.3 52.1L222.4 53.2L223.4 53.2L224.4 53.2L225.6 54.1L226.6 54.1L227.6 55.1L228.7 55.1L229.8 56.1L230.8 56.1L231.9 56.9L232.9 56.9L234.0 58.0L235.1 58.0L236.1 58.0L237.1 58.8L238.3 58.8L239.3 59.8L240.3 59.8L241.4 60.7L242.5 60.7L243.5 61.6L244.5 61.6L245.6 62.5L246.7 62.5L247.7 62.5L248.8 63.4L249.8 63.4L250.9 64.5L252.0 64.5L253.0 65.3L254.1 65.3L255.2 66.3L256.2 66.3L257.2 67.1L258.4 67.1L259.4 68.0L260.4 68.0L261.4 68.0L262.6 68.8L263.7 68.8L264.8 69.8L265.8 69.8L266.9 70.9L267.9 70.9L268.9 71.8L270.0 71.8L271.1 72.7L272.1 72.7L273.2 72.7L274.2 73.7L275.3 73.7L276.4 74.7L277.4 74.7L278.5 75.5L279.6 75.5L280.6 76.4L281.7 76.4L282.7 77.3L283.8 77.3L284.9 77.3L285.9 78.3L287.1 78.3L288.1 79.4L289.1 79.4L290.2 80.4L291.3 80.4L292.3 81.4L293.4 81.4L294.4 82.4L295.7 82.4L296.7 83.5L297.7 83.5L298.8 83.5L300.0 84.4L301.0 84.4L302.1 85.5L303.1 85.5L304.3 86.5L305.3 86.5L306.4 87.5L307.5 87.5L308.6 88.5L309.6 88.5L310.7 88.5L311.7 89.4L312.9 89.4L313.9 90.5L314.9 90.5L316.0 91.5L317.1 91.5L318.1 92.7L319.2 92.7L320.3 93.6L321.3 93.6L322.4 93.6L323.4 94.6L324.5 94.6L325.6 95.6L326.6 95.6L327.7 96.5L328.8 96.5L329.8 97.5L330.9 97.5L331.9 98.4L333.0 98.4L334.1 99.5L335.1 99.5L336.1 99.5L337.3 100.6L338.3 100.6L339.3 101.6L340.4 101.6L341.5 102.7L342.5 102.7L343.6 103.7L344.6 103.7L345.7 104.8L346.8 104.8L347.8 104.8L348.8 105.8L350.1 105.8L351.1 106.9L352.1 106.9L353.2 108.0L354.3 108.0L355.3 109.0L356.4 109.0L357.5 109.9L358.5 109.9L359.6 109.9L360.6 111.0L361.7 111.0L362.8 112.1L363.8 112.1L364.8 113.1L366.0 113.1L367.0 114.0L368.0 114.0L369.1 114.9L370.2 114.9L371.2 115.7L372.3 115.7L373.3 115.7L374.4 116.6L375.5 116.6L376.5 117.6L377.5 117.6L378.7 118.4L379.7 118.4L380.7 119.2L381.7 119.2L382.9 120.1L383.9 120.1L385.1 120.9L386.1 120.9L387.2 121.7L388.3 121.7L389.4 122.5L390.5 122.5L391.7 123.2L392.7 123.2L393.7 123.2L394.9 124.0L395.9 124.0L396.9 125.0L397.9 125.0L400.0 125.8L401.1 125.8L402.3 127.0L403.4 127.0L404.6 128.0L405.7 128.0L406.9 129.0L408.0 129.0L409.3 130.1L410.4 130.1L411.5 131.2L412.6 131.2L413.9 132.2L415.0 132.2L416.2 133.2L417.3 133.2L418.5 134.2L419.6 134.2L420.8 135.3L421.9 135.3L423.1 136.3L424.2 136.3L425.4 137.3L426.6 137.3L427.7 138.3L428.9 138.3L430.0 139.5L431.2 139.5L432.4 140.7L433.5 140.7L434.6 141.7L435.9 141.7L437.0 142.8L438.1 142.8L439.4 143.9L440.6 143.9L441.7 145.1L442.8 145.1L444.0 146.3L445.2 146.3L446.3 147.2L447.4 147.2L448.6 148.4L449.8 148.4L450.9 149.5L452.1 149.5L453.2 150.7L454.4 150.7L455.6 151.7L456.7 151.7L457.8 152.8L459.0 152.8L460.2 153.9L461.3 153.9L462.5 154.9L463.6 154.9L464.8 156.0L465.9 156.0L467.1 157.1L468.2 157.1L469.4 158.2L470.5 158.2L471.7 159.2L472.9 159.2L474.0 160.4L475.1 160.4L476.3 161.6L477.5 161.6L478.6 162.7L479.7 162.7L481.0 163.8L482.1 163.8L483.3 164.9L484.4 164.9L485.8 165.9L486.9 165.9L488.2 167.2L489.3 167.2L490.5 168.5L491.6 168.5L492.8 169.5L493.9 169.5L495.1 170.5L496.2 170.5L497.4 171.8L498.5 171.8L499.7 173.0L500.8 173.0L502.0 174.1L503.2 174.1L504.3 175.3L505.5 175.3L506.6 176.5L507.8 176.5L509.0 177.7L510.1 177.7L511.2 178.7L512.4 178.7L513.6 179.7L514.7 179.7L515.8 180.7L517.0 180.7L518.2 181.8L519.3 181.8L520.4 182.8L521.6 182.8L522.8 183.8L523.9 183.8L525.0 184.8L526.2 184.8L527.4 185.7L528.5 185.7L529.6 186.7L530.9 186.7L532.1 187.5L533.2 187.5L534.3 188.4L535.6 188.4L536.7 189.3L537.8 189.3L539.0 190.0L540.2 190.0L541.3 190.8L542.4 190.8L543.6 191.5L544.7 191.5L545.9 192.2L547.0 192.2L548.2 193.0L549.3 193.0L550.5 193.7L551.6 193.7L552.8 194.4L553.9 194.4L555.1 195.0L556.2 195.0L557.5 195.8L558.6 195.8L559.7 196.5L560.8 196.5L562.1 197.2L563.2 197.2L564.3 198.0L565.5 198.0L566.7 198.9L567.8 198.9L569.0 199.8L570.1 199.8L571.3 200.7L572.4 200.7L573.6 201.5L574.8 201.5L575.9 202.4L577.1 202.4L578.2 203.3L579.5 203.3L580.7 204.2L581.9 204.2L583.0 205.2L584.2 205.2L585.4 206.0L586.8 206.0L587.9 207.0L589.1 207.0L590.2 207.9L591.4 207.9L592.5 208.8L593.7 208.8L594.9 209.8L596.0 209.8L597.1 210.8L598.3 210.8L599.5 211.8L600.6 211.8L601.7 212.8L603.0 212.8L604.1 213.7L605.2 213.7L606.4 214.6L607.6 214.6L608.7 215.5L609.8 215.5L611.1 216.5L612.2 216.5L613.3 217.4L614.5 217.4L615.7 218.4L616.8 218.4L618.0 219.1L619.1 219.1L620.3 220.1L621.4 220.1L622.6 221.0L623.7 221.0L625.0 221.8L626.1 221.8L627.3 222.6L628.4 222.6L629.6 223.4L630.8 223.4L631.9 224.2L633.0 224.2L634.2 225.1L635.4 225.1L636.5 225.8L637.6 225.8L638.8 226.4L640.0 226.4L641.1 227.0L642.2 227.0L643.5 227.5L644.6 227.5L645.7 228.1L646.8 228.1L648.1 228.7L649.2 228.7L650.3 229.0L651.5 229.0L652.7 229.4L653.8 229.4L654.9 229.6L656.1 229.6L657.3 229.7L658.4 229.7L659.5 229.7L660.7 229.7L661.9 229.8L663.0 229.8L664.1 229.8L665.3 229.8L666.5 229.9L667.6 229.9L668.7 230.0L669.9 230.0L671.1 230.0L672.3 230.0L673.4 230.0L674.6 230.0L675.8 230.0L676.9 230.0L678.0 230.0L679.4 230.0L680.5 230.0L681.6 230.0L682.7 230.1L684.1 230.1L685.2 230.0L686.3 230.0L687.6 230.0L688.8 230.0L689.9 230.0L691.0 230.0L692.2 230.1L693.4 230.1L694.5 230.1L695.6 230.1L696.9 230.1L698.0 230.1L699.1 230.1L700.3 230.1L701.5 230.1L702.6 230.1L703.7 230.1L704.9 230.1L706.1 230.0L707.2 230.0" fill="none" stroke="#1e50e0" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M48.4 375.1L49.8 375.4L50.9 374.7L51.2 375.3L52.6 375.3L54.0 374.7L54.8 374.7L55.1 375.8L56.5 375.3L57.9 374.6L58.7 375.6L59.0 374.7L61.4 374.9L61.8 375.8L62.9 376.0L64.0 374.9L64.3 375.3L64.7 375.8L66.0 375.3L67.5 375.1L69.6 375.8L69.9 374.7L71.1 375.3L71.8 374.9L72.4 374.9L72.8 375.4L74.2 375.2L74.9 373.6L76.3 368.0L77.7 298.8L79.1 297.9L79.9 320.5L80.2 327.0L82.0 335.2L82.3 336.5L83.0 338.7L84.5 338.1L85.5 340.9L86.2 340.3L87.2 341.8L88.4 341.9L89.7 343.4L90.1 343.4L92.0 345.7L92.7 348.5L93.4 347.5L94.4 348.0L95.9 350.3L96.2 349.8L96.6 351.0L98.3 351.3L99.7 354.4L100.1 354.0L100.8 352.7L102.9 353.0L103.6 354.6L104.7 353.3L105.8 376.1L106.1 384.8L106.8 382.7L108.3 383.6L110.0 385.0L110.3 385.4L110.7 384.4L112.5 384.5L113.7 388.3L114.3 386.8L115.0 388.2L117.6 387.6L118.0 389.2L118.3 388.4L119.7 389.3L120.8 390.0L121.5 388.3L122.2 387.9L123.6 390.1L124.3 389.0L125.8 391.6L126.8 391.0L127.8 389.5L128.5 390.0L129.6 390.8L130.3 389.8L131.7 391.4L132.1 390.4L132.4 390.7L134.4 390.9L135.5 390.3L137.2 391.6L137.9 390.4L138.4 391.0L139.7 390.9L140.1 391.6L140.4 390.5L142.6 391.0L143.7 390.9L144.4 391.5L145.0 390.4L146.4 390.2L146.9 391.4L148.3 390.9L148.6 391.5L150.3 391.5L151.8 390.4L152.5 390.4L153.9 391.4L155.0 391.1L155.7 390.4L156.4 391.0L156.7 390.5L158.1 389.7L159.6 390.5L160.3 390.4L160.7 391.6L162.0 390.9L163.5 357.3L164.6 307.1L165.9 389.4L166.6 390.3L167.8 304.1L168.8 323.0L169.8 286.0L170.2 286.0L171.2 360.5L172.0 308.6L172.7 373.4L174.1 355.5L175.7 390.7L176.0 390.3L177.1 351.8L178.2 364.7L178.9 382.9L180.7 376.9L181.4 369.1L183.1 349.4L183.9 385.4L184.3 366.8L185.3 374.7L186.3 376.7L187.0 368.9L188.8 380.2L189.9 362.5L190.2 369.9L190.6 375.8L192.8 377.1L193.8 365.4L194.1 372.0L195.5 376.3L197.0 379.3L197.3 375.1L198.4 371.3L199.4 378.0L200.1 378.1L200.9 372.5L202.2 373.4L203.3 378.8L204.3 376.8L205.2 375.6L206.9 374.0L208.0 376.9L208.3 375.8L209.6 376.8L210.6 372.2L212.0 375.6L212.6 378.3L213.8 376.6L214.5 377.2L215.5 372.9L216.9 378.6L217.7 375.3L218.4 380.0L219.7 373.9L220.4 376.3L221.3 372.4L222.4 379.3L223.7 373.1L224.8 371.2L225.9 378.9L226.2 377.4L227.3 373.4L229.0 373.8L229.5 375.0L230.1 374.9L231.2 376.9L232.2 377.0L232.6 378.6L234.0 379.4L235.8 373.7L236.1 374.3L236.8 379.1L239.3 376.5L240.0 372.4L240.3 371.5L241.0 375.4L242.1 376.3L242.5 373.5L244.2 370.6L245.2 380.3L246.7 375.2L247.7 378.8L248.1 377.7L249.1 375.0L250.6 375.8L252.0 372.8L252.3 374.0L253.7 376.6L255.2 377.4L255.5 378.0L256.2 377.3L256.5 379.5L258.4 376.0L259.4 373.2L260.4 379.2L261.8 373.4L262.9 372.6L263.7 376.6L264.1 379.6L265.4 376.6L266.1 376.3L267.2 374.3L268.2 373.8L270.0 375.7L271.4 371.8L271.8 374.3L272.8 377.8L273.5 374.9L274.2 379.2L275.7 375.8L276.0 375.6L277.8 379.1L278.1 379.3L279.9 375.9L280.3 377.0L281.7 374.8L282.0 370.0L283.2 375.9L284.2 369.4L285.2 375.3L286.3 375.7L287.4 381.0L289.1 376.5L289.5 374.7L290.9 380.0L291.6 374.4L292.0 373.9L293.4 376.5L294.4 373.5L296.0 377.1L296.3 376.5L297.7 373.8L298.1 373.5L299.2 378.7L300.7 379.2L301.7 375.0L302.1 375.8L302.8 378.9L305.0 371.5L306.0 375.5L307.5 377.8L307.8 376.1L308.6 375.0L309.6 371.7L310.7 375.5L311.4 372.2L312.2 375.9L313.9 371.6L314.2 374.1L314.9 377.9L316.4 377.8L317.4 372.0L318.1 375.0L319.9 380.5L320.3 379.0L321.3 376.0L322.4 373.8L323.4 381.0L324.5 370.4L325.6 379.6L327.0 374.5L327.7 377.6L328.0 378.5L328.8 374.0L330.5 378.0L331.5 375.4L332.2 376.5L333.4 374.7L334.7 375.8L335.4 377.7L336.9 379.8L337.3 377.4L339.0 378.5L339.7 373.3L340.0 375.6L340.7 377.7L342.9 375.0L343.6 377.7L344.3 372.1L345.7 379.8L346.1 377.8L346.8 371.4L349.4 370.2L349.7 375.5L350.1 377.5L351.8 369.3L352.5 376.7L353.9 371.5L354.3 372.0L355.0 378.0L356.0 371.6L357.1 378.0L358.2 374.1L359.9 378.3L360.6 372.9L361.7 376.2L362.1 373.4L363.1 379.6L364.5 376.8L365.6 374.6L367.0 376.2L367.7 370.7L368.0 374.1L369.9 379.5L370.9 372.5L371.9 379.6L372.3 378.5L373.6 369.7L374.8 374.2L375.8 377.8L376.2 378.7L377.2 373.2L379.3 373.7L379.7 377.0L380.0 378.1L381.7 373.3L383.2 376.3L383.6 377.9L385.1 379.1L385.7 375.8L386.5 375.1L387.6 381.3L388.9 374.7L389.4 377.6L390.5 373.3L391.7 377.1L392.0 378.6L393.4 369.5L394.1 373.9L395.9 379.6L396.6 379.2L397.3 374.7L398.3 381.7L398.6 381.0L400.0 372.2L401.5 378.8L403.0 378.6L403.8 371.4L404.3 373.1L405.7 378.4L406.1 377.8L406.9 369.6L408.4 376.1L408.9 373.3L410.0 374.4L411.9 382.0L412.3 379.3L413.9 371.5L414.3 370.6L415.4 379.3L416.2 378.3L416.5 373.8L418.9 374.2L419.6 379.3L421.1 380.9L421.9 375.7L422.4 375.5L423.5 378.8L424.2 376.3L425.0 374.3L427.0 371.8L427.7 378.2L428.5 373.6L429.6 376.9L430.4 374.3L431.6 377.7L432.4 374.0L432.7 376.5L434.6 376.0L435.4 378.0L436.2 374.3L437.0 371.0L438.5 373.9L439.4 379.8L440.6 377.8L441.3 371.1L442.5 379.3L443.6 371.1L444.3 375.7L445.6 380.3L446.7 372.0L447.8 377.7L448.2 377.1L449.8 373.5L450.2 373.4L451.3 381.0L452.4 379.1L453.7 370.7L454.1 371.0L455.6 378.4L456.3 374.7L457.0 376.4L459.0 375.8L459.8 378.4L460.2 379.9L461.3 374.2L462.5 372.3L463.6 379.0L464.4 375.1L465.9 376.8L466.3 379.7L467.1 369.9L468.2 379.8L469.4 373.2L470.1 378.5L471.3 373.1L472.5 378.6L474.0 371.1L474.4 372.2L476.0 379.6L477.1 374.9L477.9 378.7L478.6 373.7L479.7 379.6L480.1 378.6L481.3 373.1L482.5 378.0L482.9 372.8L484.4 370.0L485.4 378.0L486.9 370.7L487.8 377.4L488.5 372.0L489.7 375.7L490.1 374.6L490.9 376.8L492.0 378.0L493.1 372.1L494.4 372.4L495.5 378.1L496.2 376.4L497.0 373.9L499.0 375.6L499.7 378.9L500.1 378.3L500.8 372.7L502.7 377.6L504.0 374.1L504.3 376.0L505.5 378.2L506.2 377.6L507.4 369.1L508.6 372.0L509.3 377.5L510.1 375.7L510.8 366.2L512.1 373.3L513.9 369.4L514.7 365.8L515.1 368.0L516.2 370.9L517.4 376.2L518.2 375.2L518.9 372.4L520.8 374.3L521.6 371.5L522.4 369.7L523.9 374.7L524.3 372.6L525.0 369.9L527.0 372.5L527.8 376.3L528.1 376.5L528.9 379.3L530.5 366.0L531.7 376.3L533.2 368.0L534.0 373.7L534.3 375.8L535.9 370.3L536.3 376.5L536.7 382.7L539.0 374.5L539.8 378.9L540.5 375.0L541.3 380.4L542.0 375.4L544.0 367.5L544.3 368.6L545.1 374.5L546.2 373.2L547.0 375.0L548.6 372.2L549.3 379.3L550.1 375.7L551.6 374.5L552.5 375.2L553.6 379.5L555.1 376.1L555.8 372.1L556.2 375.6L557.1 382.3L558.2 378.6L559.3 372.4L560.5 381.5L561.7 373.9L562.4 377.4L563.6 371.3L564.3 379.8L565.9 374.0L567.1 374.3L567.4 375.7L568.2 374.0L569.3 377.7L571.3 374.5L571.7 377.6L572.8 379.4L573.9 371.6L574.3 361.1L575.6 379.7L576.3 373.6L577.4 377.1L579.0 372.5L579.9 377.6L580.3 379.0L581.1 375.0L582.3 374.0L583.4 366.9L584.6 378.1L585.4 371.8L587.1 372.6L587.9 376.5L588.3 376.5L589.1 372.7L590.6 375.5L591.4 372.6L592.5 377.6L593.4 374.5L594.1 378.8L594.9 371.7L596.7 370.8L597.5 375.1L598.3 370.2L599.9 374.9L600.2 376.0L601.4 380.0L602.6 375.2L603.7 379.3L604.1 379.3L606.0 367.8L606.4 366.4L607.2 378.4L608.3 372.6L609.5 378.9L610.6 371.8L611.8 378.0L612.6 374.1L613.3 379.1L614.1 374.3L614.8 368.9L616.4 368.2L617.2 373.1L618.7 369.2L619.8 376.3L620.3 372.8L621.8 377.8L622.2 380.5L623.7 373.7L624.1 375.5L625.8 378.7L626.9 378.2L627.7 375.6L628.4 380.7L629.3 373.4L630.4 376.8L631.5 372.1L632.6 312.9L633.9 369.3L634.6 379.8L635.7 361.3L637.2 365.7L637.6 388.3L638.1 388.7L639.2 362.1L641.1 389.8L641.5 379.0L642.7 378.3L643.8 364.5L645.3 357.3L645.7 368.7L646.5 348.8L647.7 378.6L648.8 384.7L649.9 373.5L650.3 388.2L651.5 374.5L652.3 376.6L653.8 383.8L654.2 382.6L655.7 374.2L657.3 375.3L657.6 372.9L658.4 372.3L659.9 377.1L660.4 377.7L661.5 374.6L662.2 374.9L663.8 378.1L664.1 376.9L664.5 375.8L667.2 380.0L668.0 376.5L668.4 374.4L668.7 373.2L670.3 375.1L671.9 377.8L672.3 378.9L673.9 375.4L674.3 375.8L674.6 376.5L676.2 376.9L677.3 378.9L678.0 377.4L679.7 376.5L680.5 375.1L682.0 376.0L682.7 374.7L683.6 377.2L684.1 378.5L685.2 376.3L686.3 376.3L687.6 378.2L688.4 376.6L689.5 377.1L690.3 377.4L691.0 376.1L692.2 376.0L693.4 376.8L694.9 376.0L695.2 377.2L696.0 377.7L697.2 376.0L698.4 377.1L699.5 376.0L701.5 376.5L701.9 377.1L702.6 375.7L703.4 377.0L704.5 376.4L705.7 377.1L706.1 377.1L706.9 376.5L708.0 376.9" fill="none" stroke="#b5790a" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+  <line id="fcCross" x1="0" y1="24" x2="0" y2="396" stroke="#9aa5b4" stroke-width="1" visibility="hidden"/>
+  <circle cx="162.0" cy="30.6" r="4.5" fill="#1e50e0" stroke="#fff" stroke-width="2"/>
+  <circle cx="654.4" cy="230.0" r="4.5" fill="#1e50e0" stroke="#fff" stroke-width="2"/>
+  <circle cx="79.1" cy="297.9" r="4.5" fill="#b5790a" stroke="#fff" stroke-width="2"/>
+  <g font-family="Inter,system-ui,sans-serif" font-size="12" fill="#0f1a2b">
+    <text x="172.0" y="27.6" font-weight="600">apogee &#8776;800 ft &#183; chute out</text>
+    <text x="420" y="120" fill="#5c6675">&#8776;15 ft/s under chute</text>
+    <text x="706" y="200" text-anchor="end" font-weight="600">caught in a tree</text>
+    <text x="706" y="215" text-anchor="end" fill="#5c6675">&#8776;50 ft up</text>
+    <text x="89.1" y="299.9" font-weight="600">liftoff &#183; 4.5 g</text>
+    <text x="134" y="372" text-anchor="middle" fill="#5c6675">burnout</text>
+  </g>
+  <rect id="fcHit" x="48" y="24" width="660" height="372" fill="transparent"/>
+</svg></div>
+      <div class="cs-tip" id="fcTip"></div>
+      <div style="font-size:.82rem;color:var(--muted);margin-top:6px">Every stage in one log: a 3.0&nbsp;s burn on an E-class motor (4.5&nbsp;g recorded), coast to a ≈800&nbsp;ft apogee at t+9&nbsp;s, ejection and chute-out at apogee, a ≈15&nbsp;ft/s descent — and a landing ≈50&nbsp;ft up a tree. The payload kept logging for another 20&nbsp;minutes while it hung there, so the log doubles as the recovery record.</div>
+    </div>
+    <div class="cs-3d">
+      <div class="cs-3d-head">
+        <div>
+          <div class="t">Interactive CAD model</div>
+          <div class="st">Drag to orbit · scroll to zoom · toggle the exploded view</div>
+        </div>
+        <button class="btn3d" id="explode3d" disabled aria-pressed="false">Exploded view</button>
+      </div>
+      <div class="cs-3d-stage" id="stage3d">
+        <button class="cs-3d-load" id="load3d">Load 3D model<span>≈1.7 MB · WebGL · from the Inventor assembly</span></button>
+      </div>
+    </div>
+
+    <h4>Build &amp; integration</h4>
+    <div class="cs-gallery">
+      <figure><img src="img/rocket/payload.jpg" alt="Sensor payload electronics held in a hand" loading="lazy"><figcaption>The payload stack — Arduino-based logger with a BME680 (pressure · temperature · humidity) and an ADXL335 3-axis accelerometer. I soldered and integrated the stack.</figcaption></figure>
+      <figure><img src="img/rocket/launch.jpg" alt="Rocket lifting off with motor flame visible" loading="lazy"><figcaption>First flight — liftoff.</figcaption></figure>
+      <figure><img src="img/rocket/recovery.jpg" alt="Two team members reaching into a tall pine with a long telescoping pole to recover the rocket" loading="lazy"><figcaption>The recovery — 50&nbsp;ft up a pine, solved with one very long pole. The payload logged the whole wait.</figcaption></figure>
+      <figure><img src="img/rocket/team.jpg" alt="The team holding the rocket on the launch field" loading="lazy"><figcaption>Launch day with the team.</figcaption></figure>
+    </div>
+    <figure>
+      <img src="img/rocket/cover-cutaway.jpg" alt="CAD section view of the nose cone with the sensor payload inside" loading="lazy">
+      <figcaption>Section view — the sensor stack riding in the nose-cone payload bay.</figcaption>
+    </figure>
+  </div>
+</div>
 
 <footer>
   <div class="wrap foot-inner">
@@ -397,6 +577,129 @@
   document.querySelectorAll('[data-soon],[data-resume]').forEach(function(el){
     el.addEventListener('click', function(e){ e.preventDefault(); });
   });
+
+  // case-study modals
+  function closeStudy(ov){ ov.classList.remove('open'); document.body.classList.remove('cs-lock'); }
+  document.querySelectorAll('[data-study]').forEach(function(el){
+    var target = el.closest('.card') || el;   // whole card opens the details
+    target.addEventListener('click', function(e){
+      e.preventDefault();
+      var ov = document.getElementById('study-' + el.dataset.study);
+      if(!ov) return;
+      ov.classList.add('open'); document.body.classList.add('cs-lock');
+      var c = ov.querySelector('.cs-close'); if(c) c.focus();
+    });
+  });
+  document.querySelectorAll('.cs-overlay').forEach(function(ov){
+    ov.addEventListener('click', function(e){ if(e.target === ov) closeStudy(ov); });
+    ov.querySelector('.cs-close').addEventListener('click', function(){ closeStudy(ov); });
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') document.querySelectorAll('.cs-overlay.open').forEach(closeStudy);
+  });
+
+  // flight chart hover (Flight 1 data: [t s, altitude ft, |a| g] at ~10 Hz)
+  var FD=[[-2.96,0,0.95],[-2.85,0,0.95],[-2.73,1,0.95],[-2.63,1,0.97],[-2.52,1,0.94],[-2.41,1,0.94],[-2.29,1,0.97],[-2.18,1,0.92],[-2.07,1,0.94],[-1.96,1,0.97],[-1.85,1,0.97],[-1.74,1,0.94],[-1.63,1,0.94],[-1.52,1,0.94],[-1.40,1,0.95],[-1.29,0,0.94],[-1.19,0,0.94],[-1.08,0,0.95],[-0.96,1,0.95],[-0.85,1,0.94],[-0.74,1,0.92],[-0.63,1,0.95],[-0.52,1,0.96],[-0.41,1,0.94],[-0.30,1,0.94],[-0.19,1,1.02],[-0.07,0,0.98],[0.04,0,3.60],[0.14,0,4.39],[0.25,0,4.46],[0.37,0,3.14],[0.48,2,2.87],[0.59,2,2.71],[0.71,7,2.60],[0.81,7,2.63],[0.92,16,2.50],[1.03,16,2.47],[1.15,29,2.46],[1.25,29,2.44],[1.36,29,2.39],[1.47,47,2.36],[1.60,47,2.29],[1.71,66,2.18],[1.82,66,2.18],[1.93,76,2.15],[2.04,76,2.10],[2.15,91,2.08],[2.26,91,2.03],[2.37,111,1.92],[2.49,111,1.91],[2.60,132,1.96],[2.70,132,1.92],[2.81,132,1.88],[2.93,158,1.94],[3.04,158,0.90],[3.15,185,0.61],[3.25,185,0.55],[3.37,220,0.55],[3.48,220,0.50],[3.59,257,0.51],[3.70,257,0.47],[3.83,298,0.38],[3.94,298,0.42],[4.04,298,0.38],[4.16,339,0.37],[4.28,339,0.38],[4.39,395,0.32],[4.50,395,0.31],[4.62,444,0.27],[4.72,444,0.32],[4.83,489,0.31],[4.94,489,0.31],[5.06,529,0.27],[5.17,529,0.27],[5.27,529,0.24],[5.38,565,0.24],[5.50,565,0.27],[5.61,597,0.28],[5.72,597,0.22],[5.82,626,0.24],[6.07,652,0.23],[6.18,652,0.26],[6.29,676,0.25],[6.40,676,0.26],[6.52,697,0.23],[6.63,697,0.20],[6.74,715,0.23],[6.85,715,0.23],[6.96,732,0.23],[7.07,732,0.20],[7.18,732,0.23],[7.29,746,0.26],[7.41,746,0.25],[7.52,759,0.20],[7.63,759,0.23],[7.74,770,0.23],[7.85,770,0.26],[7.96,778,0.25],[8.07,778,0.21],[8.19,785,0.22],[8.30,785,0.23],[8.41,785,0.23],[8.52,791,0.29],[8.63,791,0.26],[8.74,794,0.25],[8.85,794,0.25],[8.96,796,0.26],[9.08,796,1.76],[9.19,795,4.04],[9.29,795,1.58],[9.40,793,0.26],[9.52,793,4.18],[9.63,789,3.32],[9.74,789,5.25],[9.85,789,1.82],[9.97,786,3.97],[10.07,786,1.24],[10.18,782,1.84],[10.29,782,0.28],[10.42,779,0.56],[10.53,779,0.97],[10.65,775,0.86],[10.76,775,0.98],[10.88,772,0.87],[10.98,772,0.99],[11.09,769,2.09],[11.21,769,0.48],[11.32,766,1.05],[11.43,766,1.12],[11.53,766,1.23],[11.65,763,1.44],[11.76,763,0.76],[11.87,759,1.19],[11.98,759,1.12],[12.10,756,1.05],[12.20,756,1.34],[12.31,752,1.06],[12.42,752,0.89],[12.54,749,0.79],[12.65,749,0.89],[12.75,749,1.01],[12.86,746,0.83],[12.98,746,1.07],[13.09,742,1.06],[13.20,742,0.83],[13.31,738,0.88],[13.44,738,0.93],[13.54,735,0.92],[13.65,735,0.90],[13.76,732,0.92],[13.89,732,0.87],[14.00,728,1.08],[14.11,728,1.03],[14.21,728,0.80],[14.33,725,0.88],[14.44,725,0.91],[14.55,722,1.01],[14.66,722,0.79],[14.78,719,0.84],[14.88,719,0.91],[14.99,715,0.98],[15.12,715,1.07],[15.23,711,0.76],[15.34,711,0.96],[15.44,711,1.07],[15.56,708,0.84],[15.67,708,0.87],[15.78,704,0.94],[15.89,704,0.97],[16.01,700,0.99],[16.11,700,0.90],[16.22,697,0.89],[16.33,697,0.83],[16.45,693,0.76],[16.56,693,0.91],[16.66,693,0.99],[16.77,690,0.81],[16.89,690,1.04],[17.00,686,0.89],[17.11,686,1.11],[17.22,683,0.96],[17.33,683,1.02],[17.44,680,0.94],[17.55,680,1.13],[17.66,677,0.78],[17.78,677,0.95],[17.88,677,0.78],[17.99,673,0.89],[18.10,673,0.91],[18.22,669,0.93],[18.32,669,1.06],[18.43,666,0.96],[18.55,666,0.84],[18.66,662,0.84],[18.77,662,0.85],[18.87,659,0.77],[18.99,659,0.91],[19.10,656,1.04],[19.21,656,0.76],[19.31,656,0.92],[19.43,653,1.00],[19.55,653,0.88],[19.66,649,0.83],[19.77,649,0.86],[19.88,645,0.97],[19.99,645,0.93],[20.10,642,0.98],[20.21,642,0.92],[20.32,638,1.06],[20.43,638,0.94],[20.54,638,0.88],[20.65,635,0.76],[20.77,635,0.88],[20.88,631,0.87],[20.99,631,0.87],[21.09,628,0.82],[21.21,628,0.91],[21.32,625,0.91],[21.43,625,0.96],[21.54,622,0.95],[21.66,622,1.02],[21.76,622,1.05],[21.87,617,1.13],[21.99,617,0.70],[22.10,613,0.91],[22.21,613,0.89],[22.32,610,0.84],[22.44,610,0.77],[22.55,606,0.91],[22.65,606,0.89],[22.76,602,1.02],[22.89,602,0.93],[23.00,598,0.98],[23.11,598,1.01],[23.22,598,0.95],[23.35,595,0.85],[23.46,595,0.93],[23.56,591,0.92],[23.67,591,0.80],[23.79,587,0.95],[23.90,587,1.04],[24.02,583,0.87],[24.13,583,0.83],[24.25,580,0.95],[24.35,580,1.10],[24.46,580,0.93],[24.57,576,1.02],[24.69,576,1.05],[24.80,572,1.11],[24.91,572,0.82],[25.02,568,0.90],[25.13,568,0.96],[25.24,564,0.95],[25.35,564,0.82],[25.47,560,0.77],[25.58,560,0.91],[25.68,560,1.01],[25.79,557,0.68],[25.91,557,1.17],[26.02,553,0.75],[26.13,553,0.96],[26.24,550,0.84],[26.36,550,1.00],[26.46,546,0.82],[26.57,546,0.88],[26.68,543,0.87],[26.80,543,0.91],[26.91,538,0.90],[27.01,538,0.91],[27.12,538,0.78],[27.24,535,0.85],[27.35,535,0.85],[27.46,531,0.89],[27.56,531,0.85],[27.68,527,0.89],[27.79,527,0.92],[27.90,523,0.83],[28.01,523,1.00],[28.13,519,0.74],[28.23,519,1.12],[28.34,519,0.99],[28.45,515,0.99],[28.58,515,0.84],[28.69,511,0.98],[28.80,511,1.09],[28.90,507,1.08],[29.02,507,1.09],[29.13,503,0.82],[29.24,503,1.06],[29.36,500,0.92],[29.47,500,0.96],[29.57,500,0.87],[29.68,496,1.05],[29.80,496,0.90],[29.91,492,0.88],[30.02,492,0.94],[30.12,488,0.89],[30.24,488,0.87],[30.35,485,0.90],[30.46,485,0.99],[30.57,481,0.88],[30.68,481,0.85],[30.79,478,1.01],[30.90,478,0.79],[31.01,478,1.04],[31.13,475,0.94],[31.23,475,0.92],[31.34,471,0.80],[31.45,471,0.98],[31.57,468,0.98],[31.68,468,0.86],[31.79,465,0.85],[31.89,465,1.03],[32.01,462,0.89],[32.12,462,0.83],[32.24,459,0.77],[32.35,459,0.85],[32.47,456,0.73],[32.57,456,0.84],[32.69,453,0.84],[32.81,453,1.03],[32.93,450,0.86],[33.04,450,1.01],[33.14,450,1.10],[33.26,447,0.77],[33.37,447,0.75],[33.48,444,0.92],[33.59,444,0.83],[33.80,441,1.08],[33.92,441,0.84],[34.04,436,0.81],[34.15,436,0.99],[34.28,432,0.85],[34.40,432,0.80],[34.52,429,1.20],[34.64,429,0.92],[34.77,425,1.00],[34.88,425,0.93],[35.00,421,0.75],[35.12,421,0.84],[35.25,417,1.11],[35.37,417,0.84],[35.49,413,0.81],[35.61,413,0.91],[35.73,409,0.98],[35.85,409,0.76],[35.97,405,0.77],[36.09,405,0.92],[36.22,402,0.84],[36.34,402,0.90],[36.45,398,0.97],[36.58,398,1.08],[36.70,394,0.81],[36.82,394,1.00],[36.94,389,0.95],[37.06,389,0.84],[37.18,385,1.00],[37.30,385,0.99],[37.42,381,0.91],[37.55,381,0.85],[37.67,377,1.14],[37.79,377,0.94],[37.91,373,0.73],[38.04,373,0.83],[38.16,369,1.07],[38.28,369,0.85],[38.40,364,1.03],[38.52,364,0.77],[38.64,361,1.00],[38.76,361,0.92],[38.88,356,0.96],[39.01,356,1.02],[39.12,352,0.78],[39.24,352,0.85],[39.36,348,1.04],[39.49,348,1.06],[39.61,344,0.80],[39.73,344,0.91],[39.84,340,0.93],[39.97,340,0.92],[40.09,336,0.73],[40.21,336,0.99],[40.34,332,1.08],[40.45,332,0.77],[40.57,328,0.92],[40.69,328,0.87],[40.82,324,1.18],[40.94,324,0.74],[41.06,320,1.04],[41.17,320,0.91],[41.30,316,1.00],[41.42,316,0.88],[41.54,311,1.13],[41.65,311,0.98],[41.78,307,0.86],[41.90,307,0.87],[42.02,303,1.01],[42.14,303,0.74],[42.27,299,0.94],[42.38,299,0.87],[42.51,295,1.04],[42.63,295,1.18],[42.77,291,0.86],[42.88,291,1.15],[43.02,286,0.97],[43.13,286,0.97],[43.26,282,0.91],[43.38,282,0.93],[43.50,278,1.03],[43.62,278,1.06],[43.74,274,0.88],[43.86,274,0.89],[43.98,269,0.99],[44.10,269,0.93],[44.23,265,0.78],[44.34,265,1.06],[44.46,261,1.00],[44.59,261,0.91],[44.71,256,0.91],[44.83,256,0.81],[44.94,252,0.92],[45.07,252,1.19],[45.19,247,0.90],[45.31,247,0.92],[45.43,244,1.12],[45.55,244,1.13],[45.67,240,1.12],[45.79,240,1.37],[45.91,236,1.31],[46.04,236,0.94],[46.16,232,0.94],[46.27,232,1.05],[46.39,228,1.02],[46.52,228,1.11],[46.64,224,1.07],[46.75,224,0.97],[46.87,221,1.19],[47.00,221,1.01],[47.12,217,0.97],[47.23,217,0.87],[47.35,214,0.83],[47.48,214,1.27],[47.61,211,1.09],[47.73,211,1.27],[47.84,207,0.92],[47.97,207,1.12],[48.09,204,0.60],[48.21,204,0.84],[48.34,201,0.98],[48.45,201,0.74],[48.57,198,0.71],[48.69,198,1.12],[48.81,196,1.20],[48.93,196,1.17],[49.05,193,0.98],[49.16,193,0.96],[49.29,190,1.02],[49.41,190,0.76],[49.53,188,0.93],[49.65,188,0.98],[49.78,185,0.85],[49.89,185,0.85],[50.01,183,0.90],[50.13,183,0.93],[50.26,180,0.69],[50.38,180,0.89],[50.50,177,0.89],[50.62,177,0.79],[50.74,174,0.90],[50.86,174,1.05],[50.98,171,0.74],[51.10,171,0.90],[51.23,168,0.93],[51.34,168,0.93],[51.46,165,0.88],[51.58,165,0.87],[51.71,161,0.98],[51.83,161,0.85],[51.95,159,0.97],[52.07,159,1.53],[52.19,155,1.02],[52.31,155,0.93],[52.43,152,1.06],[52.57,152,0.95],[52.69,149,0.92],[52.81,149,0.88],[52.94,145,1.06],[53.06,145,0.83],[53.18,142,1.10],[53.32,142,1.00],[53.44,138,0.89],[53.57,138,1.06],[53.69,134,0.98],[53.81,134,1.06],[53.93,131,0.84],[54.05,131,0.89],[54.17,128,1.10],[54.29,128,1.04],[54.41,124,0.98],[54.54,124,1.17],[54.66,120,0.98],[54.77,120,0.89],[54.89,116,0.79],[55.02,116,0.93],[55.14,113,0.76],[55.25,113,0.87],[55.37,110,1.34],[55.50,110,0.94],[55.62,106,0.92],[55.74,106,0.90],[55.87,102,1.01],[55.98,102,0.96],[56.10,99,0.77],[56.22,99,0.99],[56.35,95,1.00],[56.47,95,1.15],[56.59,93,1.17],[56.70,93,1.06],[56.83,89,1.05],[56.95,89,0.89],[57.07,86,0.79],[57.19,86,1.01],[57.32,83,0.81],[57.44,83,0.89],[57.56,80,0.92],[57.68,80,0.69],[57.81,77,0.96],[57.92,77,0.89],[58.04,74,1.05],[58.16,74,3.38],[58.29,71,0.87],[58.41,71,0.77],[58.53,68,0.96],[58.64,68,0.35],[58.77,66,0.69],[58.89,66,1.48],[59.01,63,0.28],[59.12,63,1.07],[59.25,61,1.11],[59.37,61,1.64],[59.49,59,1.24],[59.61,59,1.91],[59.73,57,0.59],[59.85,57,0.72],[59.97,56,0.35],[60.10,56,0.98],[60.22,55,0.83],[60.33,55,0.56],[60.45,54,0.90],[60.58,54,0.99],[60.70,53,0.94],[60.81,53,1.08],[60.93,53,0.87],[61.06,53,0.84],[61.18,53,0.97],[61.30,53,0.86],[61.41,53,0.87],[61.54,53,0.92],[61.66,53,0.81],[61.78,53,0.85],[61.90,52,1.04],[62.02,52,1.01],[62.14,52,0.91],[62.27,52,0.78],[62.39,52,0.89],[62.51,52,0.89],[62.63,52,0.92],[62.75,52,0.79],[62.87,52,0.85],[63.00,52,0.86],[63.12,52,0.95],[63.24,52,0.91],[63.36,52,0.97],[63.50,52,0.80],[63.62,52,0.90],[63.73,52,0.90],[63.87,52,0.81],[63.99,52,0.86],[64.11,52,0.87],[64.22,52,0.90],[64.35,52,0.91],[64.47,52,0.87],[64.59,52,0.86],[64.71,52,0.89],[64.84,52,0.90],[64.95,52,0.89],[65.07,52,0.86],[65.19,52,0.88],[65.32,52,0.89],[65.44,52,0.92],[65.56,52,0.87],[65.67,52,0.87],[65.80,52,0.86],[65.92,52,0.87]];
+  (function(){
+    var svg = document.getElementById('flightSvg'); if(!svg || typeof FD === 'undefined') return;
+    var cross = document.getElementById('fcCross'), tip = document.getElementById('fcTip');
+    var X0 = 48, X1 = 708, TMIN = -3, TMAX = 66;
+    function hide(){ cross.setAttribute('visibility','hidden'); tip.style.display = 'none'; }
+    svg.addEventListener('pointermove', function(evt){
+      var pt = svg.createSVGPoint(); pt.x = evt.clientX; pt.y = evt.clientY;
+      var p = pt.matrixTransform(svg.getScreenCTM().inverse());
+      var tt = TMIN + (p.x - X0) / (X1 - X0) * (TMAX - TMIN);
+      if(tt < TMIN || tt > TMAX){ hide(); return; }
+      var best = FD[0];
+      for(var i = 1; i < FD.length; i++){ if(Math.abs(FD[i][0] - tt) < Math.abs(best[0] - tt)) best = FD[i]; }
+      var x = X0 + (best[0] - TMIN) / (TMAX - TMIN) * (X1 - X0);
+      cross.setAttribute('x1', x); cross.setAttribute('x2', x); cross.setAttribute('visibility', 'visible');
+      tip.innerHTML = '<b>t ' + best[0].toFixed(1) + ' s</b> · ' + best[1] + ' ft · ' + best[2].toFixed(1) + ' g';
+      tip.style.display = 'block';
+      var box = svg.getBoundingClientRect(), host = tip.offsetParent.getBoundingClientRect();
+      var px = box.left - host.left + x / 720 * box.width;
+      tip.style.left = (px > host.width - 160 ? px - tip.offsetWidth - 12 : px + 12) + 'px';
+      tip.style.top = (box.top - host.top + 14) + 'px';
+    });
+    svg.addEventListener('pointerleave', hide);
+  })();
+
+  // interactive CAD viewer — three.js + rocket.glb, loaded only on demand
+  (function(){
+    var loadBtn = document.getElementById('load3d'), stage = document.getElementById('stage3d'), exBtn = document.getElementById('explode3d');
+    if(!loadBtn) return;
+    var EXPL = {shell:.28, payload:.12, tube:0, fins:-.10, mount:-.20, cap:-.30};
+    var CDN = 'https://cdn.jsdelivr.net/npm/three@0.147.0/';
+    function js(u){ return new Promise(function(res, rej){ var s = document.createElement('script'); s.src = u; s.onload = res; s.onerror = rej; document.head.appendChild(s); }); }
+    function fail(msg){ stage.innerHTML = '<div class="cs-3d-msg">' + msg + '</div>'; }
+    loadBtn.addEventListener('click', function(){
+      loadBtn.disabled = true; loadBtn.firstChild.textContent = 'Loading…';
+      js(CDN + 'build/three.min.js')
+        .then(function(){ return js(CDN + 'examples/js/loaders/GLTFLoader.js'); })
+        .then(function(){ return js(CDN + 'examples/js/controls/OrbitControls.js'); })
+        .then(function(){
+          new THREE.GLTFLoader().load('img/rocket/rocket.glb', build,
+            function(e){ if(e.total) loadBtn.firstChild.textContent = 'Loading… ' + Math.round(100 * e.loaded / e.total) + '%'; },
+            function(){ fail('Couldn’t fetch the model — the 3D viewer needs the site served over http(s); it works on the live site.'); });
+        })
+        .catch(function(){ fail('Couldn’t load the 3D engine — check your connection.'); });
+    });
+    function build(gltf){
+      loadBtn.remove();
+      var W = function(){ return stage.clientWidth; }, H = function(){ return stage.clientHeight; };
+      var renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.setSize(W(), H());
+      renderer.outputEncoding = THREE.sRGBEncoding;
+      stage.appendChild(renderer.domElement);
+      var scene = new THREE.Scene();
+      var cam = new THREE.PerspectiveCamera(38, W() / H(), .01, 20);
+      cam.position.set(.55, .32, .95);
+      scene.add(new THREE.HemisphereLight(0xffffff, 0x39424e, .95));
+      var key = new THREE.DirectionalLight(0xffffff, .75); key.position.set(1, 1.4, .8); scene.add(key);
+      var fill = new THREE.DirectionalLight(0xdfe8ff, .3); fill.position.set(-1, -.4, -.7); scene.add(fill);
+      var wrap = new THREE.Group(), inner = new THREE.Group();
+      wrap.rotation.z = -Math.PI / 2;   // rocket axis (+Y, nose) -> +X, horizontal
+      wrap.add(inner); scene.add(wrap);
+      var groups = {};
+      Object.keys(EXPL).forEach(function(k){ groups[k] = new THREE.Group(); inner.add(groups[k]); });
+      var meshes = [];
+      gltf.scene.traverse(function(o){ if(o.isMesh) meshes.push(o); });
+      meshes.forEach(function(m){
+        var k = m.name.split('_')[0];
+        m.material.metalness = .15; m.material.roughness = .6; m.material.side = THREE.DoubleSide;
+        (groups[k] || groups.payload).add(m);
+      });
+      inner.position.y = .164;          // recenter: model bounds Y -0.524..+0.196
+      var controls = new THREE.OrbitControls(cam, renderer.domElement);
+      controls.enableDamping = true; controls.dampingFactor = .08;
+      controls.autoRotate = true; controls.autoRotateSpeed = 1.1;
+      controls.minDistance = .35; controls.maxDistance = 3;
+      controls.addEventListener('start', function(){ controls.autoRotate = false; });
+      new ResizeObserver(function(){ renderer.setSize(W(), H()); cam.aspect = W() / H(); cam.updateProjectionMatrix(); }).observe(stage);
+      var t = 0, target = 0, ov = document.getElementById('study-rocket');
+      exBtn.disabled = false;
+      exBtn.addEventListener('click', function(){
+        target = target ? 0 : 1;
+        exBtn.classList.toggle('active', !!target);
+        exBtn.setAttribute('aria-pressed', target ? 'true' : 'false');
+        exBtn.textContent = target ? 'Assembled view' : 'Exploded view';
+      });
+      window.__r3d = {renderer: renderer, scene: scene, cam: cam, groups: groups, EXPL: EXPL, controls: controls};
+      var clock = new THREE.Clock();
+      (function tick(){
+        requestAnimationFrame(tick);
+        if(!ov.classList.contains('open')) { clock.getDelta(); return; }
+        var dt = Math.min(clock.getDelta(), .05);
+        t += (target - t) * Math.min(1, dt * 4.5);
+        if(Math.abs(target - t) < .001) t = target;
+        var e = t * t * (3 - 2 * t);
+        Object.keys(EXPL).forEach(function(k){ groups[k].position.y = EXPL[k] * e; });
+        controls.update();
+        renderer.render(scene, cam);
+      })();
+    }
+  })();
 
   // reveal on scroll
   var io = new IntersectionObserver(function(entries){

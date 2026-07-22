@@ -1,0 +1,11 @@
+# Private strategy notes & local tooling — never push
+CLAUDE.md
+.claude/
+
+# Raw source media (16 MB STEP, flight logs, uncropped screenshots) — web assets live in img/
+Instrumented Model Rocket/
+3DPrintSim/
+6-DOF Robotic Arm/
+
+# Résumé QR (belongs to the résumé doc, not the site)
+portfolio_qr.png
