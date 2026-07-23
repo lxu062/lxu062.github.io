@@ -793,6 +793,7 @@
       ['j56>ee','ee','J6 · tool',-180,180,'Tool roll — spins the gripper about the tool axis.']
     ];
     var TAIL = {}, EX_SCALE = 0.045;
+    var POSE0 = {'base>j1':32,'j1>j2':34,'j2>j3':-68,'j4>j56':34};  // default "hero" display pose (deg)
     function fail(msg){ stage.innerHTML = '<div class="cs-3d-msg">' + msg + '</div>'; }
     loadBtn.addEventListener('click', function(){
       loadBtn.disabled = true; loadBtn.firstChild.textContent = 'Loading…';
@@ -874,6 +875,15 @@
         row.appendChild(lab); row.appendChild(inp); jointWrap.appendChild(row);
         inputs.push({inp:inp, lab:lab, j:j});
       });
+      function applyPose(pose, immediate){
+        JOINTS.forEach(function(j){
+          var deg = pose[j[0]] || 0, rad = deg*Math.PI/180;
+          pivots[j[0]].userData.target = rad;
+          if(immediate) pivots[j[0]].userData.ang = rad;
+        });
+        inputs.forEach(function(o){ var deg = pose[o.j[0]]||0; o.inp.value = deg; o.lab.textContent = o.j[2] + ' ' + deg + '°'; });
+      }
+      applyPose(POSE0, true);   // open at the hero pose
 
       var explodeT = 0, explodeCur = 0;
       function setExplode(on){
@@ -892,12 +902,11 @@
         poseBtn.classList.toggle('active', show); poseBtn.setAttribute('aria-pressed', show?'true':'false');
         if(show && explodeT>0) setExplode(false);
       });
-      exBtn.addEventListener('click', function(){ setExplode(explodeT === 0); });
-      resetBtn.addEventListener('click', function(){
-        setExplode(false);
-        JOINTS.forEach(function(j){ pivots[j[0]].userData.target = 0; });
-        inputs.forEach(function(o){ o.inp.value = 0; o.lab.textContent = o.j[2] + ' 0°'; });
+      exBtn.addEventListener('click', function(){
+        if(explodeT === 0) setExplode(true);
+        else { setExplode(false); applyPose(POSE0); }
       });
+      resetBtn.addEventListener('click', function(){ setExplode(false); applyPose(POSE0); });
       var edgesBuilt = false;
       edgeBtn.addEventListener('click', function(){
         if(!edgesBuilt){
