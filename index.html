@@ -175,6 +175,9 @@
   .cs-joints{margin-top:14px;display:none;grid-template-columns:1fr 1fr;gap:8px 20px}
   .cs-joints.show{display:grid}
   .cs-joints .jr{display:flex;align-items:center;gap:10px}
+  .cs-sub{margin:14px 0}
+  .cs-sub h5{font-family:var(--font-head);font-size:1rem;font-weight:600;margin-bottom:3px;color:var(--ink)}
+  .cs-sub p{color:var(--muted);font-size:.94rem}
   .cs-joints label{font-size:.8rem;color:var(--muted);font-weight:600;width:104px;flex:none;font-variant-numeric:tabular-nums}
   .cs-joints input[type=range]{flex:1;accent-color:var(--accent);height:4px}
   @media (max-width:560px){.cs-joints{grid-template-columns:1fr}}
@@ -282,8 +285,8 @@
         </div>
         <div class="card-body">
           <h3>6-DOF Robotic Arm</h3>
-          <p>My flagship in-progress build: a six-axis arm designed to tend a Bambu Lab X1C printer — pulling finished plates and reloading it via visual servoing. Currently a detailed CAD design (600+ parts) heading toward fabrication. <strong>Explore the live 3D model and pose the joints in the details view.</strong></p>
-          <div class="tools"><span>Inventor</span><span>Visual servoing</span><span>Closed-loop steppers</span><span>3D printing</span></div>
+          <p>A solo-designed 6-DOF arm that autonomously tends a Bambu Lab X1C — reaching through the printer door to swap the finished magnetic flex plate, dump the parts, and reload the next plate with no human in the loop. The full CAD is complete: a bevel-differential wrist and self-designed printed cycloidal reducers, guided by an arm-mounted AprilTag vision system. <strong>Pose the live 3D model in the details.</strong></p>
+          <div class="tools"><span>Autodesk Inventor</span><span>Ansys FEA</span><span>MuJoCo</span><span>Python</span><span>OpenCV</span></div>
           <a class="card-link" href="#" data-study="arm">Details <span class="arrow">→</span></a>
         </div>
       </article>
@@ -556,8 +559,8 @@
     <button class="cs-close" aria-label="Close details">✕</button>
     <span class="kicker">Details · In progress</span>
     <h3 id="csArmTitle" style="font-size:1.6rem;margin-top:6px">6-DOF Robotic Arm</h3>
-    <p class="cs-meta">Personal project · design stage (not yet fabricated) · Role: everything — concept, CAD, controls plan</p>
-    <p>A six-axis robotic arm I'm designing to automate my own 3D-printing workflow: reach into a Bambu Lab X1C, lift the finished plate off the bed, clear it, and reset the printer for the next job — closing the loop so prints can run back-to-back unattended. Each joint is driven by a closed-loop stepper, and the plan is to guide the arm with visual servoing from a camera rather than blind position control. The full CAD assembly is complete (600+ parts); fabrication is the next phase.</p>
+    <p class="cs-meta">Mechanical + controls design · CAD-complete, not yet fabricated · Role: everything — concept, CAD, analysis, controls</p>
+    <p>An autonomous work cell built around a single question: can one robotic arm run a 3D printer without a human touching it? The answer is a 6-DOF articulated arm that reaches through the door of a Bambu Lab X1C, grips the magnetic flex plate by its front edge, pulls it free, carries it to a dedicated flex-and-dump station that bends the plate to pop parts into a bin, returns it to a magazine, and loads the next plate — closing the full remove, dump, restock, and reload loop. Rather than chase precision through expensive hardware, the design pairs printed cycloidal reducers and a bevel-differential wrist with an arm-mounted ("inside-out") AprilTag vision system that tightens roughly 5–10&nbsp;mm of raw mechanical accuracy down to sub-millimeter at the endpoint. The whole system — arm, wrist differential, tool changer, electronics, and control software — is documented across a 15-chapter design record, validated in a MuJoCo digital twin, and modeled to completion in CAD. Nothing has been fabricated yet — this is a design-stage project, captured at the moment it is ready to build.</p>
 
     <div class="cs-3d">
       <div class="cs-3d-head">
@@ -580,17 +583,24 @@
 
     <div class="cs-stats">
       <div class="cs-stat"><div class="n">6</div><div class="l">degrees of freedom</div></div>
-      <div class="cs-stat"><div class="n">600+</div><div class="l">parts in the assembly</div></div>
-      <div class="cs-stat"><div class="n">≈640 mm</div><div class="l">reach envelope (CAD)</div></div>
-      <div class="cs-stat"><div class="n">Closed-loop</div><div class="l">stepper drive per axis</div></div>
+      <div class="cs-stat"><div class="n">886 mm</div><div class="l">max reach (CAD)</div></div>
+      <div class="cs-stat"><div class="n">&lt;1 mm</div><div class="l">target endpoint accuracy</div></div>
+      <div class="cs-stat"><div class="n">~$2,500</div><div class="l">working budget</div></div>
     </div>
+
+    <h4>How it's engineered</h4>
+    <div class="cs-sub"><h5>A distinct reducer at every joint</h5><p>Instead of one gearbox family throughout, each of the six joints gets a reducer matched to its load: a belt-driven slewing-ring bearing at the base (J1), a 100:1 housed harmonic drive at the shoulder (J2), and self-designed printed cycloidal reducers at the elbow and wrist-roll (J3, J4). A per-joint motor torque budget with stage-efficiency assumptions was independently cross-checked against as-built CAD masses (13.99&nbsp;kg total, 5.76&nbsp;kg distal to the shoulder), confirming worst-case demands of about 25&nbsp;N·m at J2 and 9&nbsp;N·m at J3 — and catching that a 60&nbsp;N plate-peel back-drives the wrist, making a tilt/roll peel strategy mandatory.</p></div>
+    <div class="cs-sub"><h5>A bevel-differential spherical wrist</h5><p>The arm's most complex subassembly is a roll–pitch–roll wrist whose three axes (J4/J5/J6) all intersect at a single point. Two NEMA&nbsp;17 motors staged back in the forearm feed a 4:1 GT2 belt reduction into a 1:1 bevel differential built from catalog KHK miter gears: driving both motors together pitches the wrist, driving them opposite rolls the gripper, and any mix does both at once. Sizing the module-1.5 gears to fill a measured 32&nbsp;mm gap kept the mechanism FDM-printable, while exactly chosen belt center distances removed the need for a tensioner.</p></div>
+    <div class="cs-sub"><h5>Inside-out AprilTag vision</h5><p>Three arm-mounted global-shutter cameras watch world-fixed AprilTag bundles on the printer, stations, and tool dock, servoing the endpoint from roughly 5–10&nbsp;mm of raw mechanical accuracy down to sub-millimeter. Mounting the cameras on the arm rather than overhead means the errors that matter drop out of the measurement, and a wrist camera riding the tool body acts as the precision spine. The camera count was reasoned down to a final three by quantifying that extra cameras added observability but near-zero endpoint precision, and bench tests on real cameras established a ~12&nbsp;px detection floor and validated mandatory fisheye undistortion before any arm hardware existed.</p></div>
+    <div class="cs-sub"><h5>A fail-safe passive tool changer</h5><p>The wrist carries no actuator. A spring-backed ball detent locks the tool as the arm seats a three-vee Maxwell kinematic coupling, and release happens only at the dock — so a power loss can never drop a tool anywhere in the workspace. The first tool is a self-locking flex-plate gripper whose worm drive holds clamp force with no power, with a fixed under-hook (not the clamp) carrying the plate's weight and magnetic peel. Both parts passed Ansys FEA against carbon-filled PPA (PPA-CF), correctly judged against the weak layer-line direction, at safety factors of about 2.5 and 3.6 under a conservative 60&nbsp;N peel load.</p></div>
+    <div class="cs-sub"><h5>Open-loop control and a Python-first stack</h5><p>The design drives the arm open-loop: seven TMC2209 stepper drivers (six joints plus the gripper) off a Teensy&nbsp;4.1 on a 24&nbsp;V rail — a deliberate, reversible trade of joint encoders for the vision servo, with StallGuard providing sensorless hard-stop homing. A custom passive carrier PCB, socketing that Teensy alongside all seven drivers, is fully specced and handed off for layout. The software is a two-tier stack: a plain-Python (no ROS) host architected for vision, planning, and kinematics over a Teensy firmware tier. Its analytic-kinematics package and MuJoCo digital twin are already built and validated — analytic and simulated forward kinematics agree to 0.0&nbsp;mm across 12 passing tests, with all seven task poses proven reachable and collision-free.</p></div>
 
     <h4>Gallery</h4>
     <div class="cs-gallery">
-      <figure><img src="img/arm/arm-solo.jpg" alt="CAD render of the 6-DOF arm" loading="lazy"><figcaption>The arm assembly — base yaw, shoulder, elbow, and a 3-axis wrist ending in a quick-change tool mount.</figcaption></figure>
-      <figure><img src="img/arm/arm-wireframe.jpg" alt="Wireframe CAD view of the arm showing internal motors" loading="lazy"><figcaption>Wireframe — the stepper motors and drivetrain packed inside each link.</figcaption></figure>
+      <figure><img src="img/arm/arm-solo.jpg" alt="CAD render of the 6-DOF arm on its corner pedestal" loading="lazy"><figcaption>The complete 6-DOF arm on its corner pedestal, modeled to reach through the X1C's door.</figcaption></figure>
+      <figure><img src="img/arm/arm-wireframe.jpg" alt="Wireframe CAD view of the arm exposing internal motors and reducers" loading="lazy"><figcaption>Wireframe cutaway exposing the motors and reducers tucked inside the links.</figcaption></figure>
     </div>
-    <p style="font-size:.9rem;color:var(--muted)">More coming as the build progresses — control electronics, the visual-servoing pipeline, and fabrication photos once parts are printed and machined.</p>
+    <p style="font-size:.9rem;color:var(--muted)">More coming as the build progresses — the custom carrier PCB, the visual-servoing pipeline, and fabrication photos once parts are printed and machined.</p>
   </div>
 </div>
 
