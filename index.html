@@ -171,6 +171,13 @@
   .cs-3d-load span{font-size:.78rem;font-weight:500;opacity:.78}
   .cs-3d-load:hover{border-color:#fff}
   .cs-3d-msg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#cfd6e0;font-size:.9rem;padding:24px;text-align:center}
+  .cs-3d-ctrl{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .cs-joints{margin-top:14px;display:none;grid-template-columns:1fr 1fr;gap:8px 20px}
+  .cs-joints.show{display:grid}
+  .cs-joints .jr{display:flex;align-items:center;gap:10px}
+  .cs-joints label{font-size:.8rem;color:var(--muted);font-weight:600;width:104px;flex:none;font-variant-numeric:tabular-nums}
+  .cs-joints input[type=range]{flex:1;accent-color:var(--accent);height:4px}
+  @media (max-width:560px){.cs-joints{grid-template-columns:1fr}}
   body.cs-lock{overflow:hidden}
   @media (max-width:640px){.cs-panel{padding:26px 20px 28px}}
 
@@ -268,16 +275,16 @@
 
     <div class="grid" id="grid">
 
-      <article class="card reveal" data-cat="robotics">
-        <div class="ph ph--robotics"><span class="tag">Robotics</span>
-          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="9" width="16" height="10" rx="2"/><path d="M12 9V5m0 0a2 2 0 100-4 2 2 0 000 4zM9 14h.01M15 14h.01"/></svg>
-          <span class="ph-label">Add photo / render</span>
+      <article class="card reveal card--go" data-cat="robotics">
+        <div class="ph ph--robotics">
+          <img src="img/arm/cover-arm.jpg" alt="CAD render of a 6-DOF robotic arm reaching toward a Bambu Lab X1C 3D printer" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" loading="lazy">
+          <span class="tag">Robotics</span>
         </div>
         <div class="card-body">
           <h3>6-DOF Robotic Arm</h3>
-          <p>A six-degree-of-freedom arm using visual servoing to automatically load and unload my 3D printer (~2&nbsp;kg payload, 600&nbsp;mm reach). Owned end-to-end: requirements → CAD → simulation → fabrication → integration.</p>
-          <div class="tools"><span>Fusion 360</span><span>Vision servoing</span><span>Python</span><span>3D printing</span></div>
-          <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
+          <p>My flagship in-progress build: a six-axis arm designed to tend a Bambu Lab X1C printer — pulling finished plates and reloading it via visual servoing. Currently a detailed CAD design (600+ parts) heading toward fabrication. <strong>Explore the live 3D model and pose the joints in the details view.</strong></p>
+          <div class="tools"><span>Inventor</span><span>Visual servoing</span><span>Closed-loop steppers</span><span>3D printing</span></div>
+          <a class="card-link" href="#" data-study="arm">Details <span class="arrow">→</span></a>
         </div>
       </article>
 
@@ -543,6 +550,50 @@
   </div>
 </div>
 
+<!-- DETAILS: 6-DOF Robotic Arm -->
+<div class="cs-overlay" id="study-arm" role="dialog" aria-modal="true" aria-labelledby="csArmTitle">
+  <div class="cs-panel">
+    <button class="cs-close" aria-label="Close details">✕</button>
+    <span class="kicker">Details · In progress</span>
+    <h3 id="csArmTitle" style="font-size:1.6rem;margin-top:6px">6-DOF Robotic Arm</h3>
+    <p class="cs-meta">Personal project · design stage (not yet fabricated) · Role: everything — concept, CAD, controls plan</p>
+    <p>A six-axis robotic arm I'm designing to automate my own 3D-printing workflow: reach into a Bambu Lab X1C, lift the finished plate off the bed, clear it, and reset the printer for the next job — closing the loop so prints can run back-to-back unattended. Each joint is driven by a closed-loop stepper, and the plan is to guide the arm with visual servoing from a camera rather than blind position control. The full CAD assembly is complete (600+ parts); fabrication is the next phase.</p>
+
+    <div class="cs-3d">
+      <div class="cs-3d-head">
+        <div>
+          <div class="t">Interactive CAD model</div>
+          <div class="st">Drag to orbit · scroll to zoom · pose the joints or explode the assembly</div>
+        </div>
+      </div>
+      <div class="cs-3d-stage" id="armStage">
+        <button class="cs-3d-load" id="armLoad">Load 3D model<span>≈4.6 MB · WebGL · from the Inventor assembly</span></button>
+      </div>
+      <div class="cs-3d-ctrl">
+        <button class="btn3d" id="armPose" disabled aria-pressed="false">Pose joints</button>
+        <button class="btn3d" id="armExplode" disabled aria-pressed="false">Exploded view</button>
+        <button class="btn3d" id="armEdges" disabled aria-pressed="false">CAD edges</button>
+        <button class="btn3d" id="armReset" disabled>Reset</button>
+      </div>
+      <div class="cs-joints" id="armJoints"></div>
+    </div>
+
+    <div class="cs-stats">
+      <div class="cs-stat"><div class="n">6</div><div class="l">degrees of freedom</div></div>
+      <div class="cs-stat"><div class="n">600+</div><div class="l">parts in the assembly</div></div>
+      <div class="cs-stat"><div class="n">≈640 mm</div><div class="l">reach envelope (CAD)</div></div>
+      <div class="cs-stat"><div class="n">Closed-loop</div><div class="l">stepper drive per axis</div></div>
+    </div>
+
+    <h4>Gallery</h4>
+    <div class="cs-gallery">
+      <figure><img src="img/arm/arm-solo.jpg" alt="CAD render of the 6-DOF arm" loading="lazy"><figcaption>The arm assembly — base yaw, shoulder, elbow, and a 3-axis wrist ending in a quick-change tool mount.</figcaption></figure>
+      <figure><img src="img/arm/arm-wireframe.jpg" alt="Wireframe CAD view of the arm showing internal motors" loading="lazy"><figcaption>Wireframe — the stepper motors and drivetrain packed inside each link.</figcaption></figure>
+    </div>
+    <p style="font-size:.9rem;color:var(--muted)">More coming as the build progresses — control electronics, the visual-servoing pipeline, and fabrication photos once parts are printed and machined.</p>
+  </div>
+</div>
+
 <footer>
   <div class="wrap foot-inner">
     <span>© <span id="yr"></span> Leon Xu · Mechanical Engineering</span>
@@ -695,6 +746,176 @@
         if(Math.abs(target - t) < .001) t = target;
         var e = t * t * (3 - 2 * t);
         Object.keys(EXPL).forEach(function(k){ groups[k].position.y = EXPL[k] * e; });
+        controls.update();
+        renderer.render(scene, cam);
+      })();
+    }
+  })();
+
+  // shared three.js r147 loader (used by any CAD viewer on the page)
+  window.__loadThree = window.__loadThree || (function(){
+    var CDN = 'https://cdn.jsdelivr.net/npm/three@0.147.0/', p = null;
+    function js(u){ return new Promise(function(res, rej){ var s = document.createElement('script'); s.src = u; s.onload = res; s.onerror = rej; document.head.appendChild(s); }); }
+    return function(){
+      if(window.THREE && THREE.GLTFLoader && THREE.OrbitControls) return Promise.resolve();
+      if(!p) p = js(CDN + 'build/three.min.js')
+        .then(function(){ return js(CDN + 'examples/js/loaders/GLTFLoader.js'); })
+        .then(function(){ return js(CDN + 'examples/js/controls/OrbitControls.js'); });
+      return p;
+    };
+  })();
+
+  // interactive arm viewer — kinematic chain + explode + CAD edges
+  (function(){
+    var loadBtn = document.getElementById('armLoad'), stage = document.getElementById('armStage');
+    if(!loadBtn) return;
+    var poseBtn = document.getElementById('armPose'), exBtn = document.getElementById('armExplode'),
+        edgeBtn = document.getElementById('armEdges'), resetBtn = document.getElementById('armReset'),
+        jointWrap = document.getElementById('armJoints'), ov = document.getElementById('study-arm');
+    var KIN = {"pivots":{"base>j1":{"point":[0.4,0.0363,0.6251],"axis":[-0.0,1.0,0.0]},"j1>j2":{"point":[0.3739,0.0961,0.6243],"axis":[-0.8824,0.0,-0.4704]},"j2>j3":{"point":[0.3398,0.1181,0.6073],"axis":[0.9148,0.0,0.4039]},"j3>j4":{"point":[0.4291,0.4735,0.6031],"axis":[-0.3475,-0.0027,0.9377]},"j4>j56":{"point":[0.2435,0.4002,0.5513],"axis":[0.8765,0.3608,0.3186]},"j56>ee":{"point":[0.1017,0.3474,0.4728],"axis":[-0.1955,-0.3491,0.9165]}},"explodeDir":{"base":[0,0,0],"j1":[0.1344,0.3234,0.9367],"j2":[-0.5759,0.8082,-0.1226],"j3":[0.0201,0.9996,-0.0192],"j4":[-0.2987,0.9414,-0.1564],"j56":[-0.5952,0.7618,-0.2556],"ee":[-0.7085,0.6559,-0.2606],"claw":[-0.7374,0.6133,-0.283]}};
+    var JOINTS = [
+      ['base>j1','j1','J1 · base',-135,135], ['j1>j2','j2','J2 · shoulder',-80,80],
+      ['j2>j3','j3','J3 · elbow',-95,95], ['j3>j4','j4','J4 · roll',-120,120],
+      ['j4>j56','j56','J5 · wrist',-90,90], ['j56>ee','ee','J6 · tool',-160,160]
+    ];
+    var TAIL = {ee:['claw']}, EX_SCALE = 0.16;
+    function fail(msg){ stage.innerHTML = '<div class="cs-3d-msg">' + msg + '</div>'; }
+    loadBtn.addEventListener('click', function(){
+      loadBtn.disabled = true; loadBtn.firstChild.textContent = 'Loading…';
+      window.__loadThree().then(function(){
+        new THREE.GLTFLoader().load('img/arm/arm.glb', build,
+          function(e){ if(e.total) loadBtn.firstChild.textContent = 'Loading… ' + Math.round(100*e.loaded/e.total) + '%'; },
+          function(){ fail('Couldn’t fetch the model — the 3D viewer needs the site over http(s); it works on the live site.'); });
+      }).catch(function(){ fail('Couldn’t load the 3D engine — check your connection.'); });
+    });
+    function build(gltf){
+      loadBtn.remove();
+      var W = function(){ return stage.clientWidth; }, H = function(){ return stage.clientHeight; };
+      var renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio||1, 2));
+      renderer.setSize(W(), H()); renderer.outputEncoding = THREE.sRGBEncoding;
+      stage.appendChild(renderer.domElement);
+      var scene = new THREE.Scene();
+      var cam = new THREE.PerspectiveCamera(40, W()/H(), .01, 30);
+      scene.add(new THREE.HemisphereLight(0xffffff, 0x39424e, .95));
+      var kl = new THREE.DirectionalLight(0xffffff, .8); kl.position.set(1, 1.5, .8); scene.add(kl);
+      var fl = new THREE.DirectionalLight(0xdfe8ff, .3); fl.position.set(-1, -.3, -.8); scene.add(fl);
+
+      var meshes = []; gltf.scene.traverse(function(o){ if(o.isMesh) meshes.push(o); });
+      var byGroup = {};
+      meshes.forEach(function(m){
+        var k = m.name.split('_')[0];
+        m.material.metalness = .25; m.material.roughness = .55; m.material.side = THREE.DoubleSide;
+        (byGroup[k] = byGroup[k] || []).push(m);
+      });
+      var bb = new THREE.Box3(); meshes.forEach(function(m){ bb.expandByObject(m); });
+      var ctr = bb.getCenter(new THREE.Vector3()), size = bb.getSize(new THREE.Vector3());
+
+      var root = new THREE.Group();
+      root.position.set(-ctr.x, -bb.min.y, -ctr.z); scene.add(root);
+      var pivots = {}, holders = {}, edges = [];
+      function holderFor(prefix, parent, p){
+        var h = new THREE.Group(); parent.add(h); holders[prefix] = h;
+        (byGroup[prefix]||[]).forEach(function(m){ h.add(m); m.position.set(-p.x, -p.y, -p.z); });
+        (TAIL[prefix]||[]).forEach(function(t){
+          var h2 = new THREE.Group(); parent.add(h2); holders[t] = h2;
+          (byGroup[t]||[]).forEach(function(m){ h2.add(m); m.position.set(-p.x, -p.y, -p.z); });
+        });
+      }
+      // base rides root directly (no pivot)
+      holderFor('base', root, new THREE.Vector3(0,0,0));
+      var parent = root, prevP = new THREE.Vector3(0,0,0), first = true;
+      JOINTS.forEach(function(j){
+        var pv = KIN.pivots[j[0]], p = new THREE.Vector3().fromArray(pv.point);
+        var g = new THREE.Group();
+        g.position.copy(first ? p : p.clone().sub(prevP));
+        g.userData = {axis:new THREE.Vector3().fromArray(pv.axis).normalize(), ang:0, target:0};
+        parent.add(g); pivots[j[0]] = g;
+        holderFor(j[1], g, p);
+        parent = g; prevP = p; first = false;
+      });
+
+      var diag = size.length();
+      cam.position.set(diag*.75, diag*.55, diag*.85);
+      var controls = new THREE.OrbitControls(cam, renderer.domElement);
+      controls.enableDamping = true; controls.dampingFactor = .08;
+      controls.target.set(0, size.y*.45, 0);
+      controls.autoRotate = true; controls.autoRotateSpeed = 1.0;
+      controls.minDistance = diag*.3; controls.maxDistance = diag*2.2;
+      controls.addEventListener('start', function(){ controls.autoRotate = false; });
+      new ResizeObserver(function(){ renderer.setSize(W(), H()); cam.aspect = W()/H(); cam.updateProjectionMatrix(); }).observe(stage);
+
+      // joint sliders
+      var inputs = [];
+      JOINTS.forEach(function(j){
+        var row = document.createElement('div'); row.className = 'jr';
+        var lab = document.createElement('label'); lab.textContent = j[2] + ' 0°';
+        var inp = document.createElement('input'); inp.type='range'; inp.min=j[3]; inp.max=j[4]; inp.value=0; inp.step=1;
+        inp.addEventListener('input', function(){
+          if(explodeT > 0){ setExplode(false); }        // posing collapses explode
+          pivots[j[0]].userData.target = inp.value * Math.PI/180;
+          lab.textContent = j[2] + ' ' + inp.value + '°';
+        });
+        row.appendChild(lab); row.appendChild(inp); jointWrap.appendChild(row);
+        inputs.push({inp:inp, lab:lab, j:j});
+      });
+
+      var explodeT = 0, explodeCur = 0;
+      function setExplode(on){
+        explodeT = on ? 1 : 0;
+        exBtn.classList.toggle('active', on); exBtn.setAttribute('aria-pressed', on?'true':'false');
+        exBtn.textContent = on ? 'Assemble' : 'Exploded view';
+        if(on){                                          // exploding collapses pose
+          JOINTS.forEach(function(j){ pivots[j[0]].userData.target = 0; });
+          inputs.forEach(function(o){ o.inp.value = 0; o.lab.textContent = o.j[2] + ' 0°'; });
+          jointWrap.classList.remove('show'); poseBtn.classList.remove('active'); poseBtn.setAttribute('aria-pressed','false');
+        }
+      }
+      poseBtn.addEventListener('click', function(){
+        var show = !jointWrap.classList.contains('show');
+        jointWrap.classList.toggle('show', show);
+        poseBtn.classList.toggle('active', show); poseBtn.setAttribute('aria-pressed', show?'true':'false');
+        if(show && explodeT>0) setExplode(false);
+      });
+      exBtn.addEventListener('click', function(){ setExplode(explodeT === 0); });
+      resetBtn.addEventListener('click', function(){
+        setExplode(false);
+        JOINTS.forEach(function(j){ pivots[j[0]].userData.target = 0; });
+        inputs.forEach(function(o){ o.inp.value = 0; o.lab.textContent = o.j[2] + ' 0°'; });
+      });
+      var edgesBuilt = false;
+      edgeBtn.addEventListener('click', function(){
+        if(!edgesBuilt){
+          meshes.forEach(function(m){
+            var eg = new THREE.EdgesGeometry(m.geometry, 24);
+            var ln = new THREE.LineSegments(eg, new THREE.LineBasicMaterial({color:0x11161d, transparent:true, opacity:.5}));
+            ln.position.copy(m.position); m.parent.add(ln); edges.push(ln);
+          });
+          edgesBuilt = true;
+        } else edges.forEach(function(l){ l.visible = !l.visible; });
+        edgeBtn.classList.toggle('active');
+      });
+      [poseBtn, exBtn, edgeBtn, resetBtn].forEach(function(b){ b.disabled = false; });
+
+      window.__arm3d = {renderer:renderer, scene:scene, cam:cam, pivots:pivots, holders:holders, controls:controls, setExplode:setExplode};
+      var clock = new THREE.Clock();
+      (function tick(){
+        requestAnimationFrame(tick);
+        if(!ov.classList.contains('open')){ clock.getDelta(); return; }
+        var dt = Math.min(clock.getDelta(), .05), k = Math.min(1, dt*6);
+        // articulate
+        JOINTS.forEach(function(j){
+          var u = pivots[j[0]].userData;
+          u.ang += (u.target - u.ang) * k;
+          pivots[j[0]].quaternion.setFromAxisAngle(u.axis, u.ang);
+        });
+        // explode
+        explodeCur += (explodeT - explodeCur) * k;
+        var e = explodeCur*explodeCur*(3-2*explodeCur);
+        Object.keys(holders).forEach(function(g){
+          var d = KIN.explodeDir[g]; if(!d) return;
+          holders[g].position.set(d[0]*EX_SCALE*e, d[1]*EX_SCALE*e, d[2]*EX_SCALE*e);
+        });
         controls.update();
         renderer.render(scene, cam);
       })();
