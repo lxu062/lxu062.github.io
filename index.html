@@ -572,7 +572,7 @@
         </div>
       </div>
       <div class="cs-3d-stage" id="armStage">
-        <button class="cs-3d-load" id="armLoad">Load 3D model<span>≈1.7 MB · WebGL · from the Inventor assembly</span></button>
+        <button class="cs-3d-load" id="armLoad">Load 3D model<span>≈2.5 MB · WebGL · arm + printer work cell</span></button>
       </div>
       <div class="cs-3d-ctrl">
         <button class="btn3d" id="armPose" disabled aria-pressed="false">Pose joints</button>
@@ -783,7 +783,7 @@
     var poseBtn = document.getElementById('armPose'), exBtn = document.getElementById('armExplode'),
         edgeBtn = document.getElementById('armEdges'), resetBtn = document.getElementById('armReset'),
         jointWrap = document.getElementById('armJoints'), jDesc = document.getElementById('armJDesc'), ov = document.getElementById('study-arm');
-    var KIN = {"pivots":{"base>j1":{"point":[-0.001,0,-0.001],"axis":[0,1,0]},"j1>j2":{"point":[-0.1005,0.1217,-0.0185],"axis":[0,0,1]},"j2>j3":{"point":[-0.1005,0.4967,-0.0185],"axis":[0,0,1]},"j3>j4":{"point":[-0.1029,0.8717,-0.0168],"axis":[0,1,0]},"j4>j56":{"point":[-0.1029,0.8717,-0.0168],"axis":[0,0,1]},"j56>ee":{"point":[-0.1029,0.8717,-0.0168],"axis":[0,1,0]}},"explodeDir":{"j1":[0,1,0],"j2":[0,2,0],"j3":[0,3,0],"j4":[0,4,0],"j56":[0,5,0],"ee":[0,6,0]}};
+    var KIN = {"pivots":{"base>j1":{"point":[0.4,0,0.625],"axis":[0,1,0]},"j1>j2":{"point":[0.3005,0.1217,0.6075],"axis":[0,0,1]},"j2>j3":{"point":[0.3005,0.4967,0.6075],"axis":[0,0,1]},"j3>j4":{"point":[0.2981,0.8717,0.6092],"axis":[0,1,0]},"j4>j56":{"point":[0.2981,0.8717,0.6092],"axis":[0,0,1]},"j56>ee":{"point":[0.2981,0.8717,0.6092],"axis":[0,1,0]}},"explodeDir":{"j1":[0,1,0],"j2":[0,2,0],"j3":[0,3,0],"j4":[0,4,0],"ee":[0,5,0]}};
     var JOINTS = [
       ['base>j1','j1','J1 · base',-175,50,'Base yaw — swings the whole arm toward the printer.'],
       ['j1>j2','j2','J2 · shoulder',-100,100,'Shoulder pitch — the primary reach into the workspace.'],
@@ -850,7 +850,7 @@
       });
 
       var diag = size.length();
-      cam.position.set(diag*1.06, diag*.78, diag*1.21);
+      cam.position.set(diag*1.0, diag*.74, diag*1.14);
       var controls = new THREE.OrbitControls(cam, renderer.domElement);
       controls.enableDamping = true; controls.dampingFactor = .08;
       controls.target.set(0, size.y*.5, 0);
