@@ -178,8 +178,10 @@
   .cs-sub{margin:14px 0}
   .cs-sub h5{font-family:var(--font-head);font-size:1rem;font-weight:600;margin-bottom:3px;color:var(--ink)}
   .cs-sub p{color:var(--muted);font-size:.94rem}
-  .cs-joints label{font-size:.8rem;color:var(--muted);font-weight:600;width:104px;flex:none;font-variant-numeric:tabular-nums}
+  .cs-joints label{font-size:.8rem;color:var(--muted);font-weight:600;width:92px;flex:none;font-variant-numeric:tabular-nums}
   .cs-joints input[type=range]{flex:1;accent-color:var(--accent);height:4px}
+  .cs-jdesc{display:none;margin-top:12px;font-size:.85rem;color:var(--muted);min-height:1.2em}
+  .cs-jdesc.show{display:block}
   @media (max-width:560px){.cs-joints{grid-template-columns:1fr}}
   body.cs-lock{overflow:hidden}
   @media (max-width:640px){.cs-panel{padding:26px 20px 28px}}
@@ -570,7 +572,7 @@
         </div>
       </div>
       <div class="cs-3d-stage" id="armStage">
-        <button class="cs-3d-load" id="armLoad">Load 3D model<span>≈0.8 MB · WebGL · from the Inventor assembly</span></button>
+        <button class="cs-3d-load" id="armLoad">Load 3D model<span>≈1.7 MB · WebGL · from the Inventor assembly</span></button>
       </div>
       <div class="cs-3d-ctrl">
         <button class="btn3d" id="armPose" disabled aria-pressed="false">Pose joints</button>
@@ -579,6 +581,7 @@
         <button class="btn3d" id="armReset" disabled>Reset</button>
       </div>
       <div class="cs-joints" id="armJoints"></div>
+      <div class="cs-jdesc" id="armJDesc">Drag a joint — J4·J5·J6 form a spherical wrist (all three axes meet at one point).</div>
     </div>
 
     <div class="cs-stats">
@@ -779,14 +782,17 @@
     if(!loadBtn) return;
     var poseBtn = document.getElementById('armPose'), exBtn = document.getElementById('armExplode'),
         edgeBtn = document.getElementById('armEdges'), resetBtn = document.getElementById('armReset'),
-        jointWrap = document.getElementById('armJoints'), ov = document.getElementById('study-arm');
-    var KIN = {"pivots":{"base>j1":{"point":[0.40,0.04,0.625],"axis":[0,1,0]},"j1>j2":{"point":[0.301,0.122,0.621],"axis":[0,0,1]},"j2>j3":{"point":[0.298,0.497,0.609],"axis":[0,0,1]},"j3>j4":{"point":[0.298,0.62,0.610],"axis":[0,1,0]},"j4>j56":{"point":[0.298,0.872,0.608],"axis":[0,0,1]},"j56>ee":{"point":[0.298,0.876,0.608],"axis":[0,1,0]}},"explodeDir":{"base":[0,0,0],"j1":[0,1,0],"j2":[0,2,0],"j3":[0,3,0],"j4":[0,4,0],"j56":[0,5,0],"ee":[0,6,0],"claw":[0,7,0]}};
+        jointWrap = document.getElementById('armJoints'), jDesc = document.getElementById('armJDesc'), ov = document.getElementById('study-arm');
+    var KIN = {"pivots":{"base>j1":{"point":[-0.001,0,-0.001],"axis":[0,1,0]},"j1>j2":{"point":[-0.1005,0.1217,-0.0185],"axis":[0,0,1]},"j2>j3":{"point":[-0.1005,0.4967,-0.0185],"axis":[0,0,1]},"j3>j4":{"point":[-0.1029,0.8717,-0.0168],"axis":[0,1,0]},"j4>j56":{"point":[-0.1029,0.8717,-0.0168],"axis":[0,0,1]},"j56>ee":{"point":[-0.1029,0.8717,-0.0168],"axis":[0,1,0]}},"explodeDir":{"j1":[0,1,0],"j2":[0,2,0],"j3":[0,3,0],"j4":[0,4,0],"j56":[0,5,0],"ee":[0,6,0]}};
     var JOINTS = [
-      ['base>j1','j1','J1 · base',-135,135], ['j1>j2','j2','J2 · shoulder',-80,80],
-      ['j2>j3','j3','J3 · elbow',-95,95], ['j3>j4','j4','J4 · roll',-120,120],
-      ['j4>j56','j56','J5 · wrist',-90,90], ['j56>ee','ee','J6 · tool',-160,160]
+      ['base>j1','j1','J1 · base',-175,50,'Base yaw — swings the whole arm toward the printer.'],
+      ['j1>j2','j2','J2 · shoulder',-100,100,'Shoulder pitch — the primary reach into the workspace.'],
+      ['j2>j3','j3','J3 · elbow',-140,140,'Elbow pitch — bends the arm; natural reach is elbow-high.'],
+      ['j3>j4','j4','J4 · roll',-180,180,'Forearm roll — spins the wrist about the forearm axis.'],
+      ['j4>j56','j56','J5 · pitch',-120,120,'Wrist pitch — tilts the tool up and down.'],
+      ['j56>ee','ee','J6 · tool',-180,180,'Tool roll — spins the gripper about the tool axis.']
     ];
-    var TAIL = {ee:['claw']}, EX_SCALE = 0.045;
+    var TAIL = {}, EX_SCALE = 0.045;
     function fail(msg){ stage.innerHTML = '<div class="cs-3d-msg">' + msg + '</div>'; }
     loadBtn.addEventListener('click', function(){
       loadBtn.disabled = true; loadBtn.firstChild.textContent = 'Loading…';
@@ -844,7 +850,7 @@
       });
 
       var diag = size.length();
-      cam.position.set(diag*.86, diag*.62, diag*.98);
+      cam.position.set(diag*1.06, diag*.78, diag*1.21);
       var controls = new THREE.OrbitControls(cam, renderer.domElement);
       controls.enableDamping = true; controls.dampingFactor = .08;
       controls.target.set(0, size.y*.5, 0);
@@ -863,6 +869,7 @@
           if(explodeT > 0){ setExplode(false); }        // posing collapses explode
           pivots[j[0]].userData.target = inp.value * Math.PI/180;
           lab.textContent = j[2] + ' ' + inp.value + '°';
+          jDesc.textContent = j[5];
         });
         row.appendChild(lab); row.appendChild(inp); jointWrap.appendChild(row);
         inputs.push({inp:inp, lab:lab, j:j});
@@ -876,12 +883,12 @@
         if(on){                                          // exploding collapses pose
           JOINTS.forEach(function(j){ pivots[j[0]].userData.target = 0; });
           inputs.forEach(function(o){ o.inp.value = 0; o.lab.textContent = o.j[2] + ' 0°'; });
-          jointWrap.classList.remove('show'); poseBtn.classList.remove('active'); poseBtn.setAttribute('aria-pressed','false');
+          jointWrap.classList.remove('show'); jDesc.classList.remove('show'); poseBtn.classList.remove('active'); poseBtn.setAttribute('aria-pressed','false');
         }
       }
       poseBtn.addEventListener('click', function(){
         var show = !jointWrap.classList.contains('show');
-        jointWrap.classList.toggle('show', show);
+        jointWrap.classList.toggle('show', show); jDesc.classList.toggle('show', show);
         poseBtn.classList.toggle('active', show); poseBtn.setAttribute('aria-pressed', show?'true':'false');
         if(show && explodeT>0) setExplode(false);
       });
