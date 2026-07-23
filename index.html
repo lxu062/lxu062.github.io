@@ -792,8 +792,8 @@
       ['j4>j56','j56','J5 · pitch',-120,120,'Wrist pitch — tilts the tool up and down.'],
       ['j56>ee','ee','J6 · tool',-180,180,'Tool roll — spins the gripper about the tool axis.']
     ];
-    var TAIL = {}, EX_SCALE = 0.045;
-    var POSE0 = {'base>j1':32,'j1>j2':34,'j2>j3':-68,'j4>j56':34};  // default "hero" display pose (deg)
+    var TAIL = {}, EX_SCALE = 0.09;
+    var POSE0 = {'base>j1':-8,'j1>j2':-19,'j2>j3':132,'j4>j56':-11};  // default "hero" display pose (deg) — reaching toward the printer
     function fail(msg){ stage.innerHTML = '<div class="cs-3d-msg">' + msg + '</div>'; }
     loadBtn.addEventListener('click', function(){
       loadBtn.disabled = true; loadBtn.firstChild.textContent = 'Loading…';
@@ -886,15 +886,10 @@
       applyPose(POSE0, true);   // open at the hero pose
 
       var explodeT = 0, explodeCur = 0;
-      function setExplode(on){
+      function setExplode(on){                           // separates the links FROM the current pose
         explodeT = on ? 1 : 0;
         exBtn.classList.toggle('active', on); exBtn.setAttribute('aria-pressed', on?'true':'false');
         exBtn.textContent = on ? 'Assemble' : 'Exploded view';
-        if(on){                                          // exploding collapses pose
-          JOINTS.forEach(function(j){ pivots[j[0]].userData.target = 0; });
-          inputs.forEach(function(o){ o.inp.value = 0; o.lab.textContent = o.j[2] + ' 0°'; });
-          jointWrap.classList.remove('show'); jDesc.classList.remove('show'); poseBtn.classList.remove('active'); poseBtn.setAttribute('aria-pressed','false');
-        }
       }
       poseBtn.addEventListener('click', function(){
         var show = !jointWrap.classList.contains('show');
@@ -902,10 +897,7 @@
         poseBtn.classList.toggle('active', show); poseBtn.setAttribute('aria-pressed', show?'true':'false');
         if(show && explodeT>0) setExplode(false);
       });
-      exBtn.addEventListener('click', function(){
-        if(explodeT === 0) setExplode(true);
-        else { setExplode(false); applyPose(POSE0); }
-      });
+      exBtn.addEventListener('click', function(){ setExplode(explodeT === 0); });
       resetBtn.addEventListener('click', function(){ setExplode(false); applyPose(POSE0); });
       var edgesBuilt = false;
       edgeBtn.addEventListener('click', function(){
@@ -933,13 +925,21 @@
           u.ang += (u.target - u.ang) * k;
           pivots[j[0]].quaternion.setFromAxisAngle(u.axis, u.ang);
         });
-        // explode
+        // explode: spread links apart along the arm's reach axis (world), pose preserved
         explodeCur += (explodeT - explodeCur) * k;
         var e = explodeCur*explodeCur*(3-2*explodeCur);
-        Object.keys(holders).forEach(function(g){
-          var d = KIN.explodeDir[g]; if(!d) return;
-          holders[g].position.set(d[0]*EX_SCALE*e, d[1]*EX_SCALE*e, d[2]*EX_SCALE*e);
-        });
+        if(e < 1e-4){
+          Object.keys(holders).forEach(function(g){ if(KIN.explodeDir[g]) holders[g].position.set(0,0,0); });
+        } else {
+          var pb = new THREE.Vector3(), pw = new THREE.Vector3();
+          pivots['base>j1'].getWorldPosition(pb); pivots['j56>ee'].getWorldPosition(pw);
+          var axis = pw.sub(pb); if(axis.lengthSq() < 1e-6) axis.set(0,1,0); axis.normalize();
+          Object.keys(holders).forEach(function(g){
+            var d = KIN.explodeDir[g]; if(!d) return;    // fixed scenery (base) stays put
+            var pq = new THREE.Quaternion(); holders[g].parent.getWorldQuaternion(pq); pq.invert();
+            holders[g].position.copy(axis.clone().multiplyScalar(d[1]*EX_SCALE*e).applyQuaternion(pq));
+          });
+        }
         controls.update();
         renderer.render(scene, cam);
       })();
