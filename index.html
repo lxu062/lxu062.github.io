@@ -560,7 +560,7 @@
     <span class="kicker">Details · In progress</span>
     <h3 id="csArmTitle" style="font-size:1.6rem;margin-top:6px">6-DOF Robotic Arm</h3>
     <p class="cs-meta">Mechanical + controls design · CAD-complete, not yet fabricated · Role: everything — concept, CAD, analysis, controls</p>
-    <p>Can one robotic arm run a 3D printer with no human in the loop? This 6-DOF arm reaches into a Bambu Lab X1C, pulls the finished magnetic flex plate, flexes it over a bin to dump the parts, and reloads the next plate — the full remove–dump–restock–reload cycle. It leans on clever mechanical design and arm-mounted vision instead of expensive hardware: modeled to completion in CAD and validated in a MuJoCo simulation, though not yet fabricated.</p>
+    <p>Can one robotic arm run a 3D printer with no human in the loop? This 6-DOF arm reaches into a Bambu Lab X1C, pulls the finished magnetic flex plate, flexes it over a bin to dump the parts, and reloads the next plate — the full remove–dump–restock–reload cycle. It leans on clever mechanical design and arm-mounted vision instead of expensive hardware — modeled to completion in CAD, though not yet fabricated.</p>
 
     <div class="cs-3d">
       <div class="cs-3d-head">
@@ -589,12 +589,10 @@
     </div>
 
     <h4>How it's engineered</h4>
-    <div class="cs-sub"><h5>A reducer matched to every joint</h5><p>A slewing-ring bearing at the base, a 100:1 harmonic drive at the shoulder, and self-designed printed cycloidal reducers at the elbow and wrist. A torque budget checked against as-built CAD masses confirmed the worst cases (~25&nbsp;N·m at the shoulder, ~9&nbsp;N·m at the elbow) and caught that a 60&nbsp;N plate-peel back-drives the wrist.</p></div>
-    <div class="cs-sub"><h5>Bevel-differential spherical wrist</h5><p>A roll–pitch–roll wrist whose three axes meet at one point, driven by two forearm NEMA&nbsp;17s through a 1:1 bevel differential (KHK miter gears) — motors together pitch the wrist, opposed they roll it. Sized to stay FDM-printable with no belt tensioner.</p></div>
+    <div class="cs-sub"><h5>A reducer matched to every joint</h5><p>A slewing-ring bearing at the base, a 100:1 harmonic drive at the shoulder, and self-designed printed cycloidal reducers at the elbow and wrist. A torque budget checked against as-built CAD masses confirmed the worst cases (~25&nbsp;N·m at the shoulder, ~9&nbsp;N·m at the elbow).</p></div>
+    <div class="cs-sub"><h5>Bevel-differential spherical wrist</h5><p>A roll–pitch–roll wrist whose three axes meet at one point, driven by two forearm NEMA&nbsp;17s through a 1:1 bevel differential — motors together pitch the wrist, opposed they roll it. Sized to stay FDM-printable with no belt tensioner.</p></div>
     <div class="cs-sub"><h5>Inside-out AprilTag vision</h5><p>Three arm-mounted cameras track fixed AprilTags to servo the endpoint from ~5–10&nbsp;mm of raw mechanical accuracy down to a sub-millimeter target. Putting the cameras on the arm drops the errors that matter out of the measurement; bench tests set a ~12&nbsp;px detection floor before any hardware existed.</p></div>
     <div class="cs-sub"><h5>Fail-safe passive tool changer</h5><p>A spring-backed ball detent on a three-vee kinematic coupling that only releases at the dock, so a power loss never drops a tool. The first tool is a self-locking flex-plate gripper that holds grip with no power; both parts cleared Ansys FEA in carbon-filled PPA at ~2.5–3.6× safety factor.</p></div>
-    <div class="cs-sub"><h5>Open-loop control, Python-first stack</h5><p>Seven TMC2209 stepper drivers (six joints + gripper) off a Teensy&nbsp;4.1 — trading joint encoders for the vision servo, with StallGuard sensorless homing. A custom carrier PCB is specced and in layout; the Python (no-ROS) kinematics package and MuJoCo digital twin are already built — forward kinematics agree to 0.0&nbsp;mm across 12 tests, all poses reachable and collision-free.</p></div>
-
     <h4>Gallery</h4>
     <div class="cs-gallery">
       <figure><img src="img/arm/arm-printer.jpg" alt="CAD render of the 6-DOF arm beside the Bambu Lab X1C 3D printer it tends" loading="lazy"><figcaption>The arm at its corner pedestal beside the Bambu Lab X1C it tends — the AprilTag markers on the printer are what the vision system locks onto.</figcaption></figure>
