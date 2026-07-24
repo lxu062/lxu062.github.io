@@ -293,16 +293,16 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="sim">
-        <div class="ph ph--sim"><span class="tag">Simulation</span>
-          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3v18h18"/><path d="M7 15l3-4 3 2 4-6"/></svg>
-          <span class="ph-label">Add screenshot</span>
+      <article class="card reveal card--go" data-cat="sim">
+        <div class="ph ph--sim" style="background:#fff">
+          <img src="img/printsim/cover-disp.jpg" alt="FEA displacement result on a 3D-printed part, showing a red high-deflection tip" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" loading="lazy">
+          <span class="tag">Simulation</span>
         </div>
         <div class="card-body">
           <h3>3DPrintSim — Anisotropic FEA</h3>
-          <p>A custom FEA tool that models the anisotropic behavior of FDM prints — directional strength (XY vs. Z) and shell-vs-infill structure — to predict how orientation and print settings affect part strength.</p>
-          <div class="tools"><span>Python</span><span>FEA</span><span>AI-assisted dev</span></div>
-          <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
+          <p>A custom physics-simulation platform for FDM 3D prints. Where standard FEA treats a part as solid material, 3DPrintSim models the print itself — walls, infill, and the weaker layer-to-layer bonds — to predict how orientation and slicer settings drive stiffness, stress, and warpage. Hand-written finite-element solver, a desktop app, and a built-in AI assistant.</p>
+          <div class="tools"><span>Python</span><span>Custom FEM</span><span>FDM simulation</span><span>PySide6</span><span>AI-assisted</span></div>
+          <a class="card-link" href="#" data-study="printsim">Details <span class="arrow">→</span></a>
         </div>
       </article>
 
@@ -602,6 +602,41 @@
       <figure><img src="img/arm/arm-wireframe.jpg" alt="Wireframe CAD view of the arm exposing internal motors and reducers" loading="lazy"><figcaption>Wireframe cutaway exposing the motors and reducers tucked inside the links.</figcaption></figure>
     </div>
     <p style="font-size:.9rem;color:var(--muted)">More coming as the build progresses — the custom carrier PCB, the visual-servoing pipeline, and fabrication photos once parts are printed and machined.</p>
+  </div>
+</div>
+
+<!-- DETAILS: 3DPrintSim -->
+<div class="cs-overlay" id="study-printsim" role="dialog" aria-modal="true" aria-labelledby="csSimTitle">
+  <div class="cs-panel">
+    <button class="cs-close" aria-label="Close details">✕</button>
+    <span class="kicker">Details</span>
+    <h3 id="csSimTitle" style="font-size:1.6rem;margin-top:6px">3DPrintSim — Anisotropic FEA</h3>
+    <p class="cs-meta">Personal project · in active development · Role: everything — solver, app, and AI integration</p>
+    <p>A custom physics-simulation platform for FDM 3D-printed parts. Standard FEA treats a part as a solid, homogeneous blob — but an FDM print is none of those things: it's a stack of extruded beads with stiff walls, sparse infill, and comparatively weak layer-to-layer bonds, all laid down along toolpaths. 3DPrintSim's whole idea is to carry that structure — which region is wall vs. infill vs. interface — from the sliced print all the way into the mesh and the solver, so the simulation reflects how the part was <em>actually</em> printed, not an idealized solid.</p>
+    <div class="cs-stats">
+      <div class="cs-stat"><div class="n">Custom</div><div class="l">FEM solver, from the weak form up</div></div>
+      <div class="cs-stat"><div class="n">Region-aware</div><div class="l">walls · infill · layer bonds</div></div>
+      <div class="cs-stat"><div class="n">Thermal→warpage</div><div class="l">coupled prediction</div></div>
+      <div class="cs-stat"><div class="n">AI-assisted</div><div class="l">built with Claude / Cursor / Codex</div></div>
+    </div>
+    <figure>
+      <img src="img/printsim/region.jpg" alt="Simulation mesh of a 3D-printed part colored by region — infill, perimeter, top/bottom, interface, and support" loading="lazy">
+      <figcaption>The core idea in one view: the mesh is tagged by region — infill, perimeter, top/bottom, interface, support — with toolpath direction carried through, so material behavior can differ where the print differs.</figcaption>
+    </figure>
+    <h4>How it's engineered</h4>
+    <div class="cs-sub"><h5>Models the print, not a solid blob</h5><p>An FDM part isn't homogeneous — stiff walls, sparse infill, and weak layer-to-layer bonds along the toolpaths. 3DPrintSim carries that structure from slicer intent into the mesh and the solver, so results reflect how the part was actually printed.</p></div>
+    <div class="cs-sub"><h5>A hand-written FEM solver</h5><p>A from-scratch linear-elasticity finite-element solver — built from the weak form, not wrapped around a commercial package — paired with a thermal solver.</p></div>
+    <div class="cs-sub"><h5>Predicts warpage, not just stress</h5><p>Sequential thermal→mechanical coupling estimates residual stress and warpage — a real FDM failure mode — alongside displacement, von-Mises stress, strain, and an anisotropic failure index.</p></div>
+    <div class="cs-sub"><h5>Explore the design space</h5><p>Sweep slicer settings — infill density, wall count, orientation — against targets like stiffness, safety factor, and warpage. The goal is finding a good print configuration, not just simulating one design.</p></div>
+    <div class="cs-sub"><h5>A built-in AI assistant</h5><p>Set up and run simulations from plain language — "put 60&nbsp;N on the jaw face, fix the feet, run it" — through a bounded, approved tool interface. An assistant that reads, suggests, and launches sanctioned runs, never an autopilot operating outside the API.</p></div>
+    <p style="font-size:.9rem;color:var(--muted);margin-top:6px">Honest scope: the solver is research/educational-grade, focused on credible trends and verification rather than certification-grade accuracy — and it's in active development.</p>
+    <h4>Gallery</h4>
+    <div class="cs-gallery">
+      <figure><img src="img/printsim/afi.jpg" alt="Anisotropic failure index plotted on the part" loading="lazy"><figcaption>Anisotropic failure index — where the print is closest to failing given its layer directions, the tool's namesake output.</figcaption></figure>
+      <figure><img src="img/printsim/vm.jpg" alt="Von Mises stress result on the part" loading="lazy"><figcaption>Von-Mises stress across the loaded part.</figcaption></figure>
+      <figure><img src="img/printsim/strain.jpg" alt="Strain field result on the part" loading="lazy"><figcaption>Strain field from the same solve.</figcaption></figure>
+    </div>
+    <p style="font-size:.9rem;color:var(--muted)">The test parts are real: these are the robotic arm's own components (a claw motor mount, the swinging jaw, base mounts) — the two projects feed each other.</p>
   </div>
 </div>
 
