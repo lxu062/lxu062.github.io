@@ -192,6 +192,12 @@
   .cs-cmp img{width:100%;border-radius:12px;border:1px solid var(--line);background:#fff}
   .cs-cmp figcaption{font-size:.82rem;color:var(--muted);margin-top:8px}
   @media (max-width:600px){.cs-cmp{grid-template-columns:1fr}}
+  .cs-table-wrap{overflow-x:auto;margin:14px 0}
+  .cs-table{width:100%;border-collapse:collapse;font-size:.9rem;min-width:340px}
+  .cs-table th,.cs-table td{padding:8px 12px;border-bottom:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .cs-table th:first-child,.cs-table td:first-child{text-align:left}
+  .cs-table thead th{color:var(--muted);font-weight:600;border-bottom:2px solid var(--line)}
+  .cs-table tr.total td{font-weight:700;border-top:2px solid var(--line);border-bottom:none}
   .cs-joints label{font-size:.8rem;color:var(--muted);font-weight:600;width:92px;flex:none;font-variant-numeric:tabular-nums}
   .cs-joints input[type=range]{flex:1;accent-color:var(--accent);height:4px}
   .cs-jdesc{display:none;margin-top:12px;font-size:.85rem;color:var(--muted);min-height:1.2em}
@@ -359,16 +365,16 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="aero fab">
-        <div class="ph ph--fab"><span class="tag">Automotive</span>
-          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 13l2-5h14l2 5v5h-3M3 13v5h3M3 13h18M7 18a1.5 1.5 0 103 0 1.5 1.5 0 00-3 0zm7 0a1.5 1.5 0 103 0 1.5 1.5 0 00-3 0z"/></svg>
-          <span class="ph-label">Add model photo</span>
+      <article class="card reveal card--go" data-cat="aero fab">
+        <div class="ph ph--fab">
+          <img src="img/mracing/cover-cad.jpg" alt="CAD render of the 1:3 MR25 Formula SAE car — front and rear wings, side aero, monocoque, driver, and wheels" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" loading="lazy">
+          <span class="tag">Motorsport</span>
         </div>
         <div class="card-body">
-          <h3>MRacing — Scale Aero Model</h3>
-          <p>For Michigan's Formula SAE team: fabricated and assembled a 3D-printed scale model of the MR25 car for wind-tunnel aerodynamic testing.</p>
-          <div class="tools"><span>3D printing</span><span>Assembly</span><span>Aero</span></div>
-          <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
+          <h3>MRacing — MR25 Scale Aero Model</h3>
+          <p>A 1:3-scale model of Michigan's MR25 Formula SAE car — almost entirely 3D-printed, printed in sections and hand-assembled — built to validate the car's aerodynamics in a wind tunnel. The team's CFD puts about 400&nbsp;N of downforce on it at speed. <strong>See the build and the load case in the details.</strong></p>
+          <div class="tools"><span>Autodesk Fusion</span><span>3D printing</span><span>Assembly</span><span>Aero</span></div>
+          <a class="card-link" href="#" data-study="mracing">Details <span class="arrow">→</span></a>
         </div>
       </article>
 
@@ -649,6 +655,62 @@
       <figure><img src="img/printsim/strain.jpg" alt="Strain field result on the part" loading="lazy"><figcaption>Strain field from the same solve.</figcaption></figure>
     </div>
     <p style="font-size:.9rem;color:var(--muted)">The test parts are real: these are the robotic arm's own components (a claw motor mount, the swinging jaw, base mounts) — the two projects feed each other.</p>
+  </div>
+</div>
+
+<div class="cs-overlay" id="study-mracing" role="dialog" aria-modal="true" aria-labelledby="csMrTitle">
+  <div class="cs-panel">
+    <button class="cs-close" aria-label="Close details">✕</button>
+    <span class="kicker">Details</span>
+    <h3 id="csMrTitle" style="font-size:1.6rem;margin-top:6px">MRacing — MR25 Scale Aero Model</h3>
+    <p class="cs-meta">Michigan Formula SAE (MRacing) · team project · Role: print-prep, fabrication &amp; assembly of the model</p>
+    <p>MRacing is Michigan's Formula SAE team. Before the full-scale car's aero package is locked in, the team validates it in a wind tunnel — using a 1:3-scale model that is almost entirely 3D-printed. The bodywork is far larger than a print bed, so the monocoque, wings, and side aero are split into sections, printed, surfaced, and bonded into one rigid model that mounts in the tunnel. My work was on the physical model — preparing the parts for printing, fabricating, and assembling them.</p>
+    <div class="cs-stats">
+      <div class="cs-stat"><div class="n">1:3</div><div class="l">scale of the MR25 car</div></div>
+      <div class="cs-stat"><div class="n">≈401 N</div><div class="l">full-car downforce · CFD, 105 mph</div></div>
+      <div class="cs-stat"><div class="n">3D-printed</div><div class="l">monocoque · wings · side aero</div></div>
+      <div class="cs-stat"><div class="n">5 × 7 ft</div><div class="l">subsonic wind tunnel</div></div>
+    </div>
+    <figure>
+      <img src="img/mracing/sections.jpg" alt="3D-printed body sections of the scale car laid out on a bench — side-aero panels and the monocoque tub" loading="lazy">
+      <figcaption>The bodywork printed in sections — side-aero panels and the monocoque tub — before finishing and bonding. Splitting the model into printable, glue-back-together pieces is most of the work.</figcaption>
+    </figure>
+    <h4>The aero case it's built to test</h4>
+    <p>The whole point of the model is to measure aerodynamic loads in the tunnel and check them against simulation. The team's CFD (Star-CCM+, 1:3 geometry at ~105 mph) predicts roughly <strong>400&nbsp;N of downforce and 220&nbsp;N of drag</strong> on the full car, with the rear wing doing most of the work. Those same loads set the structural bar — how stiff the printed monocoque and how strong the wing mounts have to be.</p>
+    <div class="cs-table-wrap">
+      <table class="cs-table">
+        <thead><tr><th>Component</th><th>Downforce (N)</th><th>Drag (N)</th></tr></thead>
+        <tbody>
+          <tr><td>Front wing</td><td>135.9</td><td>19.9</td></tr>
+          <tr><td>Rear wing</td><td>221.9</td><td>106.2</td></tr>
+          <tr><td>Side aero</td><td>48.9</td><td>20.3</td></tr>
+          <tr><td>Chassis</td><td>13.9</td><td>45.2</td></tr>
+          <tr><td>Corners (suspension + AMK)</td><td>−1.7</td><td>7.1</td></tr>
+          <tr><td>Tires</td><td>−17.8</td><td>19.3</td></tr>
+          <tr class="total"><td>Full car</td><td>401.1</td><td>218.2</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:.9rem;color:var(--muted)">Preliminary by design: the simulation used the full car's detailed suspension and no mounting hardware — both simplified in the physical model — so it sets expectations for the test rather than final numbers.</p>
+    <h4>How it's built</h4>
+    <div class="cs-sub"><h5>Printed in sections, then bonded</h5><p>Each body panel is larger than the print bed, so the monocoque, wings, and side aero are split into sections, printed, and joined — CA glue for the seams, wood-rod spars running through the wings for stiffness.</p></div>
+    <div class="cs-sub"><h5>Surfaced for the tunnel</h5><p>Raw layer texture would trip the airflow, so parts are printed with support, then sanded smooth (with filler where a seam needs it) to give a clean aerodynamic surface.</p></div>
+    <div class="cs-sub"><h5>Prepped for the printer</h5><p>Most of the CAD work is print-prep: sectioning each panel, choosing print orientation, and placing supports so a big curved body piece comes off the bed clean and glues back into the full shape.</p></div>
+    <div class="cs-sub"><h5>Sized to the aero loads</h5><p>The printed structure and its mounts are designed against the CFD downforce — the same load values feed FEA load cases on the monocoque and the wing mounts.</p></div>
+    <figure>
+      <img src="img/mracing/cad-section.jpg" alt="Fusion CAD of a body section with a section plane and an 8.36 inch (212 mm) dimension" loading="lazy">
+      <figcaption>A body section cut in CAD for the print bed — about 212&nbsp;mm across. Every panel is oriented and split so it prints cleanly and reassembles into the full body.</figcaption>
+    </figure>
+    <figure>
+      <img src="img/mracing/rearwing.jpg" alt="The 3D-printed multi-element rear wing with endplates on a workbench" loading="lazy">
+      <figcaption>The printed multi-element rear wing — the biggest downforce contributor in the CFD (about 222&nbsp;N) — surfaced and assembled with its endplates.</figcaption>
+    </figure>
+    <h4>Gallery</h4>
+    <div class="cs-gallery">
+      <figure><img src="img/mracing/printing.jpg" alt="A monocoque section printing on a Bambu Lab A1 in the lab" loading="lazy"><figcaption>A monocoque section printing on a Bambu&nbsp;A1 in the lab.</figcaption></figure>
+      <figure><img src="img/mracing/assembly.jpg" alt="Rear bodywork and the driver module with a printed helmet coming together" loading="lazy"><figcaption>The rear bodywork and driver module coming together — printed helmet and all.</figcaption></figure>
+    </div>
+    <p style="font-size:.9rem;color:var(--muted)">A team effort with MRacing — my part is the physical model (print-prep, fabrication, and assembly); the aerodynamic CFD is the team's. It's an in-progress build toward a wind-tunnel session.</p>
   </div>
 </div>
 
