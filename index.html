@@ -178,6 +178,11 @@
   .cs-sub{margin:14px 0}
   .cs-sub h5{font-family:var(--font-head);font-size:1rem;font-weight:600;margin-bottom:3px;color:var(--ink)}
   .cs-sub p{color:var(--muted);font-size:.94rem}
+  .cs-cmp{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0}
+  .cs-cmp figure{margin:0}
+  .cs-cmp img{width:100%;border-radius:12px;border:1px solid var(--line);background:#fff}
+  .cs-cmp figcaption{font-size:.82rem;color:var(--muted);margin-top:8px}
+  @media (max-width:600px){.cs-cmp{grid-template-columns:1fr}}
   .cs-joints label{font-size:.8rem;color:var(--muted);font-weight:600;width:92px;flex:none;font-variant-numeric:tabular-nums}
   .cs-joints input[type=range]{flex:1;accent-color:var(--accent);height:4px}
   .cs-jdesc{display:none;margin-top:12px;font-size:.85rem;color:var(--muted);min-height:1.2em}
@@ -623,6 +628,13 @@
       <img src="img/printsim/region.jpg" alt="Simulation mesh of a 3D-printed part colored by region — infill, perimeter, top/bottom, interface, and support" loading="lazy">
       <figcaption>The core idea in one view: the mesh is tagged by region — infill, perimeter, top/bottom, interface, support — with toolpath direction carried through, so material behavior can differ where the print differs.</figcaption>
     </figure>
+    <h4>Standard FEA vs. print-aware</h4>
+    <p>The same claw-mount part, the same PPA-CF material, the same load and fixed supports — modeled two ways. Run as a solid, homogeneous body in Ansys Mechanical, it deflects about <strong>0.13&nbsp;mm</strong>. 3DPrintSim, accounting for the real print structure — sparse infill and weaker layer-to-layer bonds — predicts about <strong>0.55&nbsp;mm</strong>, roughly <strong>4× more</strong>.</p>
+    <div class="cs-cmp">
+      <figure><img src="img/printsim/disp-compare.jpg" alt="3DPrintSim displacement result on the claw mount, ~0.55 mm peak deflection" loading="lazy"><figcaption><strong>3DPrintSim</strong> — print-aware · ~0.55&nbsp;mm peak</figcaption></figure>
+      <figure><img src="img/printsim/ansys.jpg" alt="Ansys Mechanical total deformation of the same part modeled as solid PPA-CF, 0.13 mm peak" loading="lazy"><figcaption><strong>Ansys Mechanical</strong> — solid PPA-CF · 0.13&nbsp;mm peak</figcaption></figure>
+    </div>
+    <p>That gap is the point: a real FDM print is less stiff than a solid blob of the same plastic, and a solid-material simulation misses it. Modeling the walls, infill, and layer bonds recovers the extra compliance — in the physically expected direction.</p>
     <h4>How it's engineered</h4>
     <div class="cs-sub"><h5>Models the print, not a solid blob</h5><p>An FDM part isn't homogeneous — stiff walls, sparse infill, and weak layer-to-layer bonds along the toolpaths. 3DPrintSim carries that structure from slicer intent into the mesh and the solver, so results reflect how the part was actually printed.</p></div>
     <div class="cs-sub"><h5>A hand-written FEM solver</h5><p>A from-scratch linear-elasticity finite-element solver — built from the weak form, not wrapped around a commercial package — paired with a thermal solver.</p></div>
