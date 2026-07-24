@@ -629,9 +629,9 @@
       <figcaption>The core idea in one view: the mesh is tagged by region — infill, perimeter, top/bottom, interface, support — with toolpath direction carried through, so material behavior can differ where the print differs.</figcaption>
     </figure>
     <h4>Standard FEA vs. print-aware</h4>
-    <p>The same claw-mount part, the same PPA-CF material, the same load and fixed supports — modeled two ways. Run as a solid, homogeneous body in Ansys Mechanical, it deflects about <strong>0.13&nbsp;mm</strong>. 3DPrintSim, accounting for the real print structure — sparse infill and weaker layer-to-layer bonds — predicts about <strong>0.55&nbsp;mm</strong>, roughly <strong>4× more</strong>.</p>
+    <p>The same claw-mount part, the same PPA-CF material, the same load and fixed supports — modeled two ways. Run as a solid, homogeneous body in Ansys Mechanical, it deflects about <strong>0.13&nbsp;mm</strong>. 3DPrintSim, accounting for the real print structure — sparse infill and weaker layer-to-layer bonds — predicts about <strong>0.26&nbsp;mm</strong>, roughly <strong>twice as much</strong>.</p>
     <div class="cs-cmp">
-      <figure><img src="img/printsim/disp-compare.jpg" alt="3DPrintSim displacement result on the claw mount, ~0.55 mm peak deflection" loading="lazy"><figcaption><strong>3DPrintSim</strong> — print-aware · ~0.55&nbsp;mm peak</figcaption></figure>
+      <figure><img src="img/printsim/disp-compare.jpg" alt="3DPrintSim displacement result on the claw mount, ~0.26 mm peak deflection" loading="lazy"><figcaption><strong>3DPrintSim</strong> — print-aware · ~0.26&nbsp;mm peak</figcaption></figure>
       <figure><img src="img/printsim/ansys.jpg" alt="Ansys Mechanical total deformation of the same part modeled as solid PPA-CF, 0.13 mm peak" loading="lazy"><figcaption><strong>Ansys Mechanical</strong> — solid PPA-CF · 0.13&nbsp;mm peak</figcaption></figure>
     </div>
     <p>That gap is the point: a real FDM print is less stiff than a solid blob of the same plastic, and a solid-material simulation misses it. Modeling the walls, infill, and layer bonds recovers the extra compliance — in the physically expected direction.</p>
