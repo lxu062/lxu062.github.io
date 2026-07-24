@@ -693,24 +693,18 @@
     </div>
     <p style="font-size:.9rem;color:var(--muted)">Preliminary by design: the simulation used the full car's detailed suspension and no mounting hardware — both simplified in the physical model — so it sets expectations for the test rather than final numbers.</p>
     <h4>How it's built</h4>
-    <div class="cs-sub"><h5>Printed in sections, then bonded</h5><p>Each body panel is larger than the print bed, so the monocoque, wings, and side aero are split into sections, printed, and joined — CA glue for the seams, wood-rod spars running through the wings for stiffness.</p></div>
-    <div class="cs-sub"><h5>Surfaced for the tunnel</h5><p>Raw layer texture would trip the airflow, so parts are printed with support, then sanded smooth (with filler where a seam needs it) to give a clean aerodynamic surface.</p></div>
-    <div class="cs-sub"><h5>Prepped for the printer</h5><p>Most of the CAD work is print-prep: sectioning each panel, choosing print orientation, and placing supports so a big curved body piece comes off the bed clean and glues back into the full shape.</p></div>
-    <div class="cs-sub"><h5>Sized to the aero loads</h5><p>The printed structure and its mounts are designed against the CFD downforce — the same load values feed FEA load cases on the monocoque and the wing mounts.</p></div>
-    <figure>
-      <img src="img/mracing/cad-section.jpg" alt="Fusion CAD of a body section with a section plane and an 8.36 inch (212 mm) dimension" loading="lazy">
-      <figcaption>A body section cut in CAD for the print bed — about 212&nbsp;mm across. Every panel is oriented and split so it prints cleanly and reassembles into the full body.</figcaption>
-    </figure>
-    <figure>
-      <img src="img/mracing/rearwing.jpg" alt="The 3D-printed multi-element rear wing with endplates on a workbench" loading="lazy">
-      <figcaption>The printed multi-element rear wing — the biggest downforce contributor in the CFD (about 222&nbsp;N) — surfaced and assembled with its endplates.</figcaption>
-    </figure>
+    <div class="cs-sub"><h5>Prepped for the printer</h5><p>Most of the CAD work is print-prep: sectioning each panel, choosing print orientation, and placing supports so a big curved body piece comes off the bed clean and reassembles into the full shape.</p></div>
+    <div class="cs-sub"><h5>Big parts, long prints</h5><p>These are large panels with many-hour print times. Getting them to come out clean — bed adhesion, warp control, support strategy, and simply running long jobs without a failure late in the print — was a real skill to build up.</p></div>
+    <div class="cs-sub"><h5>Printed in sections, then bonded</h5><p>Because each panel is larger than the print bed, I split the bodywork into sections and designed alignment features into the mating faces — locating tabs and rod couplers — so the pieces self-register, then bonded them with glue into one rigid body.</p></div>
+    <div class="cs-sub"><h5>Surfaced for the tunnel</h5><p>Raw layer texture would trip the airflow, so parts are printed with support, then sanded smooth (with filler where a seam needs it) for a clean aerodynamic surface.</p></div>
     <h4>Gallery</h4>
     <div class="cs-gallery">
+      <figure><img src="img/mracing/cad-section.jpg" alt="Fusion CAD showing the side aero being split from the monocoque with a section plane and a 212 mm dimension" loading="lazy"><figcaption>The side aero split off from the monocoque in CAD — about 212&nbsp;mm across. Panels are sectioned and oriented so each prints cleanly and reassembles into the full body.</figcaption></figure>
+      <figure><img src="img/mracing/frontwing.jpg" alt="The 3D-printed multi-element front wing with endplates on a workbench" loading="lazy"><figcaption>The printed multi-element front wing, surfaced and assembled with its endplates — about 136&nbsp;N of downforce in the CFD.</figcaption></figure>
       <figure><img src="img/mracing/printing.jpg" alt="A monocoque section printing on a Bambu Lab A1 in the lab" loading="lazy"><figcaption>A monocoque section printing on a Bambu&nbsp;A1 in the lab.</figcaption></figure>
       <figure><img src="img/mracing/assembly.jpg" alt="Rear bodywork and the driver module with a printed helmet coming together" loading="lazy"><figcaption>The rear bodywork and driver module coming together — printed helmet and all.</figcaption></figure>
     </div>
-    <p style="font-size:.9rem;color:var(--muted)">A team effort with MRacing — my part is the physical model (print-prep, fabrication, and assembly); the aerodynamic CFD is the team's. It's an in-progress build toward a wind-tunnel session.</p>
+    <p style="font-size:.9rem;color:var(--muted)">A team effort with MRacing — my part was the physical model: print-prep, fabrication, and assembly. The aerodynamic simulation is the team's.</p>
   </div>
 </div>
 
