@@ -327,17 +327,18 @@
     <div class="fdrop reveal" id="fdrop">
       <span class="fd-label">Filter by skill</span>
       <div class="fd" data-group="cad">
-        <button class="fd-btn" type="button" aria-expanded="false" aria-haspopup="true">CAD <span class="fd-n"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+        <button class="fd-btn" type="button" aria-expanded="false" aria-haspopup="true">Design <span class="fd-n"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
         <div class="fd-menu" hidden>
-          <label class="fd-item fd-all"><input type="checkbox" data-all><span>All CAD</span><b></b></label>
+          <label class="fd-item fd-all"><input type="checkbox" data-all><span>All Design</span><b></b></label>
           <div class="fd-sep"></div>
           <label class="fd-item"><input type="checkbox" value="inventor"><span>Autodesk Inventor</span><b></b></label>
           <label class="fd-item"><input type="checkbox" value="fusion"><span>Autodesk Fusion</span><b></b></label>
           <label class="fd-item"><input type="checkbox" value="nx"><span>Siemens NX</span><b></b></label>
-          <label class="fd-item flagged"><input type="checkbox" value="cadunspec"><span>Package not specified</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="dfm"><span>Design for manufacturing</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="paramopt"><span>Parametric optimization</span><b></b></label>
           <label class="fd-item"><input type="checkbox" value="reveng"><span>Reverse engineering</span><b></b></label>
           <label class="fd-item"><input type="checkbox" value="scanning"><span>3D scanning</span><b></b></label>
-          <label class="fd-item"><input type="checkbox" value="dfm"><span>Design for manufacturing</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="aimodel"><span>AI model generation</span><b></b></label>
           <div class="fd-foot"><button type="button" class="fd-clear">Clear</button></div>
         </div>
       </div>
@@ -347,10 +348,12 @@
           <label class="fd-item fd-all"><input type="checkbox" data-all><span>All Simulation</span><b></b></label>
           <div class="fd-sep"></div>
           <label class="fd-item"><input type="checkbox" value="ansys"><span>Ansys Mechanical</span><b></b></label>
-          <label class="fd-item"><input type="checkbox" value="customfem"><span>Custom FEM solver</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="invstress"><span>Inventor stress analysis</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="fusionsim"><span>Fusion simulation</span><b></b></label>
           <label class="fd-item"><input type="checkbox" value="thermal"><span>Thermal simulation</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="mujoco"><span>MuJoCo motion simulation</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="customfem"><span>Custom FEM solver</span><b></b></label>
           <label class="fd-item"><input type="checkbox" value="fdmsim"><span>FDM print simulation</span><b></b></label>
-          <label class="fd-item"><input type="checkbox" value="mujoco"><span>MuJoCo motion sim</span><b></b></label>
           <div class="fd-foot"><button type="button" class="fd-clear">Clear</button></div>
         </div>
       </div>
@@ -360,13 +363,16 @@
           <label class="fd-item fd-all"><input type="checkbox" data-all><span>All Fabrication</span><b></b></label>
           <div class="fd-sep"></div>
           <label class="fd-item"><input type="checkbox" value="printing"><span>3D printing (FDM)</span><b></b></label>
-          <label class="fd-item"><input type="checkbox" value="welding"><span>Welding</span><b></b></label>
-          <label class="fd-item"><input type="checkbox" value="fabrication"><span>General fabrication</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="genfab"><span>General fabrication</span><b></b></label>
           <label class="fd-item"><input type="checkbox" value="assembly"><span>Assembly</span><b></b></label>
-          <label class="fd-item"><input type="checkbox" value="pneumatics"><span>Pneumatics</span><b></b></label>
           <label class="fd-item"><input type="checkbox" value="prototyping"><span>Prototyping</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="welding"><span>Welding</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="soldering"><span>Soldering</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="pneumatics"><span>Pneumatics</span><b></b></label>
           <label class="fd-item"><input type="checkbox" value="testing"><span>Physical testing</span><b></b></label>
           <label class="fd-item"><input type="checkbox" value="calibration"><span>Calibration</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="sourcing"><span>Sourcing & procurement</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="maintenance"><span>Preventative maintenance</span><b></b></label>
           <div class="fd-foot"><button type="button" class="fd-clear">Clear</button></div>
         </div>
       </div>
@@ -376,7 +382,6 @@
           <label class="fd-item fd-all"><input type="checkbox" data-all><span>All Software</span><b></b></label>
           <div class="fd-sep"></div>
           <label class="fd-item"><input type="checkbox" value="python"><span>Python</span><b></b></label>
-          <label class="fd-item"><input type="checkbox" value="opencv"><span>OpenCV / vision</span><b></b></label>
           <label class="fd-item"><input type="checkbox" value="pyside"><span>PySide6 (GUI)</span><b></b></label>
           <label class="fd-item"><input type="checkbox" value="aiassist"><span>AI-assisted development</span><b></b></label>
           <label class="fd-item"><input type="checkbox" value="sensors"><span>Sensors & data logging</span><b></b></label>
@@ -389,7 +394,7 @@
 
     <div class="grid" id="grid">
 
-      <article class="card reveal card--go" data-cat="robotics" data-tools="inventor ansys mujoco python opencv">
+      <article class="card reveal card--go" data-cat="robotics" data-tools="inventor fusion dfm paramopt ansys mujoco invstress fusionsim printing genfab assembly prototyping testing calibration soldering sourcing">
         <div class="ph ph--robotics">
           <img src="img/arm/cover-arm.jpg" alt="CAD render of a 6-DOF robotic arm reaching toward a Bambu Lab X1C 3D printer" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" loading="lazy">
           <span class="tag">Robotics</span>
@@ -415,7 +420,7 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="fab" data-tools="fusion welding scanning reveng">
+      <article class="card reveal" data-cat="fab" data-tools="inventor fusion scanning aimodel dfm ansys printing genfab welding assembly testing sourcing">
         <div class="ph ph--fab"><span class="tag">Fabrication</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
           <span class="ph-label">Add photo</span>
@@ -428,7 +433,7 @@
         </div>
       </article>
 
-      <article class="card reveal card--go" data-cat="aero" data-tools="inventor printing sensors">
+      <article class="card reveal card--go" data-cat="aero" data-tools="inventor printing dfm assembly soldering prototyping calibration sensors">
         <div class="ph ph--aero">
           <img src="img/rocket/cover-side.jpg" alt="CAD side profile of the full rocket — nose cone, payload bay, body tube, and fin can" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" loading="lazy">
           <span class="tag">Aerospace</span>
@@ -441,7 +446,7 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="aero" data-tools="nx reveng fabrication">
+      <article class="card reveal" data-cat="aero" data-tools="nx genfab pneumatics testing sourcing reveng">
         <div class="ph ph--aero"><span class="tag">Aerospace</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16M4 12l4-4M4 12l4 4M20 6v12"/></svg>
           <span class="ph-label">Add CAD render</span>
@@ -454,7 +459,7 @@
         </div>
       </article>
 
-      <article class="card reveal card--go" data-cat="aero fab" data-tools="fusion printing assembly">
+      <article class="card reveal card--go" data-cat="aero fab" data-tools="fusion nx printing dfm assembly genfab prototyping">
         <div class="ph ph--fab">
           <img src="img/mracing/cover-side.jpg" alt="Line-art CAD side profile of the 1:3 MR25 Formula SAE car — rear wing, monocoque, side aero, and front wing" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" loading="lazy">
           <span class="tag">Motorsport</span>
@@ -467,7 +472,7 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="fab" data-tools="cadunspec welding fabrication">
+      <article class="card reveal" data-cat="fab" data-tools="fusion printing welding assembly">
         <div class="ph ph--fab"><span class="tag">Fabrication</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 13l2-5h14l2 5v5h-3M3 13v5h3M3 13h18M7 18a1.5 1.5 0 103 0 1.5 1.5 0 00-3 0zm7 0a1.5 1.5 0 103 0 1.5 1.5 0 00-3 0z"/></svg>
           <span class="ph-label">Add photo</span>
@@ -480,7 +485,7 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="sim" data-tools="fusion thermal printing">
+      <article class="card reveal" data-cat="sim" data-tools="fusion inventor thermal printing assembly prototyping">
         <div class="ph ph--sim"><span class="tag">Thermal Sim</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M9 3v3M12 3v3M15 3v3M9 18v3M12 18v3M15 18v3M3 9h3M3 12h3M3 15h3M18 9h3M18 12h3M18 15h3"/></svg>
           <span class="ph-label">Add render</span>
@@ -493,7 +498,7 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="robotics" data-tools="cadunspec pneumatics printing">
+      <article class="card reveal" data-cat="robotics" data-tools="inventor pneumatics printing prototyping genfab assembly">
         <div class="ph ph--robotics"><span class="tag">Robotics</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="9" width="16" height="10" rx="2"/><path d="M12 9V5m0 0a2 2 0 100-4 2 2 0 000 4zM9 14h.01M15 14h.01"/></svg>
           <span class="ph-label">Add photo</span>
@@ -506,7 +511,7 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="fab" data-tools="cadunspec prototyping testing">
+      <article class="card reveal" data-cat="fab" data-tools="prototyping genfab assembly testing sourcing">
         <div class="ph ph--fab"><span class="tag">Mechanisms</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3.2"/><path d="M12 2v3.5M12 18.5V22M4.2 4.2l2.5 2.5M17.3 17.3l2.5 2.5M2 12h3.5M18.5 12H22M4.2 19.8l2.5-2.5M17.3 6.7l2.5-2.5"/></svg>
           <span class="ph-label">Add photo</span>
@@ -519,7 +524,7 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="fab" data-tools="assembly printing calibration">
+      <article class="card reveal" data-cat="fab" data-tools="fusion assembly printing genfab calibration soldering">
         <div class="ph ph--fab"><span class="tag">Build</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 9V3h12v6M6 9h12a2 2 0 012 2v5H4v-5a2 2 0 012-2zM8 16v5h8v-5"/></svg>
           <span class="ph-label">Add photo</span>
@@ -532,14 +537,14 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="robotics" data-tools="cadunspec printing dfm">
+      <article class="card reveal" data-cat="robotics" data-tools="inventor fusion printing dfm genfab soldering assembly pneumatics prototyping testing maintenance">
         <div class="ph ph--robotics"><span class="tag">3D Printing</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
           <span class="ph-label">Add photo</span>
         </div>
         <div class="card-body">
-          <h3>FRC 3D-Printed Jigs &amp; Mounts</h3>
-          <p>Designed and 3D-printed a range of custom jigs, mounts, and wire-management fixtures for Team 503’s competition robot, supporting the pneumatic and electrical subsystems.</p>
+          <h3>FRC Subsystems &amp; 3D-Printed Parts</h3>
+          <p>Built and maintained parts of Team 503’s competition robot — designing and 3D-printing custom jigs, mounts, and wire-management fixtures, and working on the pneumatic and electrical subsystems through assembly, soldering, testing, and between-match maintenance.</p>
           <div class="tools"><span>CAD</span><span>3D printing</span><span>DFM</span></div>
           <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
         </div>
