@@ -121,6 +121,16 @@
     text-decoration:underline;margin-left:4px}
   .fd-count{font-size:.83rem;color:var(--muted);font-variant-numeric:tabular-nums;margin-bottom:24px;min-height:1.2em}
   .card.hide{display:none}
+
+  /* card skill chips: clamp to two rows, full list lives in the details */
+  .tools{position:relative}
+  .tools .tool[hidden]{display:none}
+  .tools-more{font-size:.78rem;font-weight:600;background:var(--accent-soft);border:1px solid transparent;
+    color:var(--accent);padding:5px 10px;border-radius:8px;cursor:pointer;font-family:var(--font-body)}
+  .tools-more:hover{border-color:var(--accent)}
+  .cs-skills{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
+  .cs-skills span{font-size:.82rem;background:var(--bg-soft);border:1px solid var(--line);
+    padding:6px 11px;border-radius:8px;color:#374253}
   .fd-empty{margin:10px 0 0;padding:26px;border:1px dashed var(--line);border-radius:var(--radius);
     text-align:center;color:var(--muted);font-size:.92rem}
   @media (max-width:560px){.fd-menu{min-width:min(84vw,262px)}}
@@ -350,7 +360,8 @@
           <label class="fd-item"><input type="checkbox" value="ansys"><span>Ansys Mechanical</span><b></b></label>
           <label class="fd-item"><input type="checkbox" value="invstress"><span>Inventor stress analysis</span><b></b></label>
           <label class="fd-item"><input type="checkbox" value="fusionsim"><span>Fusion simulation</span><b></b></label>
-          <label class="fd-item"><input type="checkbox" value="thermal"><span>Thermal simulation</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="thermalelec"><span>Electronics cooling simulation</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="thermalprint"><span>Print thermal &amp; warpage</span><b></b></label>
           <label class="fd-item"><input type="checkbox" value="mujoco"><span>MuJoCo motion simulation</span><b></b></label>
           <label class="fd-item"><input type="checkbox" value="customfem"><span>Custom FEM solver</span><b></b></label>
           <label class="fd-item"><input type="checkbox" value="fdmsim"><span>FDM print simulation</span><b></b></label>
@@ -371,7 +382,7 @@
           <label class="fd-item"><input type="checkbox" value="pneumatics"><span>Pneumatics</span><b></b></label>
           <label class="fd-item"><input type="checkbox" value="testing"><span>Physical testing</span><b></b></label>
           <label class="fd-item"><input type="checkbox" value="calibration"><span>Calibration</span><b></b></label>
-          <label class="fd-item"><input type="checkbox" value="sourcing"><span>Sourcing & procurement</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="sourcing"><span>Sourcing &amp; procurement</span><b></b></label>
           <label class="fd-item"><input type="checkbox" value="maintenance"><span>Preventative maintenance</span><b></b></label>
           <div class="fd-foot"><button type="button" class="fd-clear">Clear</button></div>
         </div>
@@ -384,7 +395,7 @@
           <label class="fd-item"><input type="checkbox" value="python"><span>Python</span><b></b></label>
           <label class="fd-item"><input type="checkbox" value="pyside"><span>PySide6 (GUI)</span><b></b></label>
           <label class="fd-item"><input type="checkbox" value="aiassist"><span>AI-assisted development</span><b></b></label>
-          <label class="fd-item"><input type="checkbox" value="sensors"><span>Sensors & data logging</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="sensors"><span>Sensors &amp; data logging</span><b></b></label>
           <div class="fd-foot"><button type="button" class="fd-clear">Clear</button></div>
         </div>
       </div>
@@ -394,7 +405,7 @@
 
     <div class="grid" id="grid">
 
-      <article class="card reveal card--go" data-cat="robotics" data-tools="inventor fusion dfm paramopt ansys mujoco invstress fusionsim printing genfab assembly prototyping testing calibration soldering sourcing">
+      <article class="card reveal card--go" data-cat="robotics" data-tools="inventor fusion dfm paramopt ansys invstress fusionsim mujoco printing genfab assembly prototyping soldering testing calibration sourcing">
         <div class="ph ph--robotics">
           <img src="img/arm/cover-arm.jpg" alt="CAD render of a 6-DOF robotic arm reaching toward a Bambu Lab X1C 3D printer" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" loading="lazy">
           <span class="tag">Robotics</span>
@@ -402,12 +413,12 @@
         <div class="card-body">
           <h3>6-DOF Robotic Arm</h3>
           <p>A solo-designed 6-DOF arm that autonomously tends a Bambu Lab X1C — reaching through the printer door to swap the finished magnetic flex plate, dump the parts, and reload the next plate with no human in the loop. The full CAD is complete: a bevel-differential wrist and self-designed printed cycloidal reducers, guided by an arm-mounted AprilTag vision system. <strong>Pose the live 3D model in the details.</strong></p>
-          <div class="tools"><span>Autodesk Inventor</span><span>Ansys FEA</span><span>MuJoCo</span><span>Python</span><span>OpenCV</span></div>
+          <div class="tools" data-clamp><span class="tool">Autodesk Inventor</span><span class="tool">Autodesk Fusion</span><span class="tool">Design for manufacturing</span><span class="tool">Parametric optimization</span><span class="tool">Ansys Mechanical</span><span class="tool">Inventor stress analysis</span><span class="tool">Fusion simulation</span><span class="tool">MuJoCo motion simulation</span><span class="tool">3D printing (FDM)</span><span class="tool">General fabrication</span><span class="tool">Assembly</span><span class="tool">Prototyping</span><span class="tool">Soldering</span><span class="tool">Physical testing</span><span class="tool">Calibration</span><span class="tool">Sourcing &amp; procurement</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
           <a class="card-link" href="#" data-study="arm">Details <span class="arrow">→</span></a>
         </div>
       </article>
 
-      <article class="card reveal card--go" data-cat="sim" data-tools="python customfem fdmsim pyside aiassist thermal">
+      <article class="card reveal card--go" data-cat="sim" data-tools="thermalprint customfem fdmsim python pyside aiassist">
         <div class="ph ph--sim" style="background:#fff">
           <img src="img/printsim/cover-disp.jpg" alt="FEA displacement result on a 3D-printed part, showing a red high-deflection tip" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" loading="lazy">
           <span class="tag">Simulation</span>
@@ -415,12 +426,12 @@
         <div class="card-body">
           <h3>3DPrintSim — Anisotropic FEA</h3>
           <p>A custom physics-simulation platform for FDM 3D prints. Where standard FEA treats a part as solid material, 3DPrintSim models the print itself — walls, infill, and the weaker layer-to-layer bonds — to predict how orientation and slicer settings drive stiffness, stress, and warpage. Hand-written finite-element solver, a desktop app, and a built-in AI assistant.</p>
-          <div class="tools"><span>Python</span><span>Custom FEM</span><span>FDM simulation</span><span>PySide6</span><span>AI-assisted</span></div>
+          <div class="tools" data-clamp><span class="tool">Print thermal &amp; warpage</span><span class="tool">Custom FEM solver</span><span class="tool">FDM print simulation</span><span class="tool">Python</span><span class="tool">PySide6 (GUI)</span><span class="tool">AI-assisted development</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
           <a class="card-link" href="#" data-study="printsim">Details <span class="arrow">→</span></a>
         </div>
       </article>
 
-      <article class="card reveal" data-cat="fab" data-tools="inventor fusion scanning aimodel dfm ansys printing genfab welding assembly testing sourcing">
+      <article class="card reveal" data-cat="fab" data-tools="inventor fusion dfm scanning aimodel ansys printing genfab assembly welding testing sourcing">
         <div class="ph ph--fab"><span class="tag">Fabrication</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
           <span class="ph-label">Add photo</span>
@@ -428,12 +439,12 @@
         <div class="card-body">
           <h3>Motorized Vehicle — Record Attempt</h3>
           <p>A go-kart-engine-powered vehicle chasing a world speed record (rolling chassis complete). Notable for reverse-engineering complex geometry into CAD via iPhone LiDAR, Gaussian-splat photogrammetry, and AI mesh generation.</p>
-          <div class="tools"><span>Fusion 360</span><span>Welding</span><span>3D scanning</span></div>
+          <div class="tools" data-clamp><span class="tool">Autodesk Inventor</span><span class="tool">Autodesk Fusion</span><span class="tool">Design for manufacturing</span><span class="tool">3D scanning</span><span class="tool">AI model generation</span><span class="tool">Ansys Mechanical</span><span class="tool">3D printing (FDM)</span><span class="tool">General fabrication</span><span class="tool">Assembly</span><span class="tool">Welding</span><span class="tool">Physical testing</span><span class="tool">Sourcing &amp; procurement</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
           <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
         </div>
       </article>
 
-      <article class="card reveal card--go" data-cat="aero" data-tools="inventor printing dfm assembly soldering prototyping calibration sensors">
+      <article class="card reveal card--go" data-cat="aero" data-tools="inventor dfm printing assembly prototyping soldering calibration sensors">
         <div class="ph ph--aero">
           <img src="img/rocket/cover-side.jpg" alt="CAD side profile of the full rocket — nose cone, payload bay, body tube, and fin can" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" loading="lazy">
           <span class="tag">Aerospace</span>
@@ -441,12 +452,12 @@
         <div class="card-body">
           <h3>Instrumented Model Rocket</h3>
           <p>An ENGR 100 team project: a nearly fully 3D-printed rocket carrying a sensor payload — 3-axis acceleration, barometric pressure, temperature, and humidity. Lead designer/CAD; the flight log captures every stage — a 4.5&nbsp;g boost to a ≈800&nbsp;ft apogee, chute-out, and a descent that ended 50&nbsp;ft up a tree.</p>
-          <div class="tools"><span>Inventor</span><span>3D printing</span><span>Sensors</span><span>Flight data</span></div>
+          <div class="tools" data-clamp><span class="tool">Autodesk Inventor</span><span class="tool">Design for manufacturing</span><span class="tool">3D printing (FDM)</span><span class="tool">Assembly</span><span class="tool">Prototyping</span><span class="tool">Soldering</span><span class="tool">Calibration</span><span class="tool">Sensors &amp; data logging</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
           <a class="card-link" href="#" data-study="rocket">Details <span class="arrow">→</span></a>
         </div>
       </article>
 
-      <article class="card reveal" data-cat="aero" data-tools="nx genfab pneumatics testing sourcing reveng">
+      <article class="card reveal" data-cat="aero" data-tools="nx reveng genfab pneumatics testing sourcing">
         <div class="ph ph--aero"><span class="tag">Aerospace</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16M4 12l4-4M4 12l4 4M20 6v12"/></svg>
           <span class="ph-label">Add CAD render</span>
@@ -454,12 +465,12 @@
         <div class="card-body">
           <h3>MASA — LGSE Purge Subsystem</h3>
           <p>With the Michigan Aeronautical Science Association: reverse-engineered and CAD-modeled a purge / pre-press subsystem of the launch ground-support equipment from schematics, and supported fabrication.</p>
-          <div class="tools"><span>Siemens NX</span><span>Reverse engineering</span><span>Fabrication</span></div>
+          <div class="tools" data-clamp><span class="tool">Siemens NX</span><span class="tool">Reverse engineering</span><span class="tool">General fabrication</span><span class="tool">Pneumatics</span><span class="tool">Physical testing</span><span class="tool">Sourcing &amp; procurement</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
           <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
         </div>
       </article>
 
-      <article class="card reveal card--go" data-cat="aero fab" data-tools="fusion nx printing dfm assembly genfab prototyping">
+      <article class="card reveal card--go" data-cat="aero fab" data-tools="fusion nx dfm printing genfab assembly prototyping">
         <div class="ph ph--fab">
           <img src="img/mracing/cover-side.jpg" alt="Line-art CAD side profile of the 1:3 MR25 Formula SAE car — rear wing, monocoque, side aero, and front wing" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" loading="lazy">
           <span class="tag">Motorsport</span>
@@ -467,12 +478,12 @@
         <div class="card-body">
           <h3>MRacing — MR25 Scale Aero Model</h3>
           <p>A 1:3-scale model of Michigan's MR25 Formula SAE car — almost entirely 3D-printed, printed in sections and hand-assembled — built to validate the car's aerodynamics in a wind tunnel. The team's CFD puts about 400&nbsp;N of downforce on it at speed. <strong>See the build and the load case in the details.</strong></p>
-          <div class="tools"><span>Autodesk Fusion</span><span>3D printing</span><span>Assembly</span><span>Aero</span></div>
+          <div class="tools" data-clamp><span class="tool">Autodesk Fusion</span><span class="tool">Siemens NX</span><span class="tool">Design for manufacturing</span><span class="tool">3D printing (FDM)</span><span class="tool">General fabrication</span><span class="tool">Assembly</span><span class="tool">Prototyping</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
           <a class="card-link" href="#" data-study="mracing">Details <span class="arrow">→</span></a>
         </div>
       </article>
 
-      <article class="card reveal" data-cat="fab" data-tools="fusion printing welding assembly">
+      <article class="card reveal" data-cat="fab" data-tools="fusion printing assembly welding">
         <div class="ph ph--fab"><span class="tag">Fabrication</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 13l2-5h14l2 5v5h-3M3 13v5h3M3 13h18M7 18a1.5 1.5 0 103 0 1.5 1.5 0 00-3 0zm7 0a1.5 1.5 0 103 0 1.5 1.5 0 00-3 0z"/></svg>
           <span class="ph-label">Add photo</span>
@@ -480,12 +491,12 @@
         <div class="card-body">
           <h3>Welded Go-Kart</h3>
           <p>A drivable go-kart for a high-school engineering fabrication class: lead designer/CAD, then hand-bent, cut, and welded the steel tube-and-sheet chassis before road-testing it with the team.</p>
-          <div class="tools"><span>CAD</span><span>Steel welding</span><span>Fabrication</span></div>
+          <div class="tools" data-clamp><span class="tool">Autodesk Fusion</span><span class="tool">3D printing (FDM)</span><span class="tool">Assembly</span><span class="tool">Welding</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
           <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
         </div>
       </article>
 
-      <article class="card reveal" data-cat="sim" data-tools="fusion inventor thermal printing assembly prototyping">
+      <article class="card reveal" data-cat="sim" data-tools="inventor fusion thermalelec printing assembly prototyping">
         <div class="ph ph--sim"><span class="tag">Thermal Sim</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M9 3v3M12 3v3M15 3v3M9 18v3M12 18v3M15 18v3M3 9h3M3 12h3M3 15h3M18 9h3M18 12h3M18 15h3"/></svg>
           <span class="ph-label">Add render</span>
@@ -493,12 +504,12 @@
         <div class="card-body">
           <h3>Orange Pi Cooling Case</h3>
           <p>A 3D-printed cooling enclosure for an Orange Pi single-board computer — designed the housing in CAD, ran a thermal simulation to check heat dissipation and airflow, and printed the final part. Solo project.</p>
-          <div class="tools"><span>Fusion 360</span><span>Thermal sim</span><span>3D printing</span></div>
+          <div class="tools" data-clamp><span class="tool">Autodesk Inventor</span><span class="tool">Autodesk Fusion</span><span class="tool">Electronics cooling simulation</span><span class="tool">3D printing (FDM)</span><span class="tool">Assembly</span><span class="tool">Prototyping</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
           <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
         </div>
       </article>
 
-      <article class="card reveal" data-cat="robotics" data-tools="inventor pneumatics printing prototyping genfab assembly">
+      <article class="card reveal" data-cat="robotics" data-tools="inventor printing genfab assembly prototyping pneumatics">
         <div class="ph ph--robotics"><span class="tag">Robotics</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="9" width="16" height="10" rx="2"/><path d="M12 9V5m0 0a2 2 0 100-4 2 2 0 000 4zM9 14h.01M15 14h.01"/></svg>
           <span class="ph-label">Add photo</span>
@@ -506,12 +517,12 @@
         <div class="card-body">
           <h3>Wall-Climbing Pneumatic Robot</h3>
           <p>A robot that scales vertical walls using pneumatic cylinders and suction cups — lead designer/CAD for the climbing mechanism, with 3D-printed components. Small-team build.</p>
-          <div class="tools"><span>CAD</span><span>Pneumatics</span><span>3D printing</span></div>
+          <div class="tools" data-clamp><span class="tool">Autodesk Inventor</span><span class="tool">3D printing (FDM)</span><span class="tool">General fabrication</span><span class="tool">Assembly</span><span class="tool">Prototyping</span><span class="tool">Pneumatics</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
           <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
         </div>
       </article>
 
-      <article class="card reveal" data-cat="fab" data-tools="prototyping genfab assembly testing sourcing">
+      <article class="card reveal" data-cat="fab" data-tools="genfab assembly prototyping testing sourcing">
         <div class="ph ph--fab"><span class="tag">Mechanisms</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3.2"/><path d="M12 2v3.5M12 18.5V22M4.2 4.2l2.5 2.5M17.3 17.3l2.5 2.5M2 12h3.5M18.5 12H22M4.2 19.8l2.5-2.5M17.3 6.7l2.5-2.5"/></svg>
           <span class="ph-label">Add photo</span>
@@ -519,12 +530,12 @@
         <div class="card-body">
           <h3>Tennis-Ball Catapult</h3>
           <p>A launcher built to fling a tennis ball for AP Physics — lead designer/CAD, sourced materials, and ran rapid design iterations and test launches under a tight deadline. Team project.</p>
-          <div class="tools"><span>CAD</span><span>Prototyping</span><span>Testing</span></div>
+          <div class="tools" data-clamp><span class="tool">General fabrication</span><span class="tool">Assembly</span><span class="tool">Prototyping</span><span class="tool">Physical testing</span><span class="tool">Sourcing &amp; procurement</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
           <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
         </div>
       </article>
 
-      <article class="card reveal" data-cat="fab" data-tools="fusion assembly printing genfab calibration soldering">
+      <article class="card reveal" data-cat="fab" data-tools="fusion printing genfab assembly soldering calibration">
         <div class="ph ph--fab"><span class="tag">Build</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 9V3h12v6M6 9h12a2 2 0 012 2v5H4v-5a2 2 0 012-2zM8 16v5h8v-5"/></svg>
           <span class="ph-label">Add photo</span>
@@ -532,12 +543,12 @@
         <div class="card-body">
           <h3>Journey Maker Portable 3D Printer</h3>
           <p>Built an open-source “Journey Maker” portable 3D printer from the community design — sourcing the parts, assembling the machine, and calibrating it into a working printer.</p>
-          <div class="tools"><span>Assembly</span><span>3D printing</span><span>Calibration</span></div>
+          <div class="tools" data-clamp><span class="tool">Autodesk Fusion</span><span class="tool">3D printing (FDM)</span><span class="tool">General fabrication</span><span class="tool">Assembly</span><span class="tool">Soldering</span><span class="tool">Calibration</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
           <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
         </div>
       </article>
 
-      <article class="card reveal" data-cat="robotics" data-tools="inventor fusion printing dfm genfab soldering assembly pneumatics prototyping testing maintenance">
+      <article class="card reveal" data-cat="robotics" data-tools="inventor fusion dfm printing genfab assembly prototyping soldering pneumatics testing maintenance">
         <div class="ph ph--robotics"><span class="tag">3D Printing</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
           <span class="ph-label">Add photo</span>
@@ -545,7 +556,7 @@
         <div class="card-body">
           <h3>FRC Subsystems &amp; 3D-Printed Parts</h3>
           <p>Built and maintained parts of Team 503’s competition robot — designing and 3D-printing custom jigs, mounts, and wire-management fixtures, and working on the pneumatic and electrical subsystems through assembly, soldering, testing, and between-match maintenance.</p>
-          <div class="tools"><span>CAD</span><span>3D printing</span><span>DFM</span></div>
+          <div class="tools" data-clamp><span class="tool">Autodesk Inventor</span><span class="tool">Autodesk Fusion</span><span class="tool">Design for manufacturing</span><span class="tool">3D printing (FDM)</span><span class="tool">General fabrication</span><span class="tool">Assembly</span><span class="tool">Prototyping</span><span class="tool">Soldering</span><span class="tool">Pneumatics</span><span class="tool">Physical testing</span><span class="tool">Preventative maintenance</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
           <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
         </div>
       </article>
@@ -653,6 +664,8 @@
       <img src="img/rocket/cover-cutaway.jpg" alt="CAD section view of the nose cone with the sensor payload inside" loading="lazy">
       <figcaption>Section view — the sensor stack riding in the nose-cone payload bay.</figcaption>
     </figure>
+    <h4>Skills &amp; tools</h4>
+    <div class="cs-skills"><span>Autodesk Inventor</span><span>Design for manufacturing</span><span>3D printing (FDM)</span><span>Assembly</span><span>Prototyping</span><span>Soldering</span><span>Calibration</span><span>Sensors &amp; data logging</span></div>
   </div>
 </div>
 
@@ -703,6 +716,8 @@
       <figure><img src="img/arm/arm-wireframe.jpg" alt="Wireframe CAD view of the arm exposing internal motors and reducers" loading="lazy"><figcaption>Wireframe cutaway exposing the motors and reducers tucked inside the links.</figcaption></figure>
     </div>
     <p style="font-size:.9rem;color:var(--muted)">More coming as the build progresses — the custom carrier PCB, the visual-servoing pipeline, and fabrication photos once parts are printed and machined.</p>
+    <h4>Skills &amp; tools</h4>
+    <div class="cs-skills"><span>Autodesk Inventor</span><span>Autodesk Fusion</span><span>Design for manufacturing</span><span>Parametric optimization</span><span>Ansys Mechanical</span><span>Inventor stress analysis</span><span>Fusion simulation</span><span>MuJoCo motion simulation</span><span>3D printing (FDM)</span><span>General fabrication</span><span>Assembly</span><span>Prototyping</span><span>Soldering</span><span>Physical testing</span><span>Calibration</span><span>Sourcing &amp; procurement</span></div>
   </div>
 </div>
 
@@ -749,6 +764,8 @@
       <figure><img src="img/printsim/strain.jpg" alt="Strain field result on the part" loading="lazy"><figcaption>Strain field from the same solve.</figcaption></figure>
     </div>
     <p style="font-size:.9rem;color:var(--muted)">The test parts are real: these are the robotic arm's own components (a claw motor mount, the swinging jaw, base mounts) — the two projects feed each other.</p>
+    <h4>Skills &amp; tools</h4>
+    <div class="cs-skills"><span>Print thermal &amp; warpage</span><span>Custom FEM solver</span><span>FDM print simulation</span><span>Python</span><span>PySide6 (GUI)</span><span>AI-assisted development</span></div>
   </div>
 </div>
 
@@ -801,6 +818,8 @@
       <figure><img src="img/mracing/assembly.jpg" alt="Rear bodywork and the driver module with a printed helmet coming together" loading="lazy"><figcaption>The rear bodywork and driver module coming together — printed helmet and all.</figcaption></figure>
     </div>
     <p style="font-size:.9rem;color:var(--muted)">A team effort with MRacing — my part was the physical model: print-prep, fabrication, and assembly. The aerodynamic simulation is the team's.</p>
+    <h4>Skills &amp; tools</h4>
+    <div class="cs-skills"><span>Autodesk Fusion</span><span>Siemens NX</span><span>Design for manufacturing</span><span>3D printing (FDM)</span><span>General fabrication</span><span>Assembly</span><span>Prototyping</span></div>
   </div>
 </div>
 
@@ -828,6 +847,47 @@
   var toggle = document.getElementById('navToggle'), links = document.getElementById('navlinks');
   toggle.addEventListener('click', function(){ links.classList.toggle('open'); });
   links.addEventListener('click', function(e){ if(e.target.tagName==='A') links.classList.remove('open'); });
+
+  // card skill chips - keep to two rows, "+N" reveals the rest
+  (function(){
+    var rows=[].slice.call(document.querySelectorAll('.tools[data-clamp]'));
+    if(!rows.length) return;
+    function clamp(row){
+      if(row.dataset.expanded) return;
+      var chips=[].slice.call(row.querySelectorAll('.tool'));
+      var more=row.querySelector('.tools-more');
+      if(!chips.length||!more) return;
+      chips.forEach(function(c){ c.hidden=false; });
+      more.hidden=true;
+      function rowsUsed(){
+        var tops={},n=0;
+        chips.forEach(function(c){ if(!c.hidden && !(c.offsetTop in tops)){ tops[c.offsetTop]=1; n++; } });
+        if(!more.hidden && !(more.offsetTop in tops)) n++;
+        return n;
+      }
+      if(rowsUsed()<=2) return;
+      more.hidden=false;
+      var i=chips.length-1, hidden=0;
+      while(i>0 && rowsUsed()>2){ chips[i].hidden=true; hidden++; i--; }
+      if(hidden===0){ more.hidden=true; return; }
+      more.textContent='+'+hidden;
+      more.setAttribute('aria-label','Show all '+chips.length+' skills');
+    }
+    function clampAll(){ rows.forEach(clamp); }
+    rows.forEach(function(row){
+      var more=row.querySelector('.tools-more');
+      if(!more) return;
+      more.addEventListener('click',function(e){
+        e.preventDefault(); e.stopPropagation();      // don't open the card's details
+        row.dataset.expanded='1';
+        [].slice.call(row.querySelectorAll('.tool')).forEach(function(c){ c.hidden=false; });
+        more.hidden=true;
+      });
+    });
+    clampAll();
+    if(document.fonts && document.fonts.ready) document.fonts.ready.then(clampAll);
+    var t; window.addEventListener('resize',function(){ clearTimeout(t); t=setTimeout(clampAll,120); });
+  })();
 
   // project filter - skill dropdowns
   (function(){
