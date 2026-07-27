@@ -27,7 +27,8 @@
     --font-head:'Space Grotesk','Inter',system-ui,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;overflow-x:clip}
+  body{overflow-x:clip}
   body{font-family:var(--font-body);color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none}
   img{max-width:100%;display:block}
@@ -165,7 +166,7 @@
     border:1px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer}
   .mx-toggle-all:hover{border-color:var(--accent)}
   .mx-hint{font-size:.78rem;color:var(--muted);font-variant-numeric:tabular-nums}
-  .mx-wrap{overflow-x:auto;padding-top:2px}
+  .mx-wrap{overflow-x:auto;overscroll-behavior-x:contain;padding-top:2px}
   .mx{border-collapse:collapse;font-family:var(--font-body);width:100%;table-layout:fixed;min-width:560px}
   .mx thead th{vertical-align:bottom;padding:0 0 10px}
   .mx-rot{writing-mode:vertical-rl;transform:rotate(180deg);font-size:.78rem;color:var(--muted);
@@ -298,7 +299,7 @@
   .cs-cmp img{width:100%;border-radius:12px;border:1px solid var(--line);background:#fff}
   .cs-cmp figcaption{font-size:.82rem;color:var(--muted);margin-top:8px}
   @media (max-width:600px){.cs-cmp{grid-template-columns:1fr}}
-  .cs-table-wrap{overflow-x:auto;margin:14px 0}
+  .cs-table-wrap{overflow-x:auto;overscroll-behavior-x:contain;margin:14px 0}
   .cs-table{width:100%;border-collapse:collapse;font-size:.9rem;min-width:340px}
   .cs-table th,.cs-table td{padding:8px 12px;border-bottom:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
   .cs-table th:first-child,.cs-table td:first-child{text-align:left}
