@@ -158,12 +158,51 @@
 
   /* SKILLS */
   #skills{background:var(--bg-soft)}
-  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px}
-  .skillcol{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
-  .skillcol h3{font-size:1.02rem;margin-bottom:14px;display:flex;align-items:center;gap:9px}
-  .skillcol h3 .bar{width:22px;height:3px;border-radius:3px;background:var(--accent)}
-  .skillcol ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
-  .skillcol li{font-size:.86rem;background:var(--bg-soft);border:1px solid var(--line);padding:6px 11px;border-radius:8px;color:#374253}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+    clip:rect(0 0 0 0);white-space:nowrap;border:0}
+  .mx-tools{display:flex;align-items:center;gap:14px;margin-bottom:12px;flex-wrap:wrap}
+  .mx-toggle-all{font:600 .8rem var(--font-body);color:var(--accent);background:#fff;
+    border:1px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer}
+  .mx-toggle-all:hover{border-color:var(--accent)}
+  .mx-hint{font-size:.78rem;color:var(--muted);font-variant-numeric:tabular-nums}
+  .mx-wrap{overflow-x:auto;padding-top:2px}
+  .mx{border-collapse:collapse;font-family:var(--font-body);width:100%;table-layout:fixed;min-width:560px}
+  .mx thead th{vertical-align:bottom;padding:0 0 10px}
+  .mx-rot{writing-mode:vertical-rl;transform:rotate(180deg);font-size:.78rem;color:var(--muted);
+    white-space:nowrap;display:inline-block;font-weight:600;text-decoration:none}
+  .mx-rot:hover,.mx-rot:focus-visible{color:var(--accent)}
+  .mx-corner,.mx tbody th[scope=row]{width:236px}
+  .mx tbody th[scope=row]{text-align:left;white-space:nowrap;padding:0 16px 0 0}
+  .mx tr.mx-row th{font-size:.84rem;font-weight:500;color:var(--ink)}
+  .mx tr.mx-row th b{display:inline-block;width:16px;text-align:right;margin-right:9px;color:var(--muted);
+    font-weight:500;font-size:.76rem;font-variant-numeric:tabular-nums}
+  .mx-skill{all:unset;cursor:pointer;border-bottom:1px dotted #b9c3d1}
+  .mx-skill:hover{color:var(--accent);border-bottom-color:var(--accent)}
+  .mx-skill:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+  .mx td{height:30px;text-align:center;border-top:1px solid var(--line)}
+  .mx td span:not(.sr-only){display:inline-block;width:14px;height:14px;border-radius:4px;background:var(--accent)}
+  .mx td.agg span{width:24px;height:10px;border-radius:5px;background:#9fb2d4}
+  .mx tr.mx-cat th{padding:16px 14px 6px 0;border-bottom:1px solid var(--ink)}
+  .mx tr.mx-cat td{border-top:0;border-bottom:1px solid var(--ink);vertical-align:bottom;padding-bottom:6px}
+  .mx-catbtn{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:8px;
+    font:600 .72rem/1 var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--ink)}
+  .mx-catbtn:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+  .mx-catbtn svg{width:13px;height:13px;color:var(--muted);transition:transform .18s}
+  .mx-catbtn[aria-expanded="true"] svg{transform:rotate(90deg)}
+  .mx-catbtn i{font-style:normal;letter-spacing:0;text-transform:none;font-weight:500;
+    color:var(--muted);font-size:.74rem}
+  .cat.open .mx-catbtn,.cat.open .mx-catbtn svg{color:var(--accent)}
+  .mx tbody tr.hl th[scope=row]{color:var(--accent)}
+  .mx tbody tr.hl td,.mx td.hlc{background:var(--accent-soft)}
+  .mx thead th.hlc .mx-rot{color:var(--accent)}
+  .mx col.dim,.mx td.dim{opacity:.28}
+  .mx thead th.dim .mx-rot{opacity:.4}
+  .mx-read{margin-top:14px;font-size:.85rem;color:var(--muted);min-height:1.3em}
+  .mx-read b{color:var(--ink)}
+  .mx-also{margin-top:22px;padding-top:14px;border-top:1px dashed var(--line);
+    font-size:.82rem;color:var(--muted);line-height:1.6}
+  .mx-also b{color:var(--ink);font-weight:600}
+  @media (max-width:560px){.mx-corner,.mx tbody th[scope=row]{width:190px}}
 
   /* CONTACT */
   .contact{text-align:center;max-width:640px;margin:0 auto}
@@ -411,7 +450,7 @@
 
     <div class="grid" id="grid">
 
-      <article class="card reveal card--go" data-cat="robotics" data-tools="inventor paramopt invstress fusionsim mujoco opencv ansys calibration python soldering sourcing dfm testing fusion prototyping genfab printing assembly">
+      <article class="card reveal card--go" data-cat="robotics" data-tools="inventor paramopt invstress fusionsim mujoco opencv ansys calibration python soldering sourcing dfm testing fusion prototyping genfab printing assembly" id="p-arm">
         <div class="ph ph--robotics">
           <img src="img/arm/cover-arm.jpg" alt="CAD render of a 6-DOF robotic arm reaching toward a Bambu Lab X1C 3D printer" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" loading="lazy">
           <span class="tag">Robotics</span>
@@ -424,7 +463,7 @@
         </div>
       </article>
 
-      <article class="card reveal card--go" data-cat="sim" data-tools="thermalprint customfem fdmsim pyside aiassist python">
+      <article class="card reveal card--go" data-cat="sim" data-tools="thermalprint customfem fdmsim pyside aiassist python" id="p-printsim">
         <div class="ph ph--sim" style="background:#fff">
           <img src="img/printsim/cover-disp.jpg" alt="FEA displacement result on a 3D-printed part, showing a red high-deflection tip" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" loading="lazy">
           <span class="tag">Simulation</span>
@@ -437,7 +476,7 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="fab" data-tools="inventor scanning aimodel ansys welding sourcing dfm testing fusion genfab printing assembly">
+      <article class="card reveal" data-cat="fab" data-tools="inventor scanning aimodel ansys welding sourcing dfm testing fusion genfab printing assembly" id="p-vehicle">
         <div class="ph ph--fab"><span class="tag">Fabrication</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
           <span class="ph-label">Add photo</span>
@@ -450,7 +489,7 @@
         </div>
       </article>
 
-      <article class="card reveal card--go" data-cat="aero" data-tools="inventor sensors calibration soldering dfm prototyping printing assembly">
+      <article class="card reveal card--go" data-cat="aero" data-tools="inventor sensors calibration soldering dfm prototyping printing assembly" id="p-rocket">
         <div class="ph ph--aero">
           <img src="img/rocket/cover-side.jpg" alt="CAD side profile of the full rocket — nose cone, payload bay, body tube, and fin can" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" loading="lazy">
           <span class="tag">Aerospace</span>
@@ -463,7 +502,7 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="aero" data-tools="nx reveng pneumatics sourcing testing genfab">
+      <article class="card reveal" data-cat="aero" data-tools="nx reveng pneumatics sourcing testing genfab" id="p-masa">
         <div class="ph ph--aero"><span class="tag">Aerospace</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16M4 12l4-4M4 12l4 4M20 6v12"/></svg>
           <span class="ph-label">Add CAD render</span>
@@ -476,7 +515,7 @@
         </div>
       </article>
 
-      <article class="card reveal card--go" data-cat="aero fab" data-tools="fusion nx dfm prototyping genfab printing assembly">
+      <article class="card reveal card--go" data-cat="aero fab" data-tools="fusion nx dfm prototyping genfab printing assembly" id="p-mracing">
         <div class="ph ph--fab">
           <img src="img/mracing/cover-side.jpg" alt="Line-art CAD side profile of the 1:3 MR25 Formula SAE car — rear wing, monocoque, side aero, and front wing" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" loading="lazy">
           <span class="tag">Motorsport</span>
@@ -489,7 +528,7 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="fab" data-tools="fusion welding printing assembly">
+      <article class="card reveal" data-cat="fab" data-tools="fusion welding printing assembly" id="p-gokart">
         <div class="ph ph--fab"><span class="tag">Fabrication</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 13l2-5h14l2 5v5h-3M3 13v5h3M3 13h18M7 18a1.5 1.5 0 103 0 1.5 1.5 0 00-3 0zm7 0a1.5 1.5 0 103 0 1.5 1.5 0 00-3 0z"/></svg>
           <span class="ph-label">Add photo</span>
@@ -502,7 +541,7 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="sim" data-tools="inventor thermalelec fusion prototyping printing assembly">
+      <article class="card reveal" data-cat="sim" data-tools="inventor thermalelec fusion prototyping printing assembly" id="p-orangepi">
         <div class="ph ph--sim"><span class="tag">Thermal Sim</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M9 3v3M12 3v3M15 3v3M9 18v3M12 18v3M15 18v3M3 9h3M3 12h3M3 15h3M18 9h3M18 12h3M18 15h3"/></svg>
           <span class="ph-label">Add render</span>
@@ -515,7 +554,7 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="robotics" data-tools="inventor pneumatics prototyping genfab printing assembly">
+      <article class="card reveal" data-cat="robotics" data-tools="inventor pneumatics prototyping genfab printing assembly" id="p-wallclimber">
         <div class="ph ph--robotics"><span class="tag">Robotics</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="9" width="16" height="10" rx="2"/><path d="M12 9V5m0 0a2 2 0 100-4 2 2 0 000 4zM9 14h.01M15 14h.01"/></svg>
           <span class="ph-label">Add photo</span>
@@ -528,7 +567,7 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="fab" data-tools="sourcing testing prototyping genfab assembly">
+      <article class="card reveal" data-cat="fab" data-tools="sourcing testing prototyping genfab assembly" id="p-catapult">
         <div class="ph ph--fab"><span class="tag">Mechanisms</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3.2"/><path d="M12 2v3.5M12 18.5V22M4.2 4.2l2.5 2.5M17.3 17.3l2.5 2.5M2 12h3.5M18.5 12H22M4.2 19.8l2.5-2.5M17.3 6.7l2.5-2.5"/></svg>
           <span class="ph-label">Add photo</span>
@@ -541,7 +580,7 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="fab" data-tools="fusion calibration soldering genfab printing assembly">
+      <article class="card reveal" data-cat="fab" data-tools="fusion calibration soldering genfab printing assembly" id="p-journeymaker">
         <div class="ph ph--fab"><span class="tag">Build</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 9V3h12v6M6 9h12a2 2 0 012 2v5H4v-5a2 2 0 012-2zM8 16v5h8v-5"/></svg>
           <span class="ph-label">Add photo</span>
@@ -554,7 +593,7 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="robotics" data-tools="inventor maintenance pneumatics soldering dfm testing fusion prototyping genfab printing assembly">
+      <article class="card reveal" data-cat="robotics" data-tools="inventor maintenance pneumatics soldering dfm testing fusion prototyping genfab printing assembly" id="p-frc">
         <div class="ph ph--robotics"><span class="tag">3D Printing</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
           <span class="ph-label">Add photo</span>
@@ -567,7 +606,7 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="sim" data-tools="webdev threejs git aiassist python">
+      <article class="card reveal" data-cat="sim" data-tools="webdev threejs git aiassist python" id="p-site">
         <div class="ph ph--sim"><span class="tag">Software</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 9l-3 3 3 3M16 9l3 3-3 3M13.5 6l-3 12"/></svg>
           <span class="ph-label">Add screenshot</span>
@@ -588,14 +627,630 @@
   <div class="wrap">
     <div class="section-head reveal">
       <span class="kicker">Toolbox</span>
-      <h2>Skills &amp; tools</h2>
+      <h2>Capability matrix</h2>
+      <p>Every skill against the projects that prove it. Open a category to see its skills, or pick one to filter the projects above.</p>
     </div>
-    <div class="skills-grid">
-      <div class="skillcol reveal"><h3><span class="bar"></span>CAD</h3><ul><li>Fusion 360</li><li>Inventor</li><li>SolidWorks</li><li>Siemens NX</li><li>FreeCAD</li><li>Creo</li></ul></div>
-      <div class="skillcol reveal"><h3><span class="bar"></span>Simulation</h3><ul><li>ANSYS Mechanical</li><li>Fusion structural</li><li>Thermal / cooling</li><li>Custom FEA</li></ul></div>
-      <div class="skillcol reveal"><h3><span class="bar"></span>Fabrication</h3><ul><li>3D printing (FDM)</li><li>MIG &amp; stick welding</li><li>Lathe</li><li>Machining</li><li>DFM</li></ul></div>
-      <div class="skillcol reveal"><h3><span class="bar"></span>Software</h3><ul><li>Python</li><li>C++</li><li>MATLAB</li><li>Claude Code · Codex · Cursor</li></ul></div>
+    <div class="mx-tools reveal">
+      <button type="button" id="mxAll" class="mx-toggle-all" aria-controls="mxTable">Expand all</button>
+      <span class="mx-hint">35 skills &middot; 13 projects &middot; 100 links</span>
     </div>
+    <div class="mx-wrap reveal"><table class="mx" id="mxTable">
+      <caption class="sr-only">Skills against the projects that used them. Rows are skills grouped by category; columns are projects.</caption>
+      <thead><tr><th class="mx-corner" scope="col"><span class="sr-only">Skill</span></th>
+        <th scope="col" data-c="0"><a class="mx-rot" href="#p-arm">Robotic Arm</a></th>
+        <th scope="col" data-c="1"><a class="mx-rot" href="#p-vehicle">Motorized Vehicle</a></th>
+        <th scope="col" data-c="2"><a class="mx-rot" href="#p-frc">FRC Robotics</a></th>
+        <th scope="col" data-c="3"><a class="mx-rot" href="#p-rocket">Model Rocket</a></th>
+        <th scope="col" data-c="4"><a class="mx-rot" href="#p-mracing">MRacing Aero</a></th>
+        <th scope="col" data-c="5"><a class="mx-rot" href="#p-printsim">3DPrintSim</a></th>
+        <th scope="col" data-c="6"><a class="mx-rot" href="#p-masa">MASA Purge</a></th>
+        <th scope="col" data-c="7"><a class="mx-rot" href="#p-orangepi">Orange Pi Case</a></th>
+        <th scope="col" data-c="8"><a class="mx-rot" href="#p-wallclimber">Wall-Climber</a></th>
+        <th scope="col" data-c="9"><a class="mx-rot" href="#p-journeymaker">Journey Maker</a></th>
+        <th scope="col" data-c="10"><a class="mx-rot" href="#p-catapult">Catapult</a></th>
+        <th scope="col" data-c="11"><a class="mx-rot" href="#p-site">This Site</a></th>
+        <th scope="col" data-c="12"><a class="mx-rot" href="#p-gokart">Welded Go-Kart</a></th>
+      </tr></thead>
+      <tbody class="cat" data-cat="cad">
+        <tr class="mx-cat">
+          <th scope="row"><button type="button" class="mx-catbtn" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>Design <i>8 skills &middot; 24 links</i></button></th>
+          <td data-c="0" class="agg on"><span></span></td>
+          <td data-c="1" class="agg on"><span></span></td>
+          <td data-c="2" class="agg on"><span></span></td>
+          <td data-c="3" class="agg on"><span></span></td>
+          <td data-c="4" class="agg on"><span></span></td>
+          <td data-c="5" class="agg"></td>
+          <td data-c="6" class="agg on"><span></span></td>
+          <td data-c="7" class="agg on"><span></span></td>
+          <td data-c="8" class="agg on"><span></span></td>
+          <td data-c="9" class="agg on"><span></span></td>
+          <td data-c="10" class="agg"></td>
+          <td data-c="11" class="agg"></td>
+          <td data-c="12" class="agg on"><span></span></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>7</b><button type="button" class="mx-skill" data-skill="fusion">Autodesk Fusion</button></th>
+          <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="1" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="2" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="3"></td>
+          <td data-c="4" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="5"></td>
+          <td data-c="6"></td>
+          <td data-c="7" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="8"></td>
+          <td data-c="9" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="10"></td>
+          <td data-c="11"></td>
+          <td data-c="12" class="on"><span></span><span class="sr-only">used</span></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>6</b><button type="button" class="mx-skill" data-skill="inventor">Autodesk Inventor</button></th>
+          <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="1" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="2" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="3" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="4"></td>
+          <td data-c="5"></td>
+          <td data-c="6"></td>
+          <td data-c="7" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="8" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="9"></td>
+          <td data-c="10"></td>
+          <td data-c="11"></td>
+          <td data-c="12"></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>5</b><button type="button" class="mx-skill" data-skill="dfm">Design for manufacturing</button></th>
+          <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="1" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="2" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="3" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="4" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="5"></td>
+          <td data-c="6"></td>
+          <td data-c="7"></td>
+          <td data-c="8"></td>
+          <td data-c="9"></td>
+          <td data-c="10"></td>
+          <td data-c="11"></td>
+          <td data-c="12"></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>2</b><button type="button" class="mx-skill" data-skill="nx">Siemens NX</button></th>
+          <td data-c="0"></td>
+          <td data-c="1"></td>
+          <td data-c="2"></td>
+          <td data-c="3"></td>
+          <td data-c="4" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="5"></td>
+          <td data-c="6" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="7"></td>
+          <td data-c="8"></td>
+          <td data-c="9"></td>
+          <td data-c="10"></td>
+          <td data-c="11"></td>
+          <td data-c="12"></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="scanning">3D scanning</button></th>
+          <td data-c="0"></td>
+          <td data-c="1" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="2"></td>
+          <td data-c="3"></td>
+          <td data-c="4"></td>
+          <td data-c="5"></td>
+          <td data-c="6"></td>
+          <td data-c="7"></td>
+          <td data-c="8"></td>
+          <td data-c="9"></td>
+          <td data-c="10"></td>
+          <td data-c="11"></td>
+          <td data-c="12"></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="aimodel">AI model generation</button></th>
+          <td data-c="0"></td>
+          <td data-c="1" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="2"></td>
+          <td data-c="3"></td>
+          <td data-c="4"></td>
+          <td data-c="5"></td>
+          <td data-c="6"></td>
+          <td data-c="7"></td>
+          <td data-c="8"></td>
+          <td data-c="9"></td>
+          <td data-c="10"></td>
+          <td data-c="11"></td>
+          <td data-c="12"></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="paramopt">Parametric optimization</button></th>
+          <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="1"></td>
+          <td data-c="2"></td>
+          <td data-c="3"></td>
+          <td data-c="4"></td>
+          <td data-c="5"></td>
+          <td data-c="6"></td>
+          <td data-c="7"></td>
+          <td data-c="8"></td>
+          <td data-c="9"></td>
+          <td data-c="10"></td>
+          <td data-c="11"></td>
+          <td data-c="12"></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="reveng">Reverse engineering</button></th>
+          <td data-c="0"></td>
+          <td data-c="1"></td>
+          <td data-c="2"></td>
+          <td data-c="3"></td>
+          <td data-c="4"></td>
+          <td data-c="5"></td>
+          <td data-c="6" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="7"></td>
+          <td data-c="8"></td>
+          <td data-c="9"></td>
+          <td data-c="10"></td>
+          <td data-c="11"></td>
+          <td data-c="12"></td>
+        </tr>
+      </tbody>
+      <tbody class="cat" data-cat="sim">
+        <tr class="mx-cat">
+          <th scope="row"><button type="button" class="mx-catbtn" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>Simulation <i>8 skills &middot; 9 links</i></button></th>
+          <td data-c="0" class="agg on"><span></span></td>
+          <td data-c="1" class="agg on"><span></span></td>
+          <td data-c="2" class="agg"></td>
+          <td data-c="3" class="agg"></td>
+          <td data-c="4" class="agg"></td>
+          <td data-c="5" class="agg on"><span></span></td>
+          <td data-c="6" class="agg"></td>
+          <td data-c="7" class="agg on"><span></span></td>
+          <td data-c="8" class="agg"></td>
+          <td data-c="9" class="agg"></td>
+          <td data-c="10" class="agg"></td>
+          <td data-c="11" class="agg"></td>
+          <td data-c="12" class="agg"></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>2</b><button type="button" class="mx-skill" data-skill="ansys">Ansys Mechanical</button></th>
+          <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="1" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="2"></td>
+          <td data-c="3"></td>
+          <td data-c="4"></td>
+          <td data-c="5"></td>
+          <td data-c="6"></td>
+          <td data-c="7"></td>
+          <td data-c="8"></td>
+          <td data-c="9"></td>
+          <td data-c="10"></td>
+          <td data-c="11"></td>
+          <td data-c="12"></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="customfem">Custom FEM solver</button></th>
+          <td data-c="0"></td>
+          <td data-c="1"></td>
+          <td data-c="2"></td>
+          <td data-c="3"></td>
+          <td data-c="4"></td>
+          <td data-c="5" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="6"></td>
+          <td data-c="7"></td>
+          <td data-c="8"></td>
+          <td data-c="9"></td>
+          <td data-c="10"></td>
+          <td data-c="11"></td>
+          <td data-c="12"></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="thermalelec">Electronics cooling simulation</button></th>
+          <td data-c="0"></td>
+          <td data-c="1"></td>
+          <td data-c="2"></td>
+          <td data-c="3"></td>
+          <td data-c="4"></td>
+          <td data-c="5"></td>
+          <td data-c="6"></td>
+          <td data-c="7" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="8"></td>
+          <td data-c="9"></td>
+          <td data-c="10"></td>
+          <td data-c="11"></td>
+          <td data-c="12"></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="fdmsim">FDM print simulation</button></th>
+          <td data-c="0"></td>
+          <td data-c="1"></td>
+          <td data-c="2"></td>
+          <td data-c="3"></td>
+          <td data-c="4"></td>
+          <td data-c="5" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="6"></td>
+          <td data-c="7"></td>
+          <td data-c="8"></td>
+          <td data-c="9"></td>
+          <td data-c="10"></td>
+          <td data-c="11"></td>
+          <td data-c="12"></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="fusionsim">Fusion simulation</button></th>
+          <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="1"></td>
+          <td data-c="2"></td>
+          <td data-c="3"></td>
+          <td data-c="4"></td>
+          <td data-c="5"></td>
+          <td data-c="6"></td>
+          <td data-c="7"></td>
+          <td data-c="8"></td>
+          <td data-c="9"></td>
+          <td data-c="10"></td>
+          <td data-c="11"></td>
+          <td data-c="12"></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="invstress">Inventor stress analysis</button></th>
+          <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="1"></td>
+          <td data-c="2"></td>
+          <td data-c="3"></td>
+          <td data-c="4"></td>
+          <td data-c="5"></td>
+          <td data-c="6"></td>
+          <td data-c="7"></td>
+          <td data-c="8"></td>
+          <td data-c="9"></td>
+          <td data-c="10"></td>
+          <td data-c="11"></td>
+          <td data-c="12"></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="mujoco">MuJoCo motion simulation</button></th>
+          <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="1"></td>
+          <td data-c="2"></td>
+          <td data-c="3"></td>
+          <td data-c="4"></td>
+          <td data-c="5"></td>
+          <td data-c="6"></td>
+          <td data-c="7"></td>
+          <td data-c="8"></td>
+          <td data-c="9"></td>
+          <td data-c="10"></td>
+          <td data-c="11"></td>
+          <td data-c="12"></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="thermalprint">Print thermal &amp; warpage</button></th>
+          <td data-c="0"></td>
+          <td data-c="1"></td>
+          <td data-c="2"></td>
+          <td data-c="3"></td>
+          <td data-c="4"></td>
+          <td data-c="5" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="6"></td>
+          <td data-c="7"></td>
+          <td data-c="8"></td>
+          <td data-c="9"></td>
+          <td data-c="10"></td>
+          <td data-c="11"></td>
+          <td data-c="12"></td>
+        </tr>
+      </tbody>
+      <tbody class="cat" data-cat="fab">
+        <tr class="mx-cat">
+          <th scope="row"><button type="button" class="mx-catbtn" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>Fabrication <i>11 skills &middot; 56 links</i></button></th>
+          <td data-c="0" class="agg on"><span></span></td>
+          <td data-c="1" class="agg on"><span></span></td>
+          <td data-c="2" class="agg on"><span></span></td>
+          <td data-c="3" class="agg on"><span></span></td>
+          <td data-c="4" class="agg on"><span></span></td>
+          <td data-c="5" class="agg"></td>
+          <td data-c="6" class="agg on"><span></span></td>
+          <td data-c="7" class="agg on"><span></span></td>
+          <td data-c="8" class="agg on"><span></span></td>
+          <td data-c="9" class="agg on"><span></span></td>
+          <td data-c="10" class="agg on"><span></span></td>
+          <td data-c="11" class="agg"></td>
+          <td data-c="12" class="agg on"><span></span></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>10</b><button type="button" class="mx-skill" data-skill="assembly">Assembly</button></th>
+          <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="1" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="2" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="3" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="4" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="5"></td>
+          <td data-c="6"></td>
+          <td data-c="7" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="8" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="9" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="10" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="11"></td>
+          <td data-c="12" class="on"><span></span><span class="sr-only">used</span></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>9</b><button type="button" class="mx-skill" data-skill="printing">3D printing (FDM)</button></th>
+          <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="1" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="2" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="3" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="4" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="5"></td>
+          <td data-c="6"></td>
+          <td data-c="7" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="8" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="9" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="10"></td>
+          <td data-c="11"></td>
+          <td data-c="12" class="on"><span></span><span class="sr-only">used</span></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>8</b><button type="button" class="mx-skill" data-skill="genfab">General fabrication</button></th>
+          <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="1" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="2" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="3"></td>
+          <td data-c="4" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="5"></td>
+          <td data-c="6" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="7"></td>
+          <td data-c="8" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="9" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="10" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="11"></td>
+          <td data-c="12"></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>7</b><button type="button" class="mx-skill" data-skill="prototyping">Prototyping</button></th>
+          <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="1"></td>
+          <td data-c="2" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="3" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="4" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="5"></td>
+          <td data-c="6"></td>
+          <td data-c="7" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="8" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="9"></td>
+          <td data-c="10" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="11"></td>
+          <td data-c="12"></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>5</b><button type="button" class="mx-skill" data-skill="testing">Physical testing</button></th>
+          <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="1" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="2" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="3"></td>
+          <td data-c="4"></td>
+          <td data-c="5"></td>
+          <td data-c="6" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="7"></td>
+          <td data-c="8"></td>
+          <td data-c="9"></td>
+          <td data-c="10" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="11"></td>
+          <td data-c="12"></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>4</b><button type="button" class="mx-skill" data-skill="soldering">Soldering</button></th>
+          <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="1"></td>
+          <td data-c="2" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="3" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="4"></td>
+          <td data-c="5"></td>
+          <td data-c="6"></td>
+          <td data-c="7"></td>
+          <td data-c="8"></td>
+          <td data-c="9" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="10"></td>
+          <td data-c="11"></td>
+          <td data-c="12"></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>4</b><button type="button" class="mx-skill" data-skill="sourcing">Sourcing &amp; procurement</button></th>
+          <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="1" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="2"></td>
+          <td data-c="3"></td>
+          <td data-c="4"></td>
+          <td data-c="5"></td>
+          <td data-c="6" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="7"></td>
+          <td data-c="8"></td>
+          <td data-c="9"></td>
+          <td data-c="10" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="11"></td>
+          <td data-c="12"></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>3</b><button type="button" class="mx-skill" data-skill="calibration">Calibration</button></th>
+          <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="1"></td>
+          <td data-c="2"></td>
+          <td data-c="3" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="4"></td>
+          <td data-c="5"></td>
+          <td data-c="6"></td>
+          <td data-c="7"></td>
+          <td data-c="8"></td>
+          <td data-c="9" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="10"></td>
+          <td data-c="11"></td>
+          <td data-c="12"></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>3</b><button type="button" class="mx-skill" data-skill="pneumatics">Pneumatics</button></th>
+          <td data-c="0"></td>
+          <td data-c="1"></td>
+          <td data-c="2" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="3"></td>
+          <td data-c="4"></td>
+          <td data-c="5"></td>
+          <td data-c="6" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="7"></td>
+          <td data-c="8" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="9"></td>
+          <td data-c="10"></td>
+          <td data-c="11"></td>
+          <td data-c="12"></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>2</b><button type="button" class="mx-skill" data-skill="welding">Welding</button></th>
+          <td data-c="0"></td>
+          <td data-c="1" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="2"></td>
+          <td data-c="3"></td>
+          <td data-c="4"></td>
+          <td data-c="5"></td>
+          <td data-c="6"></td>
+          <td data-c="7"></td>
+          <td data-c="8"></td>
+          <td data-c="9"></td>
+          <td data-c="10"></td>
+          <td data-c="11"></td>
+          <td data-c="12" class="on"><span></span><span class="sr-only">used</span></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="maintenance">Preventative maintenance</button></th>
+          <td data-c="0"></td>
+          <td data-c="1"></td>
+          <td data-c="2" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="3"></td>
+          <td data-c="4"></td>
+          <td data-c="5"></td>
+          <td data-c="6"></td>
+          <td data-c="7"></td>
+          <td data-c="8"></td>
+          <td data-c="9"></td>
+          <td data-c="10"></td>
+          <td data-c="11"></td>
+          <td data-c="12"></td>
+        </tr>
+      </tbody>
+      <tbody class="cat" data-cat="sw">
+        <tr class="mx-cat">
+          <th scope="row"><button type="button" class="mx-catbtn" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>Software <i>8 skills &middot; 11 links</i></button></th>
+          <td data-c="0" class="agg on"><span></span></td>
+          <td data-c="1" class="agg"></td>
+          <td data-c="2" class="agg"></td>
+          <td data-c="3" class="agg on"><span></span></td>
+          <td data-c="4" class="agg"></td>
+          <td data-c="5" class="agg on"><span></span></td>
+          <td data-c="6" class="agg"></td>
+          <td data-c="7" class="agg"></td>
+          <td data-c="8" class="agg"></td>
+          <td data-c="9" class="agg"></td>
+          <td data-c="10" class="agg"></td>
+          <td data-c="11" class="agg on"><span></span></td>
+          <td data-c="12" class="agg"></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>3</b><button type="button" class="mx-skill" data-skill="python">Python</button></th>
+          <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="1"></td>
+          <td data-c="2"></td>
+          <td data-c="3"></td>
+          <td data-c="4"></td>
+          <td data-c="5" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="6"></td>
+          <td data-c="7"></td>
+          <td data-c="8"></td>
+          <td data-c="9"></td>
+          <td data-c="10"></td>
+          <td data-c="11" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="12"></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>2</b><button type="button" class="mx-skill" data-skill="aiassist">AI-assisted development</button></th>
+          <td data-c="0"></td>
+          <td data-c="1"></td>
+          <td data-c="2"></td>
+          <td data-c="3"></td>
+          <td data-c="4"></td>
+          <td data-c="5" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="6"></td>
+          <td data-c="7"></td>
+          <td data-c="8"></td>
+          <td data-c="9"></td>
+          <td data-c="10"></td>
+          <td data-c="11" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="12"></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="git">Git &amp; GitHub Pages</button></th>
+          <td data-c="0"></td>
+          <td data-c="1"></td>
+          <td data-c="2"></td>
+          <td data-c="3"></td>
+          <td data-c="4"></td>
+          <td data-c="5"></td>
+          <td data-c="6"></td>
+          <td data-c="7"></td>
+          <td data-c="8"></td>
+          <td data-c="9"></td>
+          <td data-c="10"></td>
+          <td data-c="11" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="12"></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="webdev">HTML / CSS / JavaScript</button></th>
+          <td data-c="0"></td>
+          <td data-c="1"></td>
+          <td data-c="2"></td>
+          <td data-c="3"></td>
+          <td data-c="4"></td>
+          <td data-c="5"></td>
+          <td data-c="6"></td>
+          <td data-c="7"></td>
+          <td data-c="8"></td>
+          <td data-c="9"></td>
+          <td data-c="10"></td>
+          <td data-c="11" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="12"></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="opencv">OpenCV / vision</button></th>
+          <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="1"></td>
+          <td data-c="2"></td>
+          <td data-c="3"></td>
+          <td data-c="4"></td>
+          <td data-c="5"></td>
+          <td data-c="6"></td>
+          <td data-c="7"></td>
+          <td data-c="8"></td>
+          <td data-c="9"></td>
+          <td data-c="10"></td>
+          <td data-c="11"></td>
+          <td data-c="12"></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="pyside">PySide6 (GUI)</button></th>
+          <td data-c="0"></td>
+          <td data-c="1"></td>
+          <td data-c="2"></td>
+          <td data-c="3"></td>
+          <td data-c="4"></td>
+          <td data-c="5" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="6"></td>
+          <td data-c="7"></td>
+          <td data-c="8"></td>
+          <td data-c="9"></td>
+          <td data-c="10"></td>
+          <td data-c="11"></td>
+          <td data-c="12"></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="sensors">Sensors &amp; data logging</button></th>
+          <td data-c="0"></td>
+          <td data-c="1"></td>
+          <td data-c="2"></td>
+          <td data-c="3" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="4"></td>
+          <td data-c="5"></td>
+          <td data-c="6"></td>
+          <td data-c="7"></td>
+          <td data-c="8"></td>
+          <td data-c="9"></td>
+          <td data-c="10"></td>
+          <td data-c="11"></td>
+          <td data-c="12"></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="threejs">three.js (WebGL)</button></th>
+          <td data-c="0"></td>
+          <td data-c="1"></td>
+          <td data-c="2"></td>
+          <td data-c="3"></td>
+          <td data-c="4"></td>
+          <td data-c="5"></td>
+          <td data-c="6"></td>
+          <td data-c="7"></td>
+          <td data-c="8"></td>
+          <td data-c="9"></td>
+          <td data-c="10"></td>
+          <td data-c="11" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="12"></td>
+        </tr>
+      </tbody>
+    </table></div>
+    <p class="mx-read" id="mxRead" role="status" aria-live="polite">&nbsp;</p>
+    <p class="mx-also reveal"><b>Also worked with</b> &mdash; no project on this site yet: SolidWorks &middot; Creo &middot; FreeCAD &middot; C++ &middot; MATLAB &middot; Lathe &middot; Machining</p>
   </div>
 </section>
 
@@ -867,6 +1522,79 @@
   toggle.addEventListener('click', function(){ links.classList.toggle('open'); });
   links.addEventListener('click', function(e){ if(e.target.tagName==='A') links.classList.remove('open'); });
 
+
+  // capability matrix - collapsible categories, crosshair, drives the project filter
+  (function(){
+    var tbl=document.getElementById('mxTable'); if(!tbl) return;
+    var read=document.getElementById('mxRead');
+    var cats=[].slice.call(tbl.querySelectorAll('tbody.cat'));
+    var heads=[].slice.call(tbl.querySelectorAll('thead th[data-c]'));
+    var allBtn=document.getElementById('mxAll');
+
+    function setOpen(cat,open){
+      cat.classList.toggle('open',open);
+      cat.querySelector('.mx-catbtn').setAttribute('aria-expanded',open?'true':'false');
+      [].slice.call(cat.querySelectorAll('tr.mx-row')).forEach(function(tr){ tr.hidden=!open; });
+    }
+    function syncAllBtn(){
+      allBtn.textContent = cats.every(function(c){return c.classList.contains('open');}) ? 'Collapse all' : 'Expand all';
+    }
+    cats.forEach(function(cat){
+      cat.querySelector('.mx-catbtn').addEventListener('click',function(){
+        setOpen(cat,!cat.classList.contains('open')); syncAllBtn();
+      });
+    });
+    allBtn.addEventListener('click',function(){
+      var allOpen=cats.every(function(c){return c.classList.contains('open');});
+      cats.forEach(function(c){ setOpen(c,!allOpen); }); syncAllBtn();
+    });
+    syncAllBtn();
+
+    function clearHl(){
+      tbl.querySelectorAll('tr.hl').forEach(function(t){t.classList.remove('hl');});
+      tbl.querySelectorAll('.hlc').forEach(function(t){t.classList.remove('hlc');});
+    }
+    tbl.addEventListener('pointerover',function(e){
+      var td=e.target.closest('td[data-c]'); if(!td) return;
+      clearHl();
+      var c=td.dataset.c;
+      td.parentElement.classList.add('hl');
+      tbl.querySelectorAll('td[data-c="'+c+'"]').forEach(function(x){
+        if(!x.closest('tr').hidden) x.classList.add('hlc');
+      });
+      var h=heads[+c]; if(h) h.classList.add('hlc');
+      var th=td.parentElement.querySelector('th[scope=row]');
+      var label=th.textContent.replace(/^\s*\d+\s*/,'').replace(/\s+\d+ skills.*$/,'').trim();
+      var proj=h?h.textContent.trim():'';
+      var on=td.classList.contains('on');
+      read.innerHTML='<b>'+label+'</b> \u2014 '+(on?'used on':'not used on')+' <b>'+proj+'</b>';
+    });
+    tbl.addEventListener('pointerleave',function(){ clearHl(); read.innerHTML='&nbsp;'; });
+
+    // click a skill -> drive the project filter and jump to the grid
+    tbl.addEventListener('click',function(e){
+      var b=e.target.closest('.mx-skill'); if(!b) return;
+      if(typeof window.__pickSkill!=='function') return;
+      window.__pickSkill(b.dataset.skill);
+      var grid=document.getElementById('projects');
+      if(grid) grid.scrollIntoView({behavior:
+        matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});
+    });
+
+    // echo the active filter back: dim the columns of projects that fell out
+    window.__mxSync=function(){
+      var any=!!document.querySelector('.fd input[value]:checked');
+      heads.forEach(function(h,i){
+        var slug=(h.querySelector('a')||{}).hash||'';
+        var card=slug?document.querySelector(slug):null;
+        var out=any && card && card.classList.contains('hide');
+        h.classList.toggle('dim',!!out);
+        tbl.querySelectorAll('td[data-c="'+i+'"]').forEach(function(td){ td.classList.toggle('dim',!!out); });
+      });
+    };
+    window.__mxSync();
+  })();
+
   // card skill chips - keep to two rows, "+N" reveals the rest
   (function(){
     var rows=[].slice.call(document.querySelectorAll('.tools[data-clamp]'));
@@ -985,6 +1713,7 @@
       resetBtn.hidden = (picked===0);
       countEl.textContent = picked ? (shown+' of '+cards.length+' projects \u00b7 '+bits.join(' + ')) : '';
       empty.hidden = shown>0;
+      if(window.__mxSync) window.__mxSync();   // echo the filter into the capability matrix
     }
 
     drops.forEach(function(d){
@@ -1023,6 +1752,13 @@
       drops.forEach(function(d){ [].slice.call(d.querySelectorAll('input')).forEach(function(i){i.checked=false;}); });
       apply();
     });
+    // let the capability matrix drive the filter (apply() sets .disabled on dead options)
+    window.__pickSkill=function(slug){
+      drops.forEach(function(d){ boxes(d).forEach(function(i){ i.checked=false; i.disabled=false; }); });
+      var box=document.querySelector('.fd input[value="'+slug+'"]');
+      if(box){ box.disabled=false; box.checked=true; }
+      apply();
+    };
     apply();
   })();
 
