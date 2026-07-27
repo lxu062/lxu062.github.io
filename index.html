@@ -128,6 +128,8 @@
   .tools-more{font-size:.78rem;font-weight:600;background:var(--accent-soft);border:1px solid transparent;
     color:var(--accent);padding:5px 10px;border-radius:8px;cursor:pointer;font-family:var(--font-body)}
   .tools-more:hover{border-color:var(--accent)}
+  .tools-more.is-less{background:var(--bg-soft);color:var(--muted)}
+  .tools-more.is-less:hover{border-color:var(--muted);color:var(--ink)}
   .cs-skills{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
   .cs-skills span{font-size:.82rem;background:var(--bg-soft);border:1px solid var(--line);
     padding:6px 11px;border-radius:8px;color:#374253}
@@ -870,11 +872,20 @@
     var rows=[].slice.call(document.querySelectorAll('.tools[data-clamp]'));
     if(!rows.length) return;
     function clamp(row){
-      if(row.dataset.expanded) return;
       var chips=[].slice.call(row.querySelectorAll('.tool'));
       var more=row.querySelector('.tools-more');
       if(!chips.length||!more) return;
       chips.forEach(function(c){ c.hidden=false; });
+      if(row.dataset.expanded){                    // expanded: show everything + a way back
+        more.hidden=false;
+        more.classList.add('is-less');
+        more.textContent='Show less';
+        more.setAttribute('aria-expanded','true');
+        more.setAttribute('aria-label','Show fewer skills');
+        return;
+      }
+      more.classList.remove('is-less');
+      more.setAttribute('aria-expanded','false');
       more.hidden=true;
       function rowsUsed(){
         var tops={},n=0;
@@ -896,9 +907,9 @@
       if(!more) return;
       more.addEventListener('click',function(e){
         e.preventDefault(); e.stopPropagation();      // don't open the card's details
-        row.dataset.expanded='1';
-        [].slice.call(row.querySelectorAll('.tool')).forEach(function(c){ c.hidden=false; });
-        more.hidden=true;
+        if(row.dataset.expanded) delete row.dataset.expanded;
+        else row.dataset.expanded='1';
+        clamp(row);
       });
     });
     clampAll();
