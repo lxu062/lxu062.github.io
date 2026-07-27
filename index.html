@@ -203,6 +203,16 @@
     font-size:.82rem;color:var(--muted);line-height:1.6}
   .mx-also b{color:var(--ink);font-weight:600}
   @media (max-width:560px){.mx-corner,.mx tbody th[scope=row]{width:190px}}
+  .mx-sm{display:none}
+  @media (max-width:560px){
+    .mx-lg{display:none}
+    .mx-sm{display:inline}
+    .mx tbody th[scope=row]{overflow:hidden}
+    .mx-skill{display:inline-block;max-width:148px;overflow:hidden;text-overflow:ellipsis;
+      vertical-align:bottom;white-space:nowrap}
+    .mx-catbtn{max-width:186px;overflow:hidden}
+    .mx-catbtn i{white-space:nowrap}
+  }
 
   /* CONTACT */
   .contact{text-align:center;max-width:640px;margin:0 auto}
@@ -653,7 +663,7 @@
       </tr></thead>
       <tbody class="cat" data-cat="cad">
         <tr class="mx-cat">
-          <th scope="row"><button type="button" class="mx-catbtn" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>Design <i>8 skills &middot; 24 links</i></button></th>
+          <th scope="row"><button type="button" class="mx-catbtn" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>Design <i><span class="mx-lg">8 skills &middot; 24 links</span><span class="mx-sm">8 &middot; 24</span></i></button></th>
           <td data-c="0" class="agg on"><span></span></td>
           <td data-c="1" class="agg on"><span></span></td>
           <td data-c="2" class="agg on"><span></span></td>
@@ -668,7 +678,7 @@
           <td data-c="11" class="agg"></td>
           <td data-c="12" class="agg on"><span></span></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>7</b><button type="button" class="mx-skill" data-skill="fusion">Autodesk Fusion</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>7</b><button type="button" class="mx-skill" data-skill="fusion"><span class="mx-lg">Autodesk Fusion</span><span class="mx-sm">Fusion</span></button></th>
           <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="1" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="2" class="on"><span></span><span class="sr-only">used</span></td>
@@ -683,7 +693,7 @@
           <td data-c="11"></td>
           <td data-c="12" class="on"><span></span><span class="sr-only">used</span></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>6</b><button type="button" class="mx-skill" data-skill="inventor">Autodesk Inventor</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>6</b><button type="button" class="mx-skill" data-skill="inventor"><span class="mx-lg">Autodesk Inventor</span><span class="mx-sm">Inventor</span></button></th>
           <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="1" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="2" class="on"><span></span><span class="sr-only">used</span></td>
@@ -698,7 +708,7 @@
           <td data-c="11"></td>
           <td data-c="12"></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>5</b><button type="button" class="mx-skill" data-skill="dfm">Design for manufacturing</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>5</b><button type="button" class="mx-skill" data-skill="dfm"><span class="mx-lg">Design for manufacturing</span><span class="mx-sm">DFM</span></button></th>
           <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="1" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="2" class="on"><span></span><span class="sr-only">used</span></td>
@@ -713,7 +723,7 @@
           <td data-c="11"></td>
           <td data-c="12"></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>2</b><button type="button" class="mx-skill" data-skill="nx">Siemens NX</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>2</b><button type="button" class="mx-skill" data-skill="nx"><span class="mx-lg">Siemens NX</span><span class="mx-sm">Siemens NX</span></button></th>
           <td data-c="0"></td>
           <td data-c="1"></td>
           <td data-c="2"></td>
@@ -728,7 +738,7 @@
           <td data-c="11"></td>
           <td data-c="12"></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="scanning">3D scanning</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="scanning"><span class="mx-lg">3D scanning</span><span class="mx-sm">3D scanning</span></button></th>
           <td data-c="0"></td>
           <td data-c="1" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="2"></td>
@@ -743,7 +753,7 @@
           <td data-c="11"></td>
           <td data-c="12"></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="aimodel">AI model generation</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="aimodel"><span class="mx-lg">AI model generation</span><span class="mx-sm">AI modelling</span></button></th>
           <td data-c="0"></td>
           <td data-c="1" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="2"></td>
@@ -758,7 +768,7 @@
           <td data-c="11"></td>
           <td data-c="12"></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="paramopt">Parametric optimization</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="paramopt"><span class="mx-lg">Parametric optimization</span><span class="mx-sm">Parametric opt.</span></button></th>
           <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="1"></td>
           <td data-c="2"></td>
@@ -773,7 +783,7 @@
           <td data-c="11"></td>
           <td data-c="12"></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="reveng">Reverse engineering</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="reveng"><span class="mx-lg">Reverse engineering</span><span class="mx-sm">Reverse eng.</span></button></th>
           <td data-c="0"></td>
           <td data-c="1"></td>
           <td data-c="2"></td>
@@ -791,7 +801,7 @@
       </tbody>
       <tbody class="cat" data-cat="sim">
         <tr class="mx-cat">
-          <th scope="row"><button type="button" class="mx-catbtn" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>Simulation <i>8 skills &middot; 9 links</i></button></th>
+          <th scope="row"><button type="button" class="mx-catbtn" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>Simulation <i><span class="mx-lg">8 skills &middot; 9 links</span><span class="mx-sm">8 &middot; 9</span></i></button></th>
           <td data-c="0" class="agg on"><span></span></td>
           <td data-c="1" class="agg on"><span></span></td>
           <td data-c="2" class="agg"></td>
@@ -806,7 +816,7 @@
           <td data-c="11" class="agg"></td>
           <td data-c="12" class="agg"></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>2</b><button type="button" class="mx-skill" data-skill="ansys">Ansys Mechanical</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>2</b><button type="button" class="mx-skill" data-skill="ansys"><span class="mx-lg">Ansys Mechanical</span><span class="mx-sm">Ansys</span></button></th>
           <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="1" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="2"></td>
@@ -821,7 +831,7 @@
           <td data-c="11"></td>
           <td data-c="12"></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="customfem">Custom FEM solver</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="customfem"><span class="mx-lg">Custom FEM solver</span><span class="mx-sm">Custom FEM</span></button></th>
           <td data-c="0"></td>
           <td data-c="1"></td>
           <td data-c="2"></td>
@@ -836,7 +846,7 @@
           <td data-c="11"></td>
           <td data-c="12"></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="thermalelec">Electronics cooling simulation</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="thermalelec"><span class="mx-lg">Electronics cooling simulation</span><span class="mx-sm">Electronics cooling</span></button></th>
           <td data-c="0"></td>
           <td data-c="1"></td>
           <td data-c="2"></td>
@@ -851,7 +861,7 @@
           <td data-c="11"></td>
           <td data-c="12"></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="fdmsim">FDM print simulation</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="fdmsim"><span class="mx-lg">FDM print simulation</span><span class="mx-sm">FDM print sim</span></button></th>
           <td data-c="0"></td>
           <td data-c="1"></td>
           <td data-c="2"></td>
@@ -866,7 +876,7 @@
           <td data-c="11"></td>
           <td data-c="12"></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="fusionsim">Fusion simulation</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="fusionsim"><span class="mx-lg">Fusion simulation</span><span class="mx-sm">Fusion sim</span></button></th>
           <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="1"></td>
           <td data-c="2"></td>
@@ -881,7 +891,7 @@
           <td data-c="11"></td>
           <td data-c="12"></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="invstress">Inventor stress analysis</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="invstress"><span class="mx-lg">Inventor stress analysis</span><span class="mx-sm">Inventor stress</span></button></th>
           <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="1"></td>
           <td data-c="2"></td>
@@ -896,7 +906,7 @@
           <td data-c="11"></td>
           <td data-c="12"></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="mujoco">MuJoCo motion simulation</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="mujoco"><span class="mx-lg">MuJoCo motion simulation</span><span class="mx-sm">MuJoCo</span></button></th>
           <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="1"></td>
           <td data-c="2"></td>
@@ -911,7 +921,7 @@
           <td data-c="11"></td>
           <td data-c="12"></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="thermalprint">Print thermal &amp; warpage</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="thermalprint"><span class="mx-lg">Print thermal &amp; warpage</span><span class="mx-sm">Print warpage</span></button></th>
           <td data-c="0"></td>
           <td data-c="1"></td>
           <td data-c="2"></td>
@@ -929,7 +939,7 @@
       </tbody>
       <tbody class="cat" data-cat="fab">
         <tr class="mx-cat">
-          <th scope="row"><button type="button" class="mx-catbtn" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>Fabrication <i>11 skills &middot; 56 links</i></button></th>
+          <th scope="row"><button type="button" class="mx-catbtn" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>Fabrication <i><span class="mx-lg">11 skills &middot; 56 links</span><span class="mx-sm">11 &middot; 56</span></i></button></th>
           <td data-c="0" class="agg on"><span></span></td>
           <td data-c="1" class="agg on"><span></span></td>
           <td data-c="2" class="agg on"><span></span></td>
@@ -944,7 +954,7 @@
           <td data-c="11" class="agg"></td>
           <td data-c="12" class="agg on"><span></span></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>10</b><button type="button" class="mx-skill" data-skill="assembly">Assembly</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>10</b><button type="button" class="mx-skill" data-skill="assembly"><span class="mx-lg">Assembly</span><span class="mx-sm">Assembly</span></button></th>
           <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="1" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="2" class="on"><span></span><span class="sr-only">used</span></td>
@@ -959,7 +969,7 @@
           <td data-c="11"></td>
           <td data-c="12" class="on"><span></span><span class="sr-only">used</span></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>9</b><button type="button" class="mx-skill" data-skill="printing">3D printing (FDM)</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>9</b><button type="button" class="mx-skill" data-skill="printing"><span class="mx-lg">3D printing (FDM)</span><span class="mx-sm">3D printing</span></button></th>
           <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="1" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="2" class="on"><span></span><span class="sr-only">used</span></td>
@@ -974,7 +984,7 @@
           <td data-c="11"></td>
           <td data-c="12" class="on"><span></span><span class="sr-only">used</span></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>8</b><button type="button" class="mx-skill" data-skill="genfab">General fabrication</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>8</b><button type="button" class="mx-skill" data-skill="genfab"><span class="mx-lg">General fabrication</span><span class="mx-sm">Fabrication</span></button></th>
           <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="1" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="2" class="on"><span></span><span class="sr-only">used</span></td>
@@ -989,7 +999,7 @@
           <td data-c="11"></td>
           <td data-c="12"></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>7</b><button type="button" class="mx-skill" data-skill="prototyping">Prototyping</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>7</b><button type="button" class="mx-skill" data-skill="prototyping"><span class="mx-lg">Prototyping</span><span class="mx-sm">Prototyping</span></button></th>
           <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="1"></td>
           <td data-c="2" class="on"><span></span><span class="sr-only">used</span></td>
@@ -1004,7 +1014,7 @@
           <td data-c="11"></td>
           <td data-c="12"></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>5</b><button type="button" class="mx-skill" data-skill="testing">Physical testing</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>5</b><button type="button" class="mx-skill" data-skill="testing"><span class="mx-lg">Physical testing</span><span class="mx-sm">Testing</span></button></th>
           <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="1" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="2" class="on"><span></span><span class="sr-only">used</span></td>
@@ -1019,7 +1029,7 @@
           <td data-c="11"></td>
           <td data-c="12"></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>4</b><button type="button" class="mx-skill" data-skill="soldering">Soldering</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>4</b><button type="button" class="mx-skill" data-skill="soldering"><span class="mx-lg">Soldering</span><span class="mx-sm">Soldering</span></button></th>
           <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="1"></td>
           <td data-c="2" class="on"><span></span><span class="sr-only">used</span></td>
@@ -1034,7 +1044,7 @@
           <td data-c="11"></td>
           <td data-c="12"></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>4</b><button type="button" class="mx-skill" data-skill="sourcing">Sourcing &amp; procurement</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>4</b><button type="button" class="mx-skill" data-skill="sourcing"><span class="mx-lg">Sourcing &amp; procurement</span><span class="mx-sm">Sourcing</span></button></th>
           <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="1" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="2"></td>
@@ -1049,7 +1059,7 @@
           <td data-c="11"></td>
           <td data-c="12"></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>3</b><button type="button" class="mx-skill" data-skill="calibration">Calibration</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>3</b><button type="button" class="mx-skill" data-skill="calibration"><span class="mx-lg">Calibration</span><span class="mx-sm">Calibration</span></button></th>
           <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="1"></td>
           <td data-c="2"></td>
@@ -1064,7 +1074,7 @@
           <td data-c="11"></td>
           <td data-c="12"></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>3</b><button type="button" class="mx-skill" data-skill="pneumatics">Pneumatics</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>3</b><button type="button" class="mx-skill" data-skill="pneumatics"><span class="mx-lg">Pneumatics</span><span class="mx-sm">Pneumatics</span></button></th>
           <td data-c="0"></td>
           <td data-c="1"></td>
           <td data-c="2" class="on"><span></span><span class="sr-only">used</span></td>
@@ -1079,7 +1089,7 @@
           <td data-c="11"></td>
           <td data-c="12"></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>2</b><button type="button" class="mx-skill" data-skill="welding">Welding</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>2</b><button type="button" class="mx-skill" data-skill="welding"><span class="mx-lg">Welding</span><span class="mx-sm">Welding</span></button></th>
           <td data-c="0"></td>
           <td data-c="1" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="2"></td>
@@ -1094,7 +1104,7 @@
           <td data-c="11"></td>
           <td data-c="12" class="on"><span></span><span class="sr-only">used</span></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="maintenance">Preventative maintenance</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="maintenance"><span class="mx-lg">Preventative maintenance</span><span class="mx-sm">Maintenance</span></button></th>
           <td data-c="0"></td>
           <td data-c="1"></td>
           <td data-c="2" class="on"><span></span><span class="sr-only">used</span></td>
@@ -1112,7 +1122,7 @@
       </tbody>
       <tbody class="cat" data-cat="sw">
         <tr class="mx-cat">
-          <th scope="row"><button type="button" class="mx-catbtn" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>Software <i>8 skills &middot; 11 links</i></button></th>
+          <th scope="row"><button type="button" class="mx-catbtn" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>Software <i><span class="mx-lg">8 skills &middot; 11 links</span><span class="mx-sm">8 &middot; 11</span></i></button></th>
           <td data-c="0" class="agg on"><span></span></td>
           <td data-c="1" class="agg"></td>
           <td data-c="2" class="agg"></td>
@@ -1127,7 +1137,7 @@
           <td data-c="11" class="agg on"><span></span></td>
           <td data-c="12" class="agg"></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>3</b><button type="button" class="mx-skill" data-skill="python">Python</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>3</b><button type="button" class="mx-skill" data-skill="python"><span class="mx-lg">Python</span><span class="mx-sm">Python</span></button></th>
           <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="1"></td>
           <td data-c="2"></td>
@@ -1142,7 +1152,7 @@
           <td data-c="11" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="12"></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>2</b><button type="button" class="mx-skill" data-skill="aiassist">AI-assisted development</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>2</b><button type="button" class="mx-skill" data-skill="aiassist"><span class="mx-lg">AI-assisted development</span><span class="mx-sm">AI-assisted</span></button></th>
           <td data-c="0"></td>
           <td data-c="1"></td>
           <td data-c="2"></td>
@@ -1157,7 +1167,7 @@
           <td data-c="11" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="12"></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="git">Git &amp; GitHub Pages</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="git"><span class="mx-lg">Git &amp; GitHub Pages</span><span class="mx-sm">Git / Pages</span></button></th>
           <td data-c="0"></td>
           <td data-c="1"></td>
           <td data-c="2"></td>
@@ -1172,7 +1182,7 @@
           <td data-c="11" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="12"></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="webdev">HTML / CSS / JavaScript</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="webdev"><span class="mx-lg">HTML / CSS / JavaScript</span><span class="mx-sm">HTML / CSS / JS</span></button></th>
           <td data-c="0"></td>
           <td data-c="1"></td>
           <td data-c="2"></td>
@@ -1187,7 +1197,7 @@
           <td data-c="11" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="12"></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="opencv">OpenCV / vision</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="opencv"><span class="mx-lg">OpenCV / vision</span><span class="mx-sm">OpenCV</span></button></th>
           <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="1"></td>
           <td data-c="2"></td>
@@ -1202,7 +1212,7 @@
           <td data-c="11"></td>
           <td data-c="12"></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="pyside">PySide6 (GUI)</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="pyside"><span class="mx-lg">PySide6 (GUI)</span><span class="mx-sm">PySide6</span></button></th>
           <td data-c="0"></td>
           <td data-c="1"></td>
           <td data-c="2"></td>
@@ -1217,7 +1227,7 @@
           <td data-c="11"></td>
           <td data-c="12"></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="sensors">Sensors &amp; data logging</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="sensors"><span class="mx-lg">Sensors &amp; data logging</span><span class="mx-sm">Sensors</span></button></th>
           <td data-c="0"></td>
           <td data-c="1"></td>
           <td data-c="2"></td>
@@ -1232,7 +1242,7 @@
           <td data-c="11"></td>
           <td data-c="12"></td>
         </tr>
-        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="threejs">three.js (WebGL)</button></th>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="threejs"><span class="mx-lg">three.js (WebGL)</span><span class="mx-sm">three.js</span></button></th>
           <td data-c="0"></td>
           <td data-c="1"></td>
           <td data-c="2"></td>
