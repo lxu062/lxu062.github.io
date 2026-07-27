@@ -17,6 +17,19 @@ Tennis-Ball Catapult/
 Journey Maker Portable 3D Printer/
 FRC 3D-Printed Jigs and Mounts/
 
+# Local design prototypes (not part of the live site)
+skills-preview.html
+
 # Résumé QR (belongs to the résumé doc, not the site)
 portfolio_qr.png
 tools/
+
+# Local design prototypes / scratch (not part of the live site)
+filter-preview.html
+*.tmp
+
+# LinkedIn assets - personal, belong with the resume/LinkedIn work, not the public site
+Leon_LinkedIn_*.png
+Leon_LinkedIn_*.jpg
+LinkedIn Profile Build Kit.docx
+Image_*.jpg

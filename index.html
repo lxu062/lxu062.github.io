@@ -85,11 +85,45 @@
   .facts dd{text-align:right;font-weight:600}
 
   /* PROJECTS */
-  .filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px}
-  .chip{font-size:.86rem;font-weight:600;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;transition:.15s}
-  .chip:hover{border-color:var(--accent);color:var(--accent)}
-  .chip.active{background:var(--ink);color:#fff;border-color:var(--ink)}
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:26px}
+
+  /* skill filter dropdowns */
+  .fdrop{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin-bottom:14px}
+  .fd-label{font:600 .72rem/1 var(--font-body);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-right:2px}
+  .fd{position:relative}
+  .fd-btn{font:500 .86rem/1 var(--font-body);color:var(--ink);background:#fff;border:1px solid var(--line);
+    border-radius:999px;padding:9px 13px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;
+    transition:border-color .15s,background .15s,color .15s}
+  .fd-btn svg{width:14px;height:14px;transition:transform .18s}
+  .fd-btn:hover{border-color:var(--accent)}
+  .fd.open .fd-btn{border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+  .fd.open .fd-btn svg{transform:rotate(180deg)}
+  .fd.active .fd-btn{background:var(--accent);border-color:var(--accent);color:#fff}
+  .fd-n{font-variant-numeric:tabular-nums;font-weight:700;font-size:.72rem;background:var(--accent);color:#fff;
+    border-radius:999px;min-width:18px;height:18px;display:none;align-items:center;justify-content:center;padding:0 5px}
+  .fd.active .fd-n{display:inline-flex;background:#fff;color:var(--accent)}
+  .fd-menu{position:absolute;top:calc(100% + 8px);left:0;z-index:40;min-width:262px;background:#fff;
+    border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-lg);padding:8px}
+  .fd-all{font-weight:600}
+  .fd-sep{height:1px;background:var(--line);margin:5px 9px}
+  .fd-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:9px;cursor:pointer;
+    font-size:.87rem;transition:background .12s}
+  .fd-item:hover{background:var(--bg-soft)}
+  .fd-item span{flex:1}
+  .fd-item b{font-variant-numeric:tabular-nums;font-size:.76rem;font-weight:600;color:var(--muted)}
+  .fd-item input{width:15px;height:15px;accent-color:var(--accent);cursor:pointer;flex:none}
+  .fd-item.dead{opacity:.36;cursor:not-allowed}
+  .fd-item.dead:hover{background:transparent}
+  .fd-item.flagged span{font-style:italic;color:var(--muted)}
+  .fd-foot{border-top:1px solid var(--line);margin-top:6px;padding:7px 10px 3px;text-align:right}
+  .fd-foot .fd-clear{font:600 .78rem var(--font-body);color:var(--accent);background:none;border:0;cursor:pointer}
+  .fd-reset{font:600 .8rem var(--font-body);color:var(--muted);background:none;border:0;cursor:pointer;
+    text-decoration:underline;margin-left:4px}
+  .fd-count{font-size:.83rem;color:var(--muted);font-variant-numeric:tabular-nums;margin-bottom:24px;min-height:1.2em}
+  .card.hide{display:none}
+  .fd-empty{margin:10px 0 0;padding:26px;border:1px dashed var(--line);border-radius:var(--radius);
+    text-align:center;color:var(--muted);font-size:.92rem}
+  @media (max-width:560px){.fd-menu{min-width:min(84vw,262px)}}
   .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform .18s ease,box-shadow .2s ease;display:flex;flex-direction:column}
   .card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
   .ph{position:relative;aspect-ratio:16/10;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:#fff;text-align:center}
@@ -287,20 +321,75 @@
     <div class="section-head reveal">
       <span class="kicker">Selected Work</span>
       <h2>Projects</h2>
-      <p>A mix of independent builds, coursework, and design-team work. Filter by area, or scan the highlights below.</p>
+      <p>A mix of independent builds, coursework, and design-team work. Filter by the tools and skills involved, or scan the highlights below.</p>
     </div>
 
-    <div class="filters reveal" id="filters">
-      <button class="chip active" data-filter="all">All</button>
-      <button class="chip" data-filter="robotics">Robotics</button>
-      <button class="chip" data-filter="sim">Simulation &amp; Software</button>
-      <button class="chip" data-filter="fab">Fabrication</button>
-      <button class="chip" data-filter="aero">Aerospace &amp; Autos</button>
+    <div class="fdrop reveal" id="fdrop">
+      <span class="fd-label">Filter by skill</span>
+      <div class="fd" data-group="cad">
+        <button class="fd-btn" type="button" aria-expanded="false" aria-haspopup="true">CAD <span class="fd-n"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="fd-menu" hidden>
+          <label class="fd-item fd-all"><input type="checkbox" data-all><span>All CAD</span><b></b></label>
+          <div class="fd-sep"></div>
+          <label class="fd-item"><input type="checkbox" value="inventor"><span>Autodesk Inventor</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="fusion"><span>Autodesk Fusion</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="nx"><span>Siemens NX</span><b></b></label>
+          <label class="fd-item flagged"><input type="checkbox" value="cadunspec"><span>Package not specified</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="reveng"><span>Reverse engineering</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="scanning"><span>3D scanning</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="dfm"><span>Design for manufacturing</span><b></b></label>
+          <div class="fd-foot"><button type="button" class="fd-clear">Clear</button></div>
+        </div>
+      </div>
+      <div class="fd" data-group="sim">
+        <button class="fd-btn" type="button" aria-expanded="false" aria-haspopup="true">Simulation <span class="fd-n"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="fd-menu" hidden>
+          <label class="fd-item fd-all"><input type="checkbox" data-all><span>All Simulation</span><b></b></label>
+          <div class="fd-sep"></div>
+          <label class="fd-item"><input type="checkbox" value="ansys"><span>Ansys Mechanical</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="customfem"><span>Custom FEM solver</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="thermal"><span>Thermal simulation</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="fdmsim"><span>FDM print simulation</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="mujoco"><span>MuJoCo motion sim</span><b></b></label>
+          <div class="fd-foot"><button type="button" class="fd-clear">Clear</button></div>
+        </div>
+      </div>
+      <div class="fd" data-group="fab">
+        <button class="fd-btn" type="button" aria-expanded="false" aria-haspopup="true">Fabrication <span class="fd-n"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="fd-menu" hidden>
+          <label class="fd-item fd-all"><input type="checkbox" data-all><span>All Fabrication</span><b></b></label>
+          <div class="fd-sep"></div>
+          <label class="fd-item"><input type="checkbox" value="printing"><span>3D printing (FDM)</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="welding"><span>Welding</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="fabrication"><span>General fabrication</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="assembly"><span>Assembly</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="pneumatics"><span>Pneumatics</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="prototyping"><span>Prototyping</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="testing"><span>Physical testing</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="calibration"><span>Calibration</span><b></b></label>
+          <div class="fd-foot"><button type="button" class="fd-clear">Clear</button></div>
+        </div>
+      </div>
+      <div class="fd" data-group="sw">
+        <button class="fd-btn" type="button" aria-expanded="false" aria-haspopup="true">Software <span class="fd-n"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="fd-menu" hidden>
+          <label class="fd-item fd-all"><input type="checkbox" data-all><span>All Software</span><b></b></label>
+          <div class="fd-sep"></div>
+          <label class="fd-item"><input type="checkbox" value="python"><span>Python</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="opencv"><span>OpenCV / vision</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="pyside"><span>PySide6 (GUI)</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="aiassist"><span>AI-assisted development</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="sensors"><span>Sensors & data logging</span><b></b></label>
+          <div class="fd-foot"><button type="button" class="fd-clear">Clear</button></div>
+        </div>
+      </div>
+      <button class="fd-reset" id="fdReset" hidden>Clear all</button>
     </div>
+    <p class="fd-count" id="fdCount" role="status" aria-live="polite"></p>
 
     <div class="grid" id="grid">
 
-      <article class="card reveal card--go" data-cat="robotics">
+      <article class="card reveal card--go" data-cat="robotics" data-tools="inventor ansys mujoco python opencv">
         <div class="ph ph--robotics">
           <img src="img/arm/cover-arm.jpg" alt="CAD render of a 6-DOF robotic arm reaching toward a Bambu Lab X1C 3D printer" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" loading="lazy">
           <span class="tag">Robotics</span>
@@ -313,7 +402,7 @@
         </div>
       </article>
 
-      <article class="card reveal card--go" data-cat="sim">
+      <article class="card reveal card--go" data-cat="sim" data-tools="python customfem fdmsim pyside aiassist thermal">
         <div class="ph ph--sim" style="background:#fff">
           <img src="img/printsim/cover-disp.jpg" alt="FEA displacement result on a 3D-printed part, showing a red high-deflection tip" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" loading="lazy">
           <span class="tag">Simulation</span>
@@ -326,7 +415,7 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="fab">
+      <article class="card reveal" data-cat="fab" data-tools="fusion welding scanning reveng">
         <div class="ph ph--fab"><span class="tag">Fabrication</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
           <span class="ph-label">Add photo</span>
@@ -339,7 +428,7 @@
         </div>
       </article>
 
-      <article class="card reveal card--go" data-cat="aero">
+      <article class="card reveal card--go" data-cat="aero" data-tools="inventor printing sensors">
         <div class="ph ph--aero">
           <img src="img/rocket/cover-side.jpg" alt="CAD side profile of the full rocket — nose cone, payload bay, body tube, and fin can" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" loading="lazy">
           <span class="tag">Aerospace</span>
@@ -352,7 +441,7 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="aero">
+      <article class="card reveal" data-cat="aero" data-tools="nx reveng fabrication">
         <div class="ph ph--aero"><span class="tag">Aerospace</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16M4 12l4-4M4 12l4 4M20 6v12"/></svg>
           <span class="ph-label">Add CAD render</span>
@@ -365,7 +454,7 @@
         </div>
       </article>
 
-      <article class="card reveal card--go" data-cat="aero fab">
+      <article class="card reveal card--go" data-cat="aero fab" data-tools="fusion printing assembly">
         <div class="ph ph--fab">
           <img src="img/mracing/cover-side.jpg" alt="Line-art CAD side profile of the 1:3 MR25 Formula SAE car — rear wing, monocoque, side aero, and front wing" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" loading="lazy">
           <span class="tag">Motorsport</span>
@@ -378,7 +467,7 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="fab">
+      <article class="card reveal" data-cat="fab" data-tools="cadunspec welding fabrication">
         <div class="ph ph--fab"><span class="tag">Fabrication</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 13l2-5h14l2 5v5h-3M3 13v5h3M3 13h18M7 18a1.5 1.5 0 103 0 1.5 1.5 0 00-3 0zm7 0a1.5 1.5 0 103 0 1.5 1.5 0 00-3 0z"/></svg>
           <span class="ph-label">Add photo</span>
@@ -391,7 +480,7 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="sim">
+      <article class="card reveal" data-cat="sim" data-tools="fusion thermal printing">
         <div class="ph ph--sim"><span class="tag">Thermal Sim</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M9 3v3M12 3v3M15 3v3M9 18v3M12 18v3M15 18v3M3 9h3M3 12h3M3 15h3M18 9h3M18 12h3M18 15h3"/></svg>
           <span class="ph-label">Add render</span>
@@ -404,7 +493,7 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="robotics">
+      <article class="card reveal" data-cat="robotics" data-tools="cadunspec pneumatics printing">
         <div class="ph ph--robotics"><span class="tag">Robotics</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="9" width="16" height="10" rx="2"/><path d="M12 9V5m0 0a2 2 0 100-4 2 2 0 000 4zM9 14h.01M15 14h.01"/></svg>
           <span class="ph-label">Add photo</span>
@@ -417,7 +506,7 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="fab">
+      <article class="card reveal" data-cat="fab" data-tools="cadunspec prototyping testing">
         <div class="ph ph--fab"><span class="tag">Mechanisms</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3.2"/><path d="M12 2v3.5M12 18.5V22M4.2 4.2l2.5 2.5M17.3 17.3l2.5 2.5M2 12h3.5M18.5 12H22M4.2 19.8l2.5-2.5M17.3 6.7l2.5-2.5"/></svg>
           <span class="ph-label">Add photo</span>
@@ -430,7 +519,7 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="fab">
+      <article class="card reveal" data-cat="fab" data-tools="assembly printing calibration">
         <div class="ph ph--fab"><span class="tag">Build</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 9V3h12v6M6 9h12a2 2 0 012 2v5H4v-5a2 2 0 012-2zM8 16v5h8v-5"/></svg>
           <span class="ph-label">Add photo</span>
@@ -443,7 +532,7 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="robotics">
+      <article class="card reveal" data-cat="robotics" data-tools="cadunspec printing dfm">
         <div class="ph ph--robotics"><span class="tag">3D Printing</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
           <span class="ph-label">Add photo</span>
@@ -735,19 +824,114 @@
   toggle.addEventListener('click', function(){ links.classList.toggle('open'); });
   links.addEventListener('click', function(e){ if(e.target.tagName==='A') links.classList.remove('open'); });
 
-  // project filter
-  var chips = document.querySelectorAll('.chip'), cards = document.querySelectorAll('#grid .card');
-  chips.forEach(function(chip){
-    chip.addEventListener('click', function(){
-      chips.forEach(function(c){c.classList.remove('active');});
-      chip.classList.add('active');
-      var f = chip.dataset.filter;
-      cards.forEach(function(card){
-        var show = f==='all' || card.dataset.cat.split(' ').indexOf(f)>-1;
-        card.style.display = show ? '' : 'none';
+  // project filter - skill dropdowns
+  (function(){
+    var cards=[].slice.call(document.querySelectorAll('#grid .card'));
+    var drops=[].slice.call(document.querySelectorAll('.fd'));
+    var countEl=document.getElementById('fdCount');
+    var resetBtn=document.getElementById('fdReset');
+    if(!cards.length||!drops.length) return;
+    var grid=document.getElementById('grid');
+    var empty=document.createElement('div');
+    empty.className='fd-empty'; empty.hidden=true;
+    empty.textContent='No projects match that combination.';
+    grid.parentElement.insertBefore(empty, grid.nextSibling);
+
+    // input[value] deliberately excludes the select-all box, which has no value attribute
+    function boxes(d){ return [].slice.call(d.querySelectorAll('input[value]')); }
+    function sel(d){ return boxes(d).filter(function(i){return i.checked;}).map(function(i){return i.value;}); }
+    function tools(c){ return (c.dataset.tools||'').split(' '); }
+
+    // within a menu: OR   |   across menus: AND
+    function ok(c, skipGroup, extra){
+      var t=tools(c);
+      for(var i=0;i<drops.length;i++){
+        var d=drops[i], picks=sel(d);
+        if(d===skipGroup && extra) picks=(Object.prototype.toString.call(extra)==='[object Array]')?extra:[extra];
+        if(!picks.length) continue;
+        var hit=picks.some(function(v){ return t.indexOf(v)>=0; });
+        if(!hit) return false;
+      }
+      return true;
+    }
+    function closeAll(){
+      drops.forEach(function(d){
+        d.classList.remove('open');
+        d.querySelector('.fd-menu').hidden=true;
+        d.querySelector('.fd-btn').setAttribute('aria-expanded','false');
+      });
+    }
+    function apply(){
+      var shown=0;
+      cards.forEach(function(c){
+        var m=ok(c,null,null);
+        c.classList.toggle('hide',!m); if(m) shown++;
+      });
+      var picked=0, bits=[];
+      drops.forEach(function(d){
+        var picks=sel(d); picked+=picks.length;
+        d.classList.toggle('active',picks.length>0);
+        d.querySelector('.fd-n').textContent=picks.length;
+        boxes(d).forEach(function(inp){
+          var item=inp.parentElement;
+          var n=cards.filter(function(c){ return ok(c,d,inp.value); }).length;
+          item.querySelector('b').textContent=n;
+          var dead=(n===0 && !inp.checked);
+          item.classList.toggle('dead',dead); inp.disabled=dead;
+        });
+        var allBox=d.querySelector('input[data-all]'), bx=boxes(d);
+        var nCk=bx.filter(function(i){return i.checked;}).length;
+        allBox.checked = nCk>0 && nCk===bx.length;
+        allBox.indeterminate = nCk>0 && nCk<bx.length;
+        d.querySelector('.fd-all b').textContent =
+          cards.filter(function(c){ return ok(c,d,bx.map(function(i){return i.value;})); }).length;
+        picks.forEach(function(v){
+          bits.push(d.querySelector('input[value="'+v+'"]').parentElement.querySelector('span').textContent.trim());
+        });
+      });
+      resetBtn.hidden = (picked===0);
+      countEl.textContent = picked ? (shown+' of '+cards.length+' projects \u00b7 '+bits.join(' + ')) : '';
+      empty.hidden = shown>0;
+    }
+
+    drops.forEach(function(d){
+      var btn=d.querySelector('.fd-btn'), menu=d.querySelector('.fd-menu');
+      btn.addEventListener('click',function(e){
+        e.stopPropagation();
+        var wasOpen=d.classList.contains('open');
+        closeAll();
+        if(!wasOpen){
+          d.classList.add('open'); menu.hidden=false; btn.setAttribute('aria-expanded','true');
+          // keep the menu on screen: nudge it left just enough, never past the viewport edge
+          menu.style.left='';
+          var over=menu.getBoundingClientRect().right-(window.innerWidth-8);
+          if(over>0){
+            var room=d.getBoundingClientRect().left-8;
+            var shift=Math.max(0,Math.min(over,room));
+            if(shift>0) menu.style.left=(-shift)+'px';
+          }
+        }
+      });
+      menu.addEventListener('click',function(e){ e.stopPropagation(); });
+      menu.addEventListener('change',apply);
+      d.querySelector('input[data-all]').addEventListener('change',function(){
+        var want=this.checked;
+        boxes(d).forEach(function(i){ if(want){ if(!i.disabled) i.checked=true; } else { i.checked=false; } });
+        apply();
+      });
+      d.querySelector('.fd-clear').addEventListener('click',function(){
+        [].slice.call(d.querySelectorAll('input')).forEach(function(i){ i.checked=false; });
+        apply();
       });
     });
-  });
+    document.addEventListener('click',closeAll);
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape' && !document.querySelector('.lb-overlay.open')) closeAll(); });
+    resetBtn.addEventListener('click',function(){
+      drops.forEach(function(d){ [].slice.call(d.querySelectorAll('input')).forEach(function(i){i.checked=false;}); });
+      apply();
+    });
+    apply();
+  })();
 
   // placeholder links (until pages / assets exist)
   document.querySelectorAll('[data-soon],[data-resume]').forEach(function(el){
