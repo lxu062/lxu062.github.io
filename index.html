@@ -154,6 +154,7 @@
   .tools span{font-size:.76rem;font-weight:500;color:var(--muted);background:var(--bg-soft);border:1px solid var(--line);padding:4px 10px;border-radius:7px}
   .card-link{margin-top:16px;font-size:.9rem;font-weight:600;color:var(--accent);display:inline-flex;align-items:center;gap:6px}
   .card-link .arrow{transition:transform .15s}
+  .card-link--soon{color:var(--muted);font-weight:500;cursor:default}
   .card:hover .card-link .arrow{transform:translateX(3px)}
   .more-note{margin-top:28px;font-size:.95rem;color:var(--muted);text-align:center}
 
@@ -501,13 +502,13 @@
       <article class="card reveal" data-cat="fab" data-tools="inventor scanning aimodel ansys welding sourcing dfm testing fusion genfab printing assembly" id="p-vehicle">
         <div class="ph ph--fab"><span class="tag">Fabrication</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-          <span class="ph-label">Add photo</span>
+          <span class="ph-label">Photos coming soon</span>
         </div>
         <div class="card-body">
           <h3>Motorized Vehicle — Record Attempt</h3>
           <p>A go-kart-engine-powered vehicle chasing a world speed record (rolling chassis complete). Notable for reverse-engineering complex geometry into CAD via iPhone LiDAR, Gaussian-splat photogrammetry, and AI mesh generation.</p>
           <div class="tools" data-clamp><span class="tool">Autodesk Inventor</span><span class="tool">3D scanning</span><span class="tool">AI model generation</span><span class="tool">Ansys Mechanical</span><span class="tool">Welding</span><span class="tool">Sourcing &amp; procurement</span><span class="tool">Design for manufacturing</span><span class="tool">Physical testing</span><span class="tool">Autodesk Fusion</span><span class="tool">General fabrication</span><span class="tool">3D printing (FDM)</span><span class="tool">Assembly</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
-          <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
+          <span class="card-link card-link--soon">Details coming soon</span>
         </div>
       </article>
 
@@ -527,13 +528,13 @@
       <article class="card reveal" data-cat="aero" data-tools="nx reveng pneumatics sourcing testing genfab" id="p-masa">
         <div class="ph ph--aero"><span class="tag">Aerospace</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16M4 12l4-4M4 12l4 4M20 6v12"/></svg>
-          <span class="ph-label">Add CAD render</span>
+          <span class="ph-label">Render coming soon</span>
         </div>
         <div class="card-body">
           <h3>MASA — LGSE Purge Subsystem</h3>
           <p>With the Michigan Aeronautical Science Association: reverse-engineered and CAD-modeled a purge / pre-press subsystem of the launch ground-support equipment from schematics, and supported fabrication.</p>
           <div class="tools" data-clamp><span class="tool">Siemens NX</span><span class="tool">Reverse engineering</span><span class="tool">Pneumatics</span><span class="tool">Sourcing &amp; procurement</span><span class="tool">Physical testing</span><span class="tool">General fabrication</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
-          <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
+          <span class="card-link card-link--soon">Details coming soon</span>
         </div>
       </article>
 
@@ -553,91 +554,91 @@
       <article class="card reveal" data-cat="fab" data-tools="fusion welding printing assembly" id="p-gokart">
         <div class="ph ph--fab"><span class="tag">Fabrication</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 13l2-5h14l2 5v5h-3M3 13v5h3M3 13h18M7 18a1.5 1.5 0 103 0 1.5 1.5 0 00-3 0zm7 0a1.5 1.5 0 103 0 1.5 1.5 0 00-3 0z"/></svg>
-          <span class="ph-label">Add photo</span>
+          <span class="ph-label">Photos coming soon</span>
         </div>
         <div class="card-body">
           <h3>Welded Go-Kart</h3>
           <p>A drivable go-kart for a high-school engineering fabrication class: lead designer/CAD, then hand-bent, cut, and welded the steel tube-and-sheet chassis before road-testing it with the team.</p>
           <div class="tools" data-clamp><span class="tool">Autodesk Fusion</span><span class="tool">Welding</span><span class="tool">3D printing (FDM)</span><span class="tool">Assembly</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
-          <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
+          <span class="card-link card-link--soon">Details coming soon</span>
         </div>
       </article>
 
       <article class="card reveal" data-cat="sim" data-tools="inventor thermalelec fusion prototyping printing assembly" id="p-orangepi">
         <div class="ph ph--sim"><span class="tag">Thermal Sim</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M9 3v3M12 3v3M15 3v3M9 18v3M12 18v3M15 18v3M3 9h3M3 12h3M3 15h3M18 9h3M18 12h3M18 15h3"/></svg>
-          <span class="ph-label">Add render</span>
+          <span class="ph-label">Render coming soon</span>
         </div>
         <div class="card-body">
           <h3>Orange Pi Cooling Case</h3>
           <p>A 3D-printed cooling enclosure for an Orange Pi single-board computer — designed the housing in CAD, ran a thermal simulation to check heat dissipation and airflow, and printed the final part. Solo project.</p>
           <div class="tools" data-clamp><span class="tool">Autodesk Inventor</span><span class="tool">Electronics cooling simulation</span><span class="tool">Autodesk Fusion</span><span class="tool">Prototyping</span><span class="tool">3D printing (FDM)</span><span class="tool">Assembly</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
-          <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
+          <span class="card-link card-link--soon">Details coming soon</span>
         </div>
       </article>
 
       <article class="card reveal" data-cat="robotics" data-tools="inventor pneumatics prototyping genfab printing assembly" id="p-wallclimber">
         <div class="ph ph--robotics"><span class="tag">Robotics</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="9" width="16" height="10" rx="2"/><path d="M12 9V5m0 0a2 2 0 100-4 2 2 0 000 4zM9 14h.01M15 14h.01"/></svg>
-          <span class="ph-label">Add photo</span>
+          <span class="ph-label">Photos coming soon</span>
         </div>
         <div class="card-body">
           <h3>Wall-Climbing Pneumatic Robot</h3>
           <p>A robot that scales vertical walls using pneumatic cylinders and suction cups — lead designer/CAD for the climbing mechanism, with 3D-printed components. Small-team build.</p>
           <div class="tools" data-clamp><span class="tool">Autodesk Inventor</span><span class="tool">Pneumatics</span><span class="tool">Prototyping</span><span class="tool">General fabrication</span><span class="tool">3D printing (FDM)</span><span class="tool">Assembly</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
-          <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
+          <span class="card-link card-link--soon">Details coming soon</span>
         </div>
       </article>
 
       <article class="card reveal" data-cat="fab" data-tools="sourcing testing prototyping genfab assembly" id="p-catapult">
         <div class="ph ph--fab"><span class="tag">Mechanisms</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3.2"/><path d="M12 2v3.5M12 18.5V22M4.2 4.2l2.5 2.5M17.3 17.3l2.5 2.5M2 12h3.5M18.5 12H22M4.2 19.8l2.5-2.5M17.3 6.7l2.5-2.5"/></svg>
-          <span class="ph-label">Add photo</span>
+          <span class="ph-label">Photos coming soon</span>
         </div>
         <div class="card-body">
           <h3>Tennis-Ball Catapult</h3>
           <p>A launcher built to fling a tennis ball for AP Physics — lead designer/CAD, sourced materials, and ran rapid design iterations and test launches under a tight deadline. Team project.</p>
           <div class="tools" data-clamp><span class="tool">Sourcing &amp; procurement</span><span class="tool">Physical testing</span><span class="tool">Prototyping</span><span class="tool">General fabrication</span><span class="tool">Assembly</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
-          <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
+          <span class="card-link card-link--soon">Details coming soon</span>
         </div>
       </article>
 
       <article class="card reveal" data-cat="fab" data-tools="fusion calibration soldering genfab printing assembly" id="p-journeymaker">
         <div class="ph ph--fab"><span class="tag">Build</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 9V3h12v6M6 9h12a2 2 0 012 2v5H4v-5a2 2 0 012-2zM8 16v5h8v-5"/></svg>
-          <span class="ph-label">Add photo</span>
+          <span class="ph-label">Photos coming soon</span>
         </div>
         <div class="card-body">
           <h3>Journey Maker Portable 3D Printer</h3>
           <p>Built an open-source “Journey Maker” portable 3D printer from the community design — sourcing the parts, assembling the machine, and calibrating it into a working printer.</p>
           <div class="tools" data-clamp><span class="tool">Autodesk Fusion</span><span class="tool">Calibration</span><span class="tool">Soldering</span><span class="tool">General fabrication</span><span class="tool">3D printing (FDM)</span><span class="tool">Assembly</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
-          <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
+          <span class="card-link card-link--soon">Details coming soon</span>
         </div>
       </article>
 
       <article class="card reveal" data-cat="robotics" data-tools="inventor maintenance pneumatics soldering dfm testing fusion prototyping genfab printing assembly" id="p-frc">
         <div class="ph ph--robotics"><span class="tag">3D Printing</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-          <span class="ph-label">Add photo</span>
+          <span class="ph-label">Photos coming soon</span>
         </div>
         <div class="card-body">
           <h3>FRC Subsystems &amp; 3D-Printed Parts</h3>
           <p>Built and maintained parts of Team 503’s competition robot — designing and 3D-printing custom jigs, mounts, and wire-management fixtures, and working on the pneumatic and electrical subsystems through assembly, soldering, testing, and between-match maintenance.</p>
           <div class="tools" data-clamp><span class="tool">Autodesk Inventor</span><span class="tool">Preventative maintenance</span><span class="tool">Pneumatics</span><span class="tool">Soldering</span><span class="tool">Design for manufacturing</span><span class="tool">Physical testing</span><span class="tool">Autodesk Fusion</span><span class="tool">Prototyping</span><span class="tool">General fabrication</span><span class="tool">3D printing (FDM)</span><span class="tool">Assembly</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
-          <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
+          <span class="card-link card-link--soon">Details coming soon</span>
         </div>
       </article>
 
       <article class="card reveal" data-cat="sim" data-tools="webdev threejs git aiassist python" id="p-site">
         <div class="ph ph--sim"><span class="tag">Software</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 9l-3 3 3 3M16 9l3 3-3 3M13.5 6l-3 12"/></svg>
-          <span class="ph-label">Add screenshot</span>
+          <span class="ph-label">Screenshot coming soon</span>
         </div>
         <div class="card-body">
           <h3>This Portfolio Site</h3>
           <p>The site you’re reading. One self-contained HTML file — no framework, no build step, no dependencies — carrying two interactive three.js CAD viewers, a flight chart plotted from a 38,889-row sensor log, and the skill filter above. Built with AI-assisted development and deployed on GitHub Pages.</p>
           <div class="tools" data-clamp><span class="tool">HTML / CSS / JavaScript</span><span class="tool">three.js (WebGL)</span><span class="tool">Git &amp; GitHub Pages</span><span class="tool">AI-assisted development</span><span class="tool">Python</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
-          <a class="card-link" href="#" data-soon>Case study <span class="arrow">→</span></a>
+          <span class="card-link card-link--soon">Details coming soon</span>
         </div>
       </article>
 
