@@ -502,16 +502,16 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="fab" id="p-vehicle" data-tools="inventor solidworks scanning aimodel ansys welding sourcing dfm testing fusion genfab printing assembly">
-        <div class="ph ph--fab"><span class="tag">Fabrication</span>
-          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-          <span class="ph-label">Photos coming soon</span>
+      <article class="card reveal card--go" data-cat="fab" id="p-vehicle" data-tools="inventor solidworks scanning aimodel ansys welding sourcing dfm testing fusion genfab printing assembly">
+        <div class="ph ph--fab">
+          <img src="img/vehicle/cover-cad.jpg" alt="CAD assembly of the wheelie-bin vehicle - engine, steel frame, steering column with handlebars, wide rear slick and a wooden deck" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" loading="lazy">
+          <span class="tag">Fabrication</span>
         </div>
         <div class="card-body">
           <h3>Motorized Vehicle — Record Attempt</h3>
-          <p>A go-kart-engine-powered vehicle chasing a world speed record (rolling chassis complete). Notable for reverse-engineering complex geometry into CAD via iPhone LiDAR, Gaussian-splat photogrammetry, and AI mesh generation.</p>
+          <p>A 346 cc go-kart engine built into a wheelie bin, aimed at the Guinness World Record for the fastest motorized wheelie bin — the mark to beat is 55 mph. The bin was reverse-engineered into CAD from a 3D scan; behind it sits a chain drive, a hydraulic disc brake and a full steering linkage on a welded steel frame. Rolling chassis is running. <strong>Hide the bin in the live 3D model to see inside.</strong></p>
           <div class="tools" data-clamp><span class="tool">Autodesk Inventor</span><span class="tool">SolidWorks</span><span class="tool">3D scanning</span><span class="tool">AI model generation</span><span class="tool">Ansys Mechanical</span><span class="tool">Welding</span><span class="tool">Sourcing &amp; procurement</span><span class="tool">Design for manufacturing</span><span class="tool">Physical testing</span><span class="tool">Autodesk Fusion</span><span class="tool">General fabrication</span><span class="tool">3D printing (FDM)</span><span class="tool">Assembly</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
-          <span class="card-link card-link--soon">Details coming soon</span>
+          <a class="card-link" href="#" data-study="vehicle">Details <span class="arrow">→</span></a>
         </div>
       </article>
 
@@ -1324,6 +1324,73 @@
   </div>
 </section>
 
+<!-- DETAILS: Motorized Vehicle -->
+<div class="cs-overlay" id="study-vehicle" role="dialog" aria-modal="true" aria-labelledby="csVehTitle">
+  <div class="cs-panel">
+    <button class="cs-close" aria-label="Close details">✕</button>
+    <span class="kicker">Details</span>
+    <h3 id="csVehTitle" style="font-size:1.6rem;margin-top:6px">Motorized Vehicle — Record Attempt</h3>
+    <p class="cs-meta">Independent · 2024–present · Role: lead designer &amp; fabricator</p>
+    <p>The target is the Guinness World Record for the fastest motorized wheelie bin, which currently stands at
+    <strong>55 mph (88 km/h)</strong>. So the brief is unusual: a real vehicle — engine, chain drive, brakes,
+    steering — that has to live inside, and look like, a plastic garbage bin. The rolling chassis runs.</p>
+    <p>The interesting engineering problem came first though. A wheelie bin is a blow-moulded, draft-angled,
+    doubly-curved shape with no drawings, and every bracket has to bolt to it. So instead of guessing at it,
+    I scanned the real bin and brought the mesh into CAD as a body I could actually design against.</p>
+    <div class="cs-stats">
+      <div class="cs-stat"><div class="n">346 cc</div><div class="l">go-kart engine</div></div>
+      <div class="cs-stat"><div class="n">55 mph</div><div class="l">record to beat</div></div>
+      <div class="cs-stat"><div class="n">67 parts</div><div class="l">92 occurrences in the assembly</div></div>
+      <div class="cs-stat"><div class="n">Scan → CAD</div><div class="l">the bin, reverse-engineered</div></div>
+    </div>
+
+    <div class="cs-3d">
+      <div class="cs-3d-head">
+        <div>
+          <div class="t">Interactive CAD model</div>
+          <div class="st">Drag to orbit · scroll to zoom · hide the bin to see the chassis inside</div>
+        </div>
+        <button class="btn3d" id="vehHide" disabled aria-pressed="false">Hide the bin</button>
+      </div>
+      <div class="cs-3d-stage" id="vehStage">
+        <button class="cs-3d-load" id="vehLoad">Load 3D model<span>≈1.6 MB · WebGL · from the Inventor assembly</span></button>
+      </div>
+    </div>
+
+    <h4>How it’s built</h4>
+    <div class="cs-sub"><h5>The bin is a scan, not a guess</h5><p>A wheelie bin has no drawings and no flat
+    references — it’s a moulded shell with draft on every face. I captured the real bin with iPhone LiDAR and
+    Gaussian-splat photogrammetry, generated a mesh from the capture, and converted that into a solid body I could
+    mount hardware to. The evidence is still in the file: the bin appears in the assembly tree under its capture
+    filename, and it accounts for essentially all of the 110 MB STEP export — 93,000 faces, 98% of them flat,
+    because they started life as triangles.</p></div>
+    <div class="cs-sub"><h5>Chain drive on a machined rear axle</h5><p>Power goes from the engine through a
+    roller-chain sprocket to a live rear axle — a D-profile rotary shaft carried in flanged, shielded ball
+    bearings, located with set-screw collars, with a separate idle-sprocket block to tension the chain. The wide
+    rear slick is the driven wheel; the front runs small flat-free wheels.</p></div>
+    <div class="cs-sub"><h5>Brakes and a kill switch, because 55 mph</h5><p>Stopping is a hydraulic disc brake —
+    master cylinder, lever assembly, and a caliper on a machined mount with spacers to set the rotor offset. There’s
+    also a spark-cut switch on the handlebars. At the speeds this needs to reach, on a vehicle shaped like a bin,
+    the parts that make it stop matter more than the parts that make it go.</p></div>
+    <div class="cs-sub"><h5>Steering, seat and a wheelie bar</h5><p>A full linkage — steering knuckles, arms with
+    jointed finger-and-seat ends, and C-channel chassis blocks — driven from a bushed steering column and
+    handlebars with a throttle. Behind the rear axle sits a wheelie bar: with the mass and the drive arrangement
+    this thing has, keeping the front down is a real problem rather than a joke.</p></div>
+
+    <figure>
+      <img src="img/vehicle/scanned-bin.jpg" alt="The scanned wheelie-bin body in CAD, shown alone with the rear axle and drive wheel" loading="lazy">
+      <figcaption>The scanned bin as a CAD body, with everything else hidden. The slightly organic, un-CAD-like
+      surface is the giveaway that this geometry came from a capture of the real thing rather than from a sketch.</figcaption>
+    </figure>
+
+    <p style="font-size:.9rem;color:var(--muted);margin-top:6px">Honest status: the rolling chassis is complete and
+    running; the record attempt itself hasn’t been made yet, so nothing here claims a measured top speed.</p>
+
+    <h4>Skills &amp; tools</h4>
+    <div class="cs-skills"><span>Autodesk Inventor</span><span>SolidWorks</span><span>3D scanning</span><span>AI model generation</span><span>Ansys Mechanical</span><span>Welding</span><span>Sourcing &amp; procurement</span><span>Design for manufacturing</span><span>Physical testing</span><span>Autodesk Fusion</span><span>General fabrication</span><span>3D printing (FDM)</span><span>Assembly</span></div>
+  </div>
+</div>
+
 <!-- DETAILS: Instrumented Model Rocket -->
 <div class="cs-overlay" id="study-rocket" role="dialog" aria-modal="true" aria-labelledby="csRocketTitle">
   <div class="cs-panel">
@@ -1975,6 +2042,85 @@
         Object.keys(EXPL).forEach(function(k){ groups[k].position.y = EXPL[k] * e; });
         controls.update();
         renderer.render(scene, cam);
+      })();
+    }
+  })();
+
+
+  // interactive CAD viewer - the wheelie-bin vehicle, loaded only on demand
+  (function(){
+    var loadBtn=document.getElementById('vehLoad'), stage=document.getElementById('vehStage'),
+        hideBtn=document.getElementById('vehHide');
+    if(!loadBtn) return;
+    function fail(msg){ stage.innerHTML='<div class="cs-3d-msg">'+msg+'</div>'; }
+    loadBtn.addEventListener('click',function(){
+      loadBtn.disabled=true; loadBtn.firstChild.textContent='Loading\u2026';
+      window.__loadThree().then(function(){
+        new THREE.GLTFLoader().load('img/vehicle/vehicle.glb', build,
+          function(e){ if(e.total) loadBtn.firstChild.textContent='Loading\u2026 '+Math.round(100*e.loaded/e.total)+'%'; },
+          function(){ fail('Couldn\u2019t fetch the model \u2014 the 3D viewer needs the site served over http(s); it works on the live site.'); });
+      }).catch(function(){ fail('Couldn\u2019t load the 3D engine \u2014 check your connection.'); });
+    });
+    function build(gltf){
+      loadBtn.remove();
+      var W=function(){return stage.clientWidth;}, H=function(){return stage.clientHeight;};
+      var renderer=new THREE.WebGLRenderer({antialias:true, alpha:true});
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+      renderer.setSize(W(),H());
+      renderer.outputEncoding=THREE.sRGBEncoding;
+      stage.appendChild(renderer.domElement);
+      var scene=new THREE.Scene();
+      var cam=new THREE.PerspectiveCamera(38, W()/H(), .01, 40);
+      scene.add(new THREE.HemisphereLight(0xffffff,0x39424e,.95));
+      var key=new THREE.DirectionalLight(0xffffff,.75); key.position.set(1,1.4,.8); scene.add(key);
+      var fill=new THREE.DirectionalLight(0xdfe8ff,.3); fill.position.set(-1,-.4,-.7); scene.add(fill);
+
+      var inner=new THREE.Group(); scene.add(inner);
+      var can=null;
+      gltf.scene.traverse(function(o){
+        if(!o.isMesh) return;
+        o.material.metalness=.15; o.material.roughness=.6; o.material.side=THREE.DoubleSide;
+      });
+      inner.add(gltf.scene);
+      // the bin body is its own group, so it can be hidden to reveal the chassis
+      gltf.scene.traverse(function(o){ if(o.name==='can'||(o.isMesh&&o.name.indexOf('can')===0)) can=can||o; });
+
+      // centre the model and frame it
+      var box=new THREE.Box3().setFromObject(gltf.scene);
+      var c=box.getCenter(new THREE.Vector3()), size=box.getSize(new THREE.Vector3());
+      gltf.scene.position.sub(c);
+      var diag=size.length();
+      // framing solved against the real bounds (1.12 x 1.07 x 0.81 m): the earlier
+      // 0.72/0.40/0.86 clipped the bottom 15% in a 16:9 stage
+      cam.position.set(diag*1.00, diag*.55, diag*1.20);
+      var controls=new THREE.OrbitControls(cam, renderer.domElement);
+      controls.enableDamping=true; controls.dampingFactor=.08;
+      controls.autoRotate=true; controls.autoRotateSpeed=1.1;
+      controls.minDistance=diag*.35; controls.maxDistance=diag*3;
+      controls.target.set(0,0,0); controls.update();
+      controls.addEventListener('start',function(){ controls.autoRotate=false; });
+      new ResizeObserver(function(){ renderer.setSize(W(),H()); cam.aspect=W()/H(); cam.updateProjectionMatrix(); }).observe(stage);
+
+      if(can){
+        hideBtn.disabled=false;
+        hideBtn.addEventListener('click',function(){
+          var hidden=can.visible;      // about to hide it
+          can.visible=!can.visible;
+          hideBtn.classList.toggle('active', hidden);
+          hideBtn.setAttribute('aria-pressed', hidden?'true':'false');
+          hideBtn.textContent = hidden ? 'Show the bin' : 'Hide the bin';
+        });
+      } else {
+        hideBtn.remove();
+      }
+
+      var ov=document.getElementById('study-vehicle');
+      window.__veh3d={renderer:renderer, scene:scene, cam:cam, controls:controls, can:can, root:gltf.scene};
+      (function tick(){
+        requestAnimationFrame(tick);
+        if(!ov.classList.contains('open')) return;
+        controls.update();
+        renderer.render(scene,cam);
       })();
     }
   })();
