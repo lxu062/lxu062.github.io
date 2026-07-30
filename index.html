@@ -509,7 +509,7 @@
         </div>
         <div class="card-body">
           <h3>Motorized Vehicle — Record Attempt</h3>
-          <p>A 346 cc go-kart engine built into a wheelie bin, aimed at the Guinness World Record for the fastest motorized wheelie bin — the mark to beat is 55 mph. The bin was reverse-engineered into CAD from a 3D scan; behind it sits a chain drive, a hydraulic disc brake and a full steering linkage on a welded steel frame. Rolling chassis is running. <strong>Hide the bin in the live 3D model to see inside.</strong></p>
+          <p>A 420 cc, 15 hp go-kart engine built into a wheelie bin, aimed at the Guinness World Record for the fastest motorized wheelie bin — the mark to beat is 55 mph. The bin was reverse-engineered into CAD from a 3D scan; behind it sits a chain drive, a hydraulic disc brake and a full steering linkage on a welded steel frame. Rolling chassis is running. <strong>Hide the bin in the live 3D model to see inside.</strong></p>
           <div class="tools" data-clamp><span class="tool">Autodesk Inventor</span><span class="tool">SolidWorks</span><span class="tool">3D scanning</span><span class="tool">AI model generation</span><span class="tool">Ansys Mechanical</span><span class="tool">Welding</span><span class="tool">Sourcing &amp; procurement</span><span class="tool">Design for manufacturing</span><span class="tool">Physical testing</span><span class="tool">Autodesk Fusion</span><span class="tool">General fabrication</span><span class="tool">3D printing (FDM)</span><span class="tool">Assembly</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
           <a class="card-link" href="#" data-study="vehicle">Details <span class="arrow">→</span></a>
         </div>
@@ -1334,13 +1334,13 @@
     <p>The target is the Guinness World Record for the fastest motorized wheelie bin, which currently stands at
     <strong>55 mph (88 km/h)</strong>. So the brief is unusual: a real vehicle — engine, chain drive, brakes,
     steering — that has to live inside, and look like, a plastic garbage bin. The rolling chassis runs.</p>
-    <p>The interesting engineering problem came first though. A wheelie bin is a blow-moulded, draft-angled,
+    <p>The interesting engineering problem came first though. A wheelie bin is a moulded, draft-angled,
     doubly-curved shape with no drawings, and every bracket has to bolt to it. So instead of guessing at it,
     I scanned the real bin and brought the mesh into CAD as a body I could actually design against.</p>
     <div class="cs-stats">
-      <div class="cs-stat"><div class="n">346 cc</div><div class="l">go-kart engine</div></div>
+      <div class="cs-stat"><div class="n">420 cc</div><div class="l">15 hp, four-stroke</div></div>
       <div class="cs-stat"><div class="n">55 mph</div><div class="l">record to beat</div></div>
-      <div class="cs-stat"><div class="n">67 parts</div><div class="l">92 occurrences in the assembly</div></div>
+      <div class="cs-stat"><div class="n">93k faces</div><div class="l">in the scanned bin body alone</div></div>
       <div class="cs-stat"><div class="n">Scan → CAD</div><div class="l">the bin, reverse-engineered</div></div>
     </div>
 
@@ -1369,12 +1369,10 @@
     easy call; making it fit was the work. The mounts, axle supports and the idle-sprocket block that tensions
     the chain are all designed around the bin’s scanned inner surface, because the bin decides where everything
     is allowed to be. The wide rear slick is driven; the front runs small flat-free wheels.</p></div>
-    <div class="cs-sub"><h5>The one part of the brake I didn’t buy</h5><p>The kit’s master cylinder was sized for
-    a kart, not for this. So I worked out the braking force actually needed here and swapped the master cylinder
-    to match it — bore size sets the pressure the lever can generate, and getting that wrong means either a brake
-    that can’t stop the vehicle or a lever nobody can pull. There’s also a spark-cut kill switch on the
-    handlebars. On something shaped like a bin aiming at 55&nbsp;mph, the parts that make it stop deserve more
-    thought than the parts that make it go.</p></div>
+    <div class="cs-sub"><h5>Brakes and a kill switch</h5><p>The axle kit came with a disc brake, but its master
+    cylinder didn’t give the lever enough bite, so I swapped it for a different bore — sized by feel rather than
+    by calculation, which is the honest version. There’s also a spark-cut kill switch on the handlebars: on a
+    15&nbsp;hp bin, that’s the part I’d least want to be without.</p></div>
     <div class="cs-sub"><h5>Steering, seat and a wheelie bar</h5><p>A full linkage — steering knuckles, arms with
     jointed finger-and-seat ends, and C-channel chassis blocks — driven from a bushed steering column and
     handlebars with a throttle. Behind the rear axle sits a wheelie bar: with the mass and the drive arrangement
