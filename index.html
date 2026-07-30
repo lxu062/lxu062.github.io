@@ -409,6 +409,8 @@
           <label class="fd-item"><input type="checkbox" value="inventor"><span>Autodesk Inventor</span><b></b></label>
           <label class="fd-item"><input type="checkbox" value="fusion"><span>Autodesk Fusion</span><b></b></label>
           <label class="fd-item"><input type="checkbox" value="nx"><span>Siemens NX</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="solidworks"><span>SolidWorks</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="creo"><span>PTC Creo</span><b></b></label>
           <label class="fd-item"><input type="checkbox" value="dfm"><span>Design for manufacturing</span><b></b></label>
           <label class="fd-item"><input type="checkbox" value="paramopt"><span>Parametric optimization</span><b></b></label>
           <label class="fd-item"><input type="checkbox" value="reveng"><span>Reverse engineering</span><b></b></label>
@@ -474,7 +476,7 @@
 
     <div class="grid" id="grid">
 
-      <article class="card reveal card--go" data-cat="robotics" data-tools="inventor paramopt invstress fusionsim mujoco opencv ansys calibration python soldering sourcing dfm testing fusion prototyping genfab printing assembly" id="p-arm">
+      <article class="card reveal card--go" data-cat="robotics" id="p-arm" data-tools="inventor paramopt invstress fusionsim mujoco opencv ansys calibration python soldering sourcing dfm testing fusion prototyping genfab printing assembly">
         <div class="ph ph--robotics">
           <img src="img/arm/cover-arm.jpg" alt="CAD render of a 6-DOF robotic arm reaching toward a Bambu Lab X1C 3D printer" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" loading="lazy">
           <span class="tag">Robotics</span>
@@ -487,7 +489,7 @@
         </div>
       </article>
 
-      <article class="card reveal card--go" data-cat="sim" data-tools="thermalprint customfem fdmsim pyside aiassist python" id="p-printsim">
+      <article class="card reveal card--go" data-cat="sim" id="p-printsim" data-tools="thermalprint customfem fdmsim pyside aiassist python">
         <div class="ph ph--sim" style="background:#fff">
           <img src="img/printsim/cover-disp.jpg" alt="FEA displacement result on a 3D-printed part, showing a red high-deflection tip" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" loading="lazy">
           <span class="tag">Simulation</span>
@@ -500,7 +502,7 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="fab" data-tools="inventor scanning aimodel ansys welding sourcing dfm testing fusion genfab printing assembly" id="p-vehicle">
+      <article class="card reveal" data-cat="fab" id="p-vehicle" data-tools="inventor solidworks scanning aimodel ansys welding sourcing dfm testing fusion genfab printing assembly">
         <div class="ph ph--fab"><span class="tag">Fabrication</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
           <span class="ph-label">Photos coming soon</span>
@@ -508,12 +510,12 @@
         <div class="card-body">
           <h3>Motorized Vehicle — Record Attempt</h3>
           <p>A go-kart-engine-powered vehicle chasing a world speed record (rolling chassis complete). Notable for reverse-engineering complex geometry into CAD via iPhone LiDAR, Gaussian-splat photogrammetry, and AI mesh generation.</p>
-          <div class="tools" data-clamp><span class="tool">Autodesk Inventor</span><span class="tool">3D scanning</span><span class="tool">AI model generation</span><span class="tool">Ansys Mechanical</span><span class="tool">Welding</span><span class="tool">Sourcing &amp; procurement</span><span class="tool">Design for manufacturing</span><span class="tool">Physical testing</span><span class="tool">Autodesk Fusion</span><span class="tool">General fabrication</span><span class="tool">3D printing (FDM)</span><span class="tool">Assembly</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
+          <div class="tools" data-clamp><span class="tool">Autodesk Inventor</span><span class="tool">SolidWorks</span><span class="tool">3D scanning</span><span class="tool">AI model generation</span><span class="tool">Ansys Mechanical</span><span class="tool">Welding</span><span class="tool">Sourcing &amp; procurement</span><span class="tool">Design for manufacturing</span><span class="tool">Physical testing</span><span class="tool">Autodesk Fusion</span><span class="tool">General fabrication</span><span class="tool">3D printing (FDM)</span><span class="tool">Assembly</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
           <span class="card-link card-link--soon">Details coming soon</span>
         </div>
       </article>
 
-      <article class="card reveal card--go" data-cat="aero" data-tools="inventor sensors calibration soldering dfm prototyping printing assembly" id="p-rocket">
+      <article class="card reveal card--go" data-cat="aero" id="p-rocket" data-tools="inventor sensors calibration soldering dfm prototyping printing assembly">
         <div class="ph ph--aero">
           <img src="img/rocket/cover-side.jpg" alt="CAD side profile of the full rocket — nose cone, payload bay, body tube, and fin can" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" loading="lazy">
           <span class="tag">Aerospace</span>
@@ -526,7 +528,7 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="aero" data-tools="nx reveng pneumatics sourcing testing genfab" id="p-masa">
+      <article class="card reveal" data-cat="aero" id="p-masa" data-tools="nx reveng pneumatics sourcing testing genfab">
         <div class="ph ph--aero"><span class="tag">Aerospace</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16M4 12l4-4M4 12l4 4M20 6v12"/></svg>
           <span class="ph-label">Render coming soon</span>
@@ -539,7 +541,7 @@
         </div>
       </article>
 
-      <article class="card reveal card--go" data-cat="aero fab" data-tools="fusion nx dfm prototyping genfab printing assembly" id="p-mracing">
+      <article class="card reveal card--go" data-cat="aero fab" id="p-mracing" data-tools="fusion nx dfm prototyping genfab printing assembly">
         <div class="ph ph--fab">
           <img src="img/mracing/cover-side.jpg" alt="Line-art CAD side profile of the 1:3 MR25 Formula SAE car — rear wing, monocoque, side aero, and front wing" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" loading="lazy">
           <span class="tag">Motorsport</span>
@@ -552,7 +554,7 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="fab" data-tools="fusion welding printing assembly" id="p-gokart">
+      <article class="card reveal" data-cat="fab" id="p-gokart" data-tools="fusion welding printing assembly">
         <div class="ph ph--fab"><span class="tag">Fabrication</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 13l2-5h14l2 5v5h-3M3 13v5h3M3 13h18M7 18a1.5 1.5 0 103 0 1.5 1.5 0 00-3 0zm7 0a1.5 1.5 0 103 0 1.5 1.5 0 00-3 0z"/></svg>
           <span class="ph-label">Photos coming soon</span>
@@ -565,7 +567,7 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="sim" data-tools="inventor thermalelec fusion prototyping printing assembly" id="p-orangepi">
+      <article class="card reveal" data-cat="sim" id="p-orangepi" data-tools="inventor creo thermalelec fusion prototyping printing assembly">
         <div class="ph ph--sim"><span class="tag">Thermal Sim</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M9 3v3M12 3v3M15 3v3M9 18v3M12 18v3M15 18v3M3 9h3M3 12h3M3 15h3M18 9h3M18 12h3M18 15h3"/></svg>
           <span class="ph-label">Render coming soon</span>
@@ -573,12 +575,12 @@
         <div class="card-body">
           <h3>Orange Pi Cooling Case</h3>
           <p>A 3D-printed cooling enclosure for an Orange Pi single-board computer — designed the housing in CAD, ran a thermal simulation to check heat dissipation and airflow, and printed the final part. Solo project.</p>
-          <div class="tools" data-clamp><span class="tool">Autodesk Inventor</span><span class="tool">Electronics cooling simulation</span><span class="tool">Autodesk Fusion</span><span class="tool">Prototyping</span><span class="tool">3D printing (FDM)</span><span class="tool">Assembly</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
+          <div class="tools" data-clamp><span class="tool">Autodesk Inventor</span><span class="tool">PTC Creo</span><span class="tool">Electronics cooling simulation</span><span class="tool">Autodesk Fusion</span><span class="tool">Prototyping</span><span class="tool">3D printing (FDM)</span><span class="tool">Assembly</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
           <span class="card-link card-link--soon">Details coming soon</span>
         </div>
       </article>
 
-      <article class="card reveal" data-cat="robotics" data-tools="inventor pneumatics prototyping genfab printing assembly" id="p-wallclimber">
+      <article class="card reveal" data-cat="robotics" id="p-wallclimber" data-tools="inventor pneumatics prototyping genfab printing assembly">
         <div class="ph ph--robotics"><span class="tag">Robotics</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="9" width="16" height="10" rx="2"/><path d="M12 9V5m0 0a2 2 0 100-4 2 2 0 000 4zM9 14h.01M15 14h.01"/></svg>
           <span class="ph-label">Photos coming soon</span>
@@ -591,7 +593,7 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="fab" data-tools="sourcing testing prototyping genfab assembly" id="p-catapult">
+      <article class="card reveal" data-cat="fab" id="p-catapult" data-tools="sourcing testing prototyping genfab assembly">
         <div class="ph ph--fab"><span class="tag">Mechanisms</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3.2"/><path d="M12 2v3.5M12 18.5V22M4.2 4.2l2.5 2.5M17.3 17.3l2.5 2.5M2 12h3.5M18.5 12H22M4.2 19.8l2.5-2.5M17.3 6.7l2.5-2.5"/></svg>
           <span class="ph-label">Photos coming soon</span>
@@ -604,7 +606,7 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="fab" data-tools="fusion calibration soldering genfab printing assembly" id="p-journeymaker">
+      <article class="card reveal" data-cat="fab" id="p-journeymaker" data-tools="fusion calibration soldering genfab printing assembly">
         <div class="ph ph--fab"><span class="tag">Build</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 9V3h12v6M6 9h12a2 2 0 012 2v5H4v-5a2 2 0 012-2zM8 16v5h8v-5"/></svg>
           <span class="ph-label">Photos coming soon</span>
@@ -617,7 +619,7 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="robotics" data-tools="inventor maintenance pneumatics soldering dfm testing fusion prototyping genfab printing assembly" id="p-frc">
+      <article class="card reveal" data-cat="robotics" id="p-frc" data-tools="inventor maintenance pneumatics soldering dfm testing fusion prototyping genfab printing assembly">
         <div class="ph ph--robotics"><span class="tag">3D Printing</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
           <span class="ph-label">Photos coming soon</span>
@@ -630,7 +632,7 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="sim" data-tools="webdev threejs git aiassist python" id="p-site">
+      <article class="card reveal" data-cat="sim" id="p-site" data-tools="webdev threejs git aiassist python">
         <div class="ph ph--sim"><span class="tag">Software</span>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 9l-3 3 3 3M16 9l3 3-3 3M13.5 6l-3 12"/></svg>
           <span class="ph-label">Screenshot coming soon</span>
@@ -656,7 +658,7 @@
     </div>
     <div class="mx-tools reveal">
       <button type="button" id="mxAll" class="mx-toggle-all" aria-controls="mxTable">Expand all</button>
-      <span class="mx-hint">35 skills &middot; 13 projects &middot; 100 links</span>
+      <span class="mx-hint">37 skills &middot; 13 projects &middot; 102 links</span>
     </div>
     <div class="mx-wrap reveal"><table class="mx" id="mxTable">
       <caption class="sr-only">Skills against the projects that used them. Rows are skills grouped by category; columns are projects.</caption>
@@ -666,9 +668,9 @@
         <th scope="col" data-c="2"><a class="mx-rot" href="#p-frc">FRC Robotics</a></th>
         <th scope="col" data-c="3"><a class="mx-rot" href="#p-rocket">Model Rocket</a></th>
         <th scope="col" data-c="4"><a class="mx-rot" href="#p-mracing">MRacing Aero</a></th>
-        <th scope="col" data-c="5"><a class="mx-rot" href="#p-printsim">3DPrintSim</a></th>
-        <th scope="col" data-c="6"><a class="mx-rot" href="#p-masa">MASA Purge</a></th>
-        <th scope="col" data-c="7"><a class="mx-rot" href="#p-orangepi">Orange Pi Case</a></th>
+        <th scope="col" data-c="5"><a class="mx-rot" href="#p-orangepi">Orange Pi Case</a></th>
+        <th scope="col" data-c="6"><a class="mx-rot" href="#p-printsim">3DPrintSim</a></th>
+        <th scope="col" data-c="7"><a class="mx-rot" href="#p-masa">MASA Purge</a></th>
         <th scope="col" data-c="8"><a class="mx-rot" href="#p-wallclimber">Wall-Climber</a></th>
         <th scope="col" data-c="9"><a class="mx-rot" href="#p-journeymaker">Journey Maker</a></th>
         <th scope="col" data-c="10"><a class="mx-rot" href="#p-catapult">Catapult</a></th>
@@ -677,14 +679,14 @@
       </tr></thead>
       <tbody class="cat" data-cat="cad">
         <tr class="mx-cat">
-          <th scope="row"><button type="button" class="mx-catbtn" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>Design <i><span class="mx-lg">8 skills &middot; 24 links</span><span class="mx-sm">8 &middot; 24</span></i></button></th>
+          <th scope="row"><button type="button" class="mx-catbtn" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>Design <i><span class="mx-lg">10 skills &middot; 26 links</span><span class="mx-sm">10 &middot; 26</span></i></button></th>
           <td data-c="0" class="agg on"><span></span></td>
           <td data-c="1" class="agg on"><span></span></td>
           <td data-c="2" class="agg on"><span></span></td>
           <td data-c="3" class="agg on"><span></span></td>
           <td data-c="4" class="agg on"><span></span></td>
-          <td data-c="5" class="agg"></td>
-          <td data-c="6" class="agg on"><span></span></td>
+          <td data-c="5" class="agg on"><span></span></td>
+          <td data-c="6" class="agg"></td>
           <td data-c="7" class="agg on"><span></span></td>
           <td data-c="8" class="agg on"><span></span></td>
           <td data-c="9" class="agg on"><span></span></td>
@@ -698,9 +700,9 @@
           <td data-c="2" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="3"></td>
           <td data-c="4" class="on"><span></span><span class="sr-only">used</span></td>
-          <td data-c="5"></td>
+          <td data-c="5" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="6"></td>
-          <td data-c="7" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="7"></td>
           <td data-c="8"></td>
           <td data-c="9" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="10"></td>
@@ -713,9 +715,9 @@
           <td data-c="2" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="3" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="4"></td>
-          <td data-c="5"></td>
+          <td data-c="5" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="6"></td>
-          <td data-c="7" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="7"></td>
           <td data-c="8" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="9"></td>
           <td data-c="10"></td>
@@ -744,8 +746,8 @@
           <td data-c="3"></td>
           <td data-c="4" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="5"></td>
-          <td data-c="6" class="on"><span></span><span class="sr-only">used</span></td>
-          <td data-c="7"></td>
+          <td data-c="6"></td>
+          <td data-c="7" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="8"></td>
           <td data-c="9"></td>
           <td data-c="10"></td>
@@ -782,6 +784,21 @@
           <td data-c="11"></td>
           <td data-c="12"></td>
         </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="creo"><span class="mx-lg">PTC Creo</span><span class="mx-sm">Creo</span></button></th>
+          <td data-c="0"></td>
+          <td data-c="1"></td>
+          <td data-c="2"></td>
+          <td data-c="3"></td>
+          <td data-c="4"></td>
+          <td data-c="5" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="6"></td>
+          <td data-c="7"></td>
+          <td data-c="8"></td>
+          <td data-c="9"></td>
+          <td data-c="10"></td>
+          <td data-c="11"></td>
+          <td data-c="12"></td>
+        </tr>
         <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="paramopt"><span class="mx-lg">Parametric optimization</span><span class="mx-sm">Parametric opt.</span></button></th>
           <td data-c="0" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="1"></td>
@@ -804,7 +821,22 @@
           <td data-c="3"></td>
           <td data-c="4"></td>
           <td data-c="5"></td>
-          <td data-c="6" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="6"></td>
+          <td data-c="7" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="8"></td>
+          <td data-c="9"></td>
+          <td data-c="10"></td>
+          <td data-c="11"></td>
+          <td data-c="12"></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="solidworks"><span class="mx-lg">SolidWorks</span><span class="mx-sm">SolidWorks</span></button></th>
+          <td data-c="0"></td>
+          <td data-c="1" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="2"></td>
+          <td data-c="3"></td>
+          <td data-c="4"></td>
+          <td data-c="5"></td>
+          <td data-c="6"></td>
           <td data-c="7"></td>
           <td data-c="8"></td>
           <td data-c="9"></td>
@@ -822,8 +854,8 @@
           <td data-c="3" class="agg"></td>
           <td data-c="4" class="agg"></td>
           <td data-c="5" class="agg on"><span></span></td>
-          <td data-c="6" class="agg"></td>
-          <td data-c="7" class="agg on"><span></span></td>
+          <td data-c="6" class="agg on"><span></span></td>
+          <td data-c="7" class="agg"></td>
           <td data-c="8" class="agg"></td>
           <td data-c="9" class="agg"></td>
           <td data-c="10" class="agg"></td>
@@ -851,8 +883,8 @@
           <td data-c="2"></td>
           <td data-c="3"></td>
           <td data-c="4"></td>
-          <td data-c="5" class="on"><span></span><span class="sr-only">used</span></td>
-          <td data-c="6"></td>
+          <td data-c="5"></td>
+          <td data-c="6" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="7"></td>
           <td data-c="8"></td>
           <td data-c="9"></td>
@@ -866,9 +898,9 @@
           <td data-c="2"></td>
           <td data-c="3"></td>
           <td data-c="4"></td>
-          <td data-c="5"></td>
+          <td data-c="5" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="6"></td>
-          <td data-c="7" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="7"></td>
           <td data-c="8"></td>
           <td data-c="9"></td>
           <td data-c="10"></td>
@@ -881,8 +913,8 @@
           <td data-c="2"></td>
           <td data-c="3"></td>
           <td data-c="4"></td>
-          <td data-c="5" class="on"><span></span><span class="sr-only">used</span></td>
-          <td data-c="6"></td>
+          <td data-c="5"></td>
+          <td data-c="6" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="7"></td>
           <td data-c="8"></td>
           <td data-c="9"></td>
@@ -941,8 +973,8 @@
           <td data-c="2"></td>
           <td data-c="3"></td>
           <td data-c="4"></td>
-          <td data-c="5" class="on"><span></span><span class="sr-only">used</span></td>
-          <td data-c="6"></td>
+          <td data-c="5"></td>
+          <td data-c="6" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="7"></td>
           <td data-c="8"></td>
           <td data-c="9"></td>
@@ -959,8 +991,8 @@
           <td data-c="2" class="agg on"><span></span></td>
           <td data-c="3" class="agg on"><span></span></td>
           <td data-c="4" class="agg on"><span></span></td>
-          <td data-c="5" class="agg"></td>
-          <td data-c="6" class="agg on"><span></span></td>
+          <td data-c="5" class="agg on"><span></span></td>
+          <td data-c="6" class="agg"></td>
           <td data-c="7" class="agg on"><span></span></td>
           <td data-c="8" class="agg on"><span></span></td>
           <td data-c="9" class="agg on"><span></span></td>
@@ -974,9 +1006,9 @@
           <td data-c="2" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="3" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="4" class="on"><span></span><span class="sr-only">used</span></td>
-          <td data-c="5"></td>
+          <td data-c="5" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="6"></td>
-          <td data-c="7" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="7"></td>
           <td data-c="8" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="9" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="10" class="on"><span></span><span class="sr-only">used</span></td>
@@ -989,9 +1021,9 @@
           <td data-c="2" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="3" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="4" class="on"><span></span><span class="sr-only">used</span></td>
-          <td data-c="5"></td>
+          <td data-c="5" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="6"></td>
-          <td data-c="7" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="7"></td>
           <td data-c="8" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="9" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="10"></td>
@@ -1005,8 +1037,8 @@
           <td data-c="3"></td>
           <td data-c="4" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="5"></td>
-          <td data-c="6" class="on"><span></span><span class="sr-only">used</span></td>
-          <td data-c="7"></td>
+          <td data-c="6"></td>
+          <td data-c="7" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="8" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="9" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="10" class="on"><span></span><span class="sr-only">used</span></td>
@@ -1019,9 +1051,9 @@
           <td data-c="2" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="3" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="4" class="on"><span></span><span class="sr-only">used</span></td>
-          <td data-c="5"></td>
+          <td data-c="5" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="6"></td>
-          <td data-c="7" class="on"><span></span><span class="sr-only">used</span></td>
+          <td data-c="7"></td>
           <td data-c="8" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="9"></td>
           <td data-c="10" class="on"><span></span><span class="sr-only">used</span></td>
@@ -1035,8 +1067,8 @@
           <td data-c="3"></td>
           <td data-c="4"></td>
           <td data-c="5"></td>
-          <td data-c="6" class="on"><span></span><span class="sr-only">used</span></td>
-          <td data-c="7"></td>
+          <td data-c="6"></td>
+          <td data-c="7" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="8"></td>
           <td data-c="9"></td>
           <td data-c="10" class="on"><span></span><span class="sr-only">used</span></td>
@@ -1065,8 +1097,8 @@
           <td data-c="3"></td>
           <td data-c="4"></td>
           <td data-c="5"></td>
-          <td data-c="6" class="on"><span></span><span class="sr-only">used</span></td>
-          <td data-c="7"></td>
+          <td data-c="6"></td>
+          <td data-c="7" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="8"></td>
           <td data-c="9"></td>
           <td data-c="10" class="on"><span></span><span class="sr-only">used</span></td>
@@ -1095,8 +1127,8 @@
           <td data-c="3"></td>
           <td data-c="4"></td>
           <td data-c="5"></td>
-          <td data-c="6" class="on"><span></span><span class="sr-only">used</span></td>
-          <td data-c="7"></td>
+          <td data-c="6"></td>
+          <td data-c="7" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="8" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="9"></td>
           <td data-c="10"></td>
@@ -1142,8 +1174,8 @@
           <td data-c="2" class="agg"></td>
           <td data-c="3" class="agg on"><span></span></td>
           <td data-c="4" class="agg"></td>
-          <td data-c="5" class="agg on"><span></span></td>
-          <td data-c="6" class="agg"></td>
+          <td data-c="5" class="agg"></td>
+          <td data-c="6" class="agg on"><span></span></td>
           <td data-c="7" class="agg"></td>
           <td data-c="8" class="agg"></td>
           <td data-c="9" class="agg"></td>
@@ -1157,8 +1189,8 @@
           <td data-c="2"></td>
           <td data-c="3"></td>
           <td data-c="4"></td>
-          <td data-c="5" class="on"><span></span><span class="sr-only">used</span></td>
-          <td data-c="6"></td>
+          <td data-c="5"></td>
+          <td data-c="6" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="7"></td>
           <td data-c="8"></td>
           <td data-c="9"></td>
@@ -1172,8 +1204,8 @@
           <td data-c="2"></td>
           <td data-c="3"></td>
           <td data-c="4"></td>
-          <td data-c="5" class="on"><span></span><span class="sr-only">used</span></td>
-          <td data-c="6"></td>
+          <td data-c="5"></td>
+          <td data-c="6" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="7"></td>
           <td data-c="8"></td>
           <td data-c="9"></td>
@@ -1232,8 +1264,8 @@
           <td data-c="2"></td>
           <td data-c="3"></td>
           <td data-c="4"></td>
-          <td data-c="5" class="on"><span></span><span class="sr-only">used</span></td>
-          <td data-c="6"></td>
+          <td data-c="5"></td>
+          <td data-c="6" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="7"></td>
           <td data-c="8"></td>
           <td data-c="9"></td>
@@ -1274,7 +1306,7 @@
       </tbody>
     </table></div>
     <p class="mx-read" id="mxRead" role="status" aria-live="polite">&nbsp;</p>
-    <p class="mx-also reveal"><b>Also worked with</b> &mdash; no project on this site yet: SolidWorks &middot; Creo &middot; FreeCAD &middot; C++ &middot; MATLAB &middot; Lathe &middot; Machining</p>
+    <p class="mx-also reveal"><b>Also worked with</b> &mdash; no project on this site yet: FreeCAD &middot; C++ &middot; MATLAB &middot; Lathe &middot; Machining</p>
   </div>
 </section>
 
