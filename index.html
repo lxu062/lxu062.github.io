@@ -561,7 +561,7 @@
         </div>
         <div class="card-body">
           <h3>Welded Go-Kart</h3>
-          <p>A drivable go-kart for a high-school engineering fabrication class: lead designer/CAD, then hand-bent, cut, and welded the steel tube-and-sheet chassis before road-testing it with the team. It came out as a fully triangulated space frame in 1&nbsp;in round tube — roll hoop over the driver, 55&nbsp;in wheelbase, rear wing on two uprights. <strong>See the bare frame in the details.</strong></p>
+          <p>A drivable go-kart for a high-school engineering fabrication class: lead designer/CAD, then hand-bent, cut, and welded the steel tube-and-sheet chassis before road-testing it with the team. It came out as a fully triangulated space frame in 1&nbsp;in round tube — roll hoop over the driver, 55&nbsp;in wheelbase, rear wing on two uprights. <strong>Strip the wheels and wing off in the live 3D model.</strong></p>
           <div class="tools" data-clamp><span class="tool">Autodesk Fusion</span><span class="tool">Welding</span><span class="tool">3D printing (FDM)</span><span class="tool">Assembly</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
           <a class="card-link" href="#" data-study="gokart">Details <span class="arrow">→</span></a>
         </div>
@@ -574,7 +574,7 @@
         </div>
         <div class="card-body">
           <h3>Orange Pi Cooling Case</h3>
-          <p>A 3D-printed cooling enclosure for an Orange Pi single-board computer — designed the housing in CAD, ran a thermal simulation to check heat dissipation and airflow, and printed the final part. Solo project. It's 136&nbsp;mm long, carries an Orange Pi&nbsp;5 with heatsinks and an M.2 SSD, and takes a 40&nbsp;mm Noctua fan on the lid. <strong>See it with the lid off in the details.</strong></p>
+          <p>A 3D-printed cooling enclosure for an Orange Pi single-board computer — designed the housing in CAD, ran a thermal simulation to check heat dissipation and airflow, and printed the final part. Solo project. It's 136&nbsp;mm long, carries an Orange Pi&nbsp;5 with heatsinks and an M.2 SSD, and takes a 40&nbsp;mm Noctua fan on the lid. <strong>Lift the lid in the live 3D model.</strong></p>
           <div class="tools" data-clamp><span class="tool">Autodesk Inventor</span><span class="tool">PTC Creo</span><span class="tool">Electronics cooling simulation</span><span class="tool">Autodesk Fusion</span><span class="tool">Prototyping</span><span class="tool">3D printing (FDM)</span><span class="tool">Assembly</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
           <a class="card-link" href="#" data-study="orangepi">Details <span class="arrow">→</span></a>
         </div>
@@ -613,7 +613,7 @@
         </div>
         <div class="card-body">
           <h3>Journey Maker Portable 3D Printer</h3>
-          <p>Built an open-source “Journey Maker” portable 3D printer from the community design — sourcing the parts, assembling the machine, and calibrating it into a working printer. The design prints inverted: the hotend sits in the base pointing up and the heated 200&nbsp;×&nbsp;200&nbsp;mm glass bed comes down onto it, which is how the whole machine fits in about a 270&nbsp;mm cube. <strong>See the layout in the details.</strong></p>
+          <p>Built an open-source “Journey Maker” portable 3D printer from the community design — sourcing the parts, assembling the machine, and calibrating it into a working printer. The design prints inverted: the hotend sits in the base pointing up and the heated 200&nbsp;×&nbsp;200&nbsp;mm glass bed comes down onto it, which is how the whole machine fits in about a 270&nbsp;mm cube. <strong>Run the bed down in the live 3D model.</strong></p>
           <div class="tools" data-clamp><span class="tool">Autodesk Fusion</span><span class="tool">Calibration</span><span class="tool">Soldering</span><span class="tool">General fabrication</span><span class="tool">3D printing (FDM)</span><span class="tool">Assembly</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
           <a class="card-link" href="#" data-study="journeymaker">Details <span class="arrow">→</span></a>
         </div>
@@ -1636,6 +1636,19 @@
       <div class="cs-stat"><div class="n">Road-tested</div><div class="l">built by hand, then driven</div></div>
     </div>
 
+    <div class="cs-3d">
+      <div class="cs-3d-head">
+        <div>
+          <div class="t">Interactive CAD model</div>
+          <div class="st">Drag to orbit · scroll to zoom · strip the wheels and wing to see the bare frame</div>
+        </div>
+        <button class="btn3d" id="kartStrip" disabled aria-pressed="false">Hide the wheels &amp; wing</button>
+      </div>
+      <div class="cs-3d-stage" id="kartStage">
+        <button class="cs-3d-load" id="kartLoad">Load 3D model<span>≈0.8 MB · WebGL · from the CAD assembly</span></button>
+      </div>
+    </div>
+
     <h4>How it’s built</h4>
     <div class="cs-sub"><h5>Triangulated everywhere</h5><p>Every bay in the frame closes into triangles — the long front section, both sides of the cockpit, and the hoop behind the driver all carry diagonals. Round tube carries load well along its axis and poorly in bending, so a frame like this earns its stiffness from geometry rather than from wall thickness.</p></div>
     <div class="cs-sub"><h5>Built around the parts that had to be bought</h5><p>The engine and the pedals appear in the CAD as reserved envelopes rather than modelled hardware — the engine is literally a 305&nbsp;×&nbsp;305&nbsp;×&nbsp;254&nbsp;mm block named <em>Engine Perimeter</em>, sitting behind the driver. At layout time the useful question isn’t what the engine looks like, it’s whether it fits, what has to clear it, and where the frame has to pick it up.</p></div>
@@ -1666,6 +1679,19 @@
       <div class="cs-stat"><div class="n">40 mm</div><div class="l">Noctua NF-A4x10 on the lid</div></div>
       <div class="cs-stat"><div class="n">100 × 62 mm</div><div class="l">the Orange Pi 5 it carries</div></div>
       <div class="cs-stat"><div class="n">Thermal sim</div><div class="l">airflow checked before printing</div></div>
+    </div>
+
+    <div class="cs-3d">
+      <div class="cs-3d-head">
+        <div>
+          <div class="t">Interactive CAD model</div>
+          <div class="st">Drag to orbit · scroll to zoom · lift the lid to see the board and its heatsinks</div>
+        </div>
+        <button class="btn3d" id="opiLid" disabled aria-pressed="false">Lift the lid</button>
+      </div>
+      <div class="cs-3d-stage" id="opiStage">
+        <button class="cs-3d-load" id="opiLoad">Load 3D model<span>≈0.7 MB · WebGL · case, board and fan</span></button>
+      </div>
     </div>
 
     <h4>How it’s designed</h4>
@@ -1700,16 +1726,29 @@
       <div class="cs-stat"><div class="n">Open source</div><div class="l">community design, built from parts</div></div>
     </div>
 
-    <figure>
-      <img src="img/journeymaker/cad-side.jpg" alt="Side elevation of the Journey Maker in CAD — the vented base holding the toolhead and both XY axes, the Z tower on the right, and the glass bed cantilevered above the nozzle" loading="lazy">
-      <figcaption>Straight side view, and the clearest way to see the layout: the toolhead and both XY axes live inside the base, and the glass bed hangs above them off the Z tower on the right, with the nozzle pointing up at it. The bed is shown run down its Z axis toward the nozzle rather than parked at the top. <em>CAD: the open-source Journey Maker design, not mine.</em></figcaption>
-    </figure>
+    <div class="cs-3d">
+      <div class="cs-3d-head">
+        <div>
+          <div class="t">Interactive CAD model</div>
+          <div class="st">Drag to orbit · scroll to zoom · run the bed down onto the nozzle to see how it prints</div>
+        </div>
+        <button class="btn3d" id="jmBed" disabled aria-pressed="false">Run the bed down</button>
+      </div>
+      <div class="cs-3d-stage" id="jmStage">
+        <button class="cs-3d-load" id="jmLoad">Load 3D model<span>≈2.8 MB · WebGL · the community CAD, not mine</span></button>
+      </div>
+    </div>
 
     <h4>How the machine works</h4>
     <div class="cs-sub"><h5>An inverted hotend</h5><p>The E3D V6 is mounted the other way up — heatsink lowest, nozzle at the top of the stack — with a 0.4&nbsp;mm nozzle, silicone sock and a Capricorn PTFE feed, fed by a Sherpa Mini direct extruder on a pancake NEMA&nbsp;14. Everything else about the machine follows from that one decision.</p></div>
     <div class="cs-sub"><h5>All the motion inside a 35 mm base</h5><p>Both XY axes are in the base: an MGN12 linear rail crossed by an MGN9, driven by 3&nbsp;mm GT2 belts off pancake NEMA&nbsp;17 steppers, sharing that 35&nbsp;mm-deep enclosure with the SKR Pico board, a Raspberry Pi Zero&nbsp;W and the mains inlet. That flat packaging is what makes the machine portable.</p></div>
     <div class="cs-sub"><h5>Z is one screw and one rail</h5><p>A T5×4 leadscrew and an MGW9 rail run up the rear tower and carry the bed holder out over the base on a cantilever. The glass clamps to that arm with knurled thumbscrews, so the bed comes off by hand — no tools, which matters on a machine meant to be packed up.</p></div>
     <div class="cs-sub"><h5>What I actually did</h5><p>Sourcing the full bill of materials, assembling it, soldering and routing the wiring, and then the part that takes the real time: commissioning it — getting the axes square, an upside-down bed trammed, and extrusion and temperatures dialled in until parts came off it reliably.</p></div>
+
+    <figure>
+      <img src="img/journeymaker/cad-side.jpg" alt="Side elevation of the Journey Maker in CAD — the vented base holding the toolhead and both XY axes, the Z tower on the right, and the glass bed cantilevered above the nozzle" loading="lazy">
+      <figcaption>Straight side view, and the clearest way to see the layout: the toolhead and both XY axes live inside the base, and the glass bed hangs above them off the Z tower on the right, with the nozzle pointing up at it. The bed is shown run down its Z axis toward the nozzle rather than parked at the top. <em>CAD: the open-source Journey Maker design, not mine.</em></figcaption>
+    </figure>
 
     <p style="font-size:.9rem;color:var(--muted);margin-top:6px">Credit where it’s due: the design and the CAD shown here are the open-source Journey Maker V2.2 (2024) by Mcfazio2001 / Voxolite.com. My work on this project was building and commissioning the machine, not designing it.</p>
 
@@ -2235,6 +2274,143 @@
       return p;
     };
   })();
+
+  // Shared orbit-viewer factory. The rocket, arm and vehicle viewers each carry their own
+  // bespoke rig (kinematic chain, explode, hide) and are left alone; this covers the plain
+  // "orbit it, plus one control" case so the go-kart, Orange Pi and printer don't each need
+  // another copy of the same 60 lines.
+  //   cam / targetY are multiples of the model diagonal, solved in tools/make_card_glb.py
+  //   against this exact camera (38 deg vertical FOV, 16:9 stage) for the WORST azimuth, so
+  //   nothing swings out of frame while it auto-rotates.
+  //   feature(api, btn) wires the one control and may return a per-frame step function.
+  window.__csViewer = function(o){
+    var loadBtn = document.getElementById(o.load), stage = document.getElementById(o.stage);
+    if(!loadBtn) return;
+    var btn = o.btn ? document.getElementById(o.btn) : null;
+    function fail(msg){ stage.innerHTML = '<div class="cs-3d-msg">' + msg + '</div>'; }
+    loadBtn.addEventListener('click', function(){
+      loadBtn.disabled = true; loadBtn.firstChild.textContent = 'Loading…';
+      window.__loadThree().then(function(){
+        new THREE.GLTFLoader().load(o.url, build,
+          function(e){ if(e.total) loadBtn.firstChild.textContent = 'Loading… ' + Math.round(100 * e.loaded / e.total) + '%'; },
+          function(){ fail('Couldn’t fetch the model — the 3D viewer needs the site served over http(s); it works on the live site.'); });
+      }).catch(function(){ fail('Couldn’t load the 3D engine — check your connection.'); });
+    });
+    function build(gltf){
+      loadBtn.remove();
+      var W = function(){ return stage.clientWidth; }, H = function(){ return stage.clientHeight; };
+      var renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.setSize(W(), H());
+      renderer.outputEncoding = THREE.sRGBEncoding;
+      stage.appendChild(renderer.domElement);
+      var scene = new THREE.Scene();
+      var cam = new THREE.PerspectiveCamera(38, W() / H(), .01, 60);
+      scene.add(new THREE.HemisphereLight(0xffffff, 0x39424e, .95));
+      var kl = new THREE.DirectionalLight(0xffffff, .75); kl.position.set(1, 1.4, .8); scene.add(kl);
+      var fl = new THREE.DirectionalLight(0xdfe8ff, .3); fl.position.set(-1, -.4, -.7); scene.add(fl);
+
+      gltf.scene.traverse(function(x){
+        if(!x.isMesh) return;
+        x.material.metalness = .15; x.material.roughness = .6; x.material.side = THREE.DoubleSide;
+      });
+      scene.add(gltf.scene);
+
+      var box = new THREE.Box3().setFromObject(gltf.scene);
+      var ctr = box.getCenter(new THREE.Vector3()), size = box.getSize(new THREE.Vector3());
+      gltf.scene.position.sub(ctr);
+      var diag = size.length();
+      var ty = diag * (o.targetY || 0);
+      cam.position.set(diag * o.cam[0], diag * o.cam[1], diag * o.cam[2]);
+      var controls = new THREE.OrbitControls(cam, renderer.domElement);
+      controls.enableDamping = true; controls.dampingFactor = .08;
+      controls.autoRotate = true; controls.autoRotateSpeed = 1.1;
+      controls.minDistance = diag * .3; controls.maxDistance = diag * 3;
+      controls.target.set(0, ty, 0); controls.update();
+      controls.addEventListener('start', function(){ controls.autoRotate = false; });
+      new ResizeObserver(function(){ renderer.setSize(W(), H()); cam.aspect = W() / H(); cam.updateProjectionMatrix(); }).observe(stage);
+
+      // group names come from tools/make_card_glb.py; match on prefix because glTF
+      // loaders are free to suffix a node name to keep it unique
+      var api = {renderer:renderer, scene:scene, cam:cam, controls:controls, root:gltf.scene, diag:diag};
+      api.pick = function(name){
+        var hit = null;
+        gltf.scene.traverse(function(x){ if(!hit && x.name && x.name.indexOf(name) === 0) hit = x; });
+        return hit;
+      };
+      var step = o.feature ? o.feature(api, btn) : null;
+      var ov = document.getElementById(o.modal);
+      api.step = step;                        // exposed so the animation can be driven in tests
+      if(o.handle) window[o.handle] = api;
+      (function tick(){
+        requestAnimationFrame(tick);
+        if(!ov.classList.contains('open')) return;   // don't burn frames behind a closed modal
+        if(step) step();
+        controls.update();
+        renderer.render(scene, cam);
+      })();
+    }
+  };
+
+  // a toggle that slides one group along Y and animates into place
+  function slideToggle(group, btn, travel, labelOff, labelOn){
+    if(!group || !btn){ if(btn) btn.remove(); return null; }
+    var on = false, y = 0;
+    btn.disabled = false;
+    btn.addEventListener('click', function(){
+      on = !on;
+      btn.classList.toggle('active', on);
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      btn.textContent = on ? labelOn : labelOff;
+    });
+    return function(){
+      var t = on ? travel : 0;
+      y = Math.abs(y - t) < 1e-5 ? t : y + (t - y) * .12;
+      group.position.y = y;
+    };
+  }
+
+  // go-kart — strip the wheels and wing to leave the bare welded frame
+  window.__csViewer({
+    load:'kartLoad', stage:'kartStage', btn:'kartStrip', modal:'study-gokart',
+    url:'img/gokart/gokart.glb', handle:'__kart3d',
+    cam:[-0.648, 0.294, 0.960], targetY:-0.060,
+    feature: function(api, btn){
+      var parts = [api.pick('wheels'), api.pick('wing')].filter(Boolean);
+      if(!parts.length || !btn){ if(btn) btn.remove(); return null; }
+      btn.disabled = false;
+      btn.addEventListener('click', function(){
+        var stripping = parts[0].visible;
+        parts.forEach(function(g){ g.visible = !stripping; });
+        btn.classList.toggle('active', stripping);
+        btn.setAttribute('aria-pressed', stripping ? 'true' : 'false');
+        btn.textContent = stripping ? 'Show the wheels & wing' : 'Hide the wheels & wing';
+      });
+      return null;
+    }
+  });
+
+  // Orange Pi — lift the lid (and the fan with it) off the board
+  window.__csViewer({
+    load:'opiLoad', stage:'opiStage', btn:'opiLid', modal:'study-orangepi',
+    url:'img/orangepi/orangepi.glb', handle:'__opi3d',
+    cam:[-0.630, 0.294, 0.807], targetY:-0.120,
+    feature: function(api, btn){
+      return slideToggle(api.pick('lid'), btn, 0.048, 'Lift the lid', 'Close the lid');
+    }
+  });
+
+  // Journey Maker — run the bed down its Z axis toward the upward-pointing nozzle.
+  // Model is in metres and was rotated to glTF Y-up on export, so the bed's Z travel is -Y.
+  // 85 mm closes a 103 mm parked gap to ~18 mm without the bed holder reaching the extruder.
+  window.__csViewer({
+    load:'jmLoad', stage:'jmStage', btn:'jmBed', modal:'study-journeymaker',
+    url:'img/journeymaker/journeymaker.glb', handle:'__jm3d',
+    cam:[0.643, 0.272, 0.919], targetY:-0.050,
+    feature: function(api, btn){
+      return slideToggle(api.pick('bed'), btn, -0.085, 'Run the bed down', 'Raise the bed');
+    }
+  });
 
   // interactive arm viewer — kinematic chain + explode + CAD edges
   (function(){
