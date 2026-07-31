@@ -632,16 +632,16 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="sim" id="p-site" data-tools="webdev threejs git aiassist python">
-        <div class="ph ph--sim"><span class="tag">Software</span>
-          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 9l-3 3 3 3M16 9l3 3-3 3M13.5 6l-3 12"/></svg>
-          <span class="ph-label">Screenshot coming soon</span>
+      <article class="card reveal card--go" data-cat="sim" id="p-site" data-tools="webdev threejs git aiassist python">
+        <div class="ph ph--sim">
+          <img src="img/site/cover-site.jpg" alt="Screenshot of this site's projects section — the sticky nav, the four skill-filter dropdowns, and the first row of project cards with their CAD covers" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" loading="lazy">
+          <span class="tag">Software</span>
         </div>
         <div class="card-body">
           <h3>This Portfolio Site</h3>
-          <p>The site you’re reading. One self-contained HTML file — no framework, no build step, no dependencies — carrying two interactive three.js CAD viewers, a flight chart plotted from a 38,889-row sensor log, and the skill filter above. Built with AI-assisted development and deployed on GitHub Pages.</p>
+          <p>The site you’re reading, built with AI-assisted development — which is the part worth talking about. One self-contained HTML file, no framework and no build step, carrying six interactive three.js CAD viewers, a flight chart plotted from a 38,889-row sensor log, and the skill filter above. The real engineering isn’t the HTML: it’s the pipeline that turns 100&nbsp;MB CAD assemblies into models under 3&nbsp;MB, and the review discipline that keeps everything written here true. <strong>How it was actually built is in the details.</strong></p>
           <div class="tools" data-clamp><span class="tool">HTML / CSS / JavaScript</span><span class="tool">three.js (WebGL)</span><span class="tool">Git &amp; GitHub Pages</span><span class="tool">AI-assisted development</span><span class="tool">Python</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
-          <span class="card-link card-link--soon">Details coming soon</span>
+          <a class="card-link" href="#" data-study="site">Details <span class="arrow">→</span></a>
         </div>
       </article>
 
@@ -1754,6 +1754,83 @@
 
     <h4>Skills &amp; tools</h4>
     <div class="cs-skills"><span>Autodesk Fusion</span><span>Calibration</span><span>Soldering</span><span>General fabrication</span><span>3D printing (FDM)</span><span>Assembly</span></div>
+  </div>
+</div>
+
+<!-- DETAILS: This Portfolio Site -->
+<div class="cs-overlay" id="study-site" role="dialog" aria-modal="true" aria-labelledby="csSiteTitle">
+  <div class="cs-panel">
+    <button class="cs-close" aria-label="Close details">✕</button>
+    <span class="kicker">Details</span>
+    <h3 id="csSiteTitle" style="font-size:1.6rem;margin-top:6px">This Portfolio Site</h3>
+    <p class="cs-meta">Personal project · solo · Built with AI-assisted development · Role: spec, direction, review &amp; verification</p>
+    <p>This site was built with an AI coding assistant doing most of the typing. I’m putting that on the
+    card rather than quietly leaving it out, because pretending otherwise would be silly — and because the
+    interesting question isn’t whether you use these tools, it’s what you have to do to get correct work
+    out of them.</p>
+    <p>The answer, in my experience: everything that matters is the review loop. These tools are fast and
+    fluent, and they are confidently wrong at exactly the moments that cost you most. What catches that is
+    someone who knows the actual hardware well enough to spot it. On this site that person had to be me,
+    and the examples below are real ones from building it.</p>
+    <div class="cs-stats">
+      <div class="cs-stat"><div class="n">1 file</div><div class="l">209 KB · no framework, no build step</div></div>
+      <div class="cs-stat"><div class="n">6 viewers</div><div class="l">interactive CAD, loaded on demand</div></div>
+      <div class="cs-stat"><div class="n">144×</div><div class="l">biggest CAD-to-web size reduction</div></div>
+      <div class="cs-stat"><div class="n">37 × 13</div><div class="l">skills × projects, one source of truth</div></div>
+    </div>
+
+    <h4>How it was built</h4>
+    <div class="cs-sub"><h5>The review loop is the actual work</h5><p>Three examples from this site. The
+    wheelie-bin vehicle’s CAD contains a part named <em>Engine&nbsp;-&nbsp;346cc</em>; the engine that
+    actually went in is a 420&nbsp;cc, and no amount of reading the file would have revealed that — only
+    the person who built the vehicle knows the name is stale. A draft of that same card credited me with
+    calculating the braking force I needed; I hadn’t, so it came out. And when the Orange Pi viewer first
+    shipped, lifting the lid left the fan’s four corner pads stuck to the case, because they’d been
+    selected by part name instead of by geometry — I found that by clicking the button and looking.</p></div>
+    <div class="cs-sub"><h5>A CAD-to-web pipeline, not a 3D file export</h5><p>The six viewers are fed by
+    a set of Python tools I use to take a raw STEP assembly to something a browser can load: tessellate it,
+    weld the vertices, decimate each part against its own triangle budget, and group the parts so one
+    control can move exactly the right subset. The go-kart goes from a 117&nbsp;MB STEP to a 0.8&nbsp;MB
+    model — about 144× — while keeping the tube frame crisp, because the frame is what that card is about
+    and the rear wing isn’t.</p></div>
+
+    <figure>
+      <img src="img/site/viewer.jpg" alt="A details modal open on this site, with the 6-DOF arm and its printer work cell loaded in the interactive CAD stage and the pose, explode, CAD-edges and reset controls beneath it" loading="lazy">
+      <figcaption>One of the six viewers, mid-session: the arm and its printer work cell running in a WebGL stage
+      inside the details panel, with the joint-pose, explode and CAD-edge controls under it. Every model on the site
+      started as a STEP assembly and went through the same pipeline.</figcaption>
+    </figure>
+    <div class="cs-sub"><h5>Two rules learned by breaking things</h5><p>Weld coincident vertices before
+    decimating: CAD tessellators emit every triangle with its own private vertices, and edge-collapse
+    simplification with nothing shared doesn’t simplify — it shatters the surface into loose slivers.
+    And budget each part separately rather than a merged group: a group-wide reduction spends its budget
+    on whatever has the most curvature, which once collapsed both of the vehicle’s big rear tyres to
+    nothing to preserve ball-bearing races nobody can see.</p></div>
+    <div class="cs-sub"><h5>Camera positions are solved, not eyeballed</h5><p>Each viewer’s camera is
+    computed against the model’s real vertices — not its bounding box, whose corners are usually empty
+    air — and solved for the worst angle in a full rotation, since the viewers auto-rotate and a distance
+    that frames the opening shot can swing the model out of frame seconds later. Then it’s checked by
+    projecting every vertex into screen space at a dozen angles. The first hand-tuned camera I shipped cut
+    off the bottom 15% of a model, and nothing caught it until it was measured.</p></div>
+    <div class="cs-sub"><h5>Plain HTML, deliberately</h5><p>One file: one style block, one script block, no
+    framework, no build step, nothing to install. The only things the page fetches are two web fonts, and
+    three.js if you open a viewer. There are 9.4&nbsp;MB of CAD models on the site and none of them
+    download until you ask for one. Deploying is <code>git push</code>; GitHub Pages does the rest.</p></div>
+    <div class="cs-sub"><h5>One source of truth for the skills</h5><p>Every project card carries a list of
+    its skills as a data attribute, and the filter menus, the chips on the cards, the capability matrix and
+    the details modals are all driven from that one list. That’s 102 skill-to-project links, and it means the
+    matrix can’t quietly disagree with the cards — a thing that had already happened once before I wired
+    them together.</p></div>
+
+    <figure>
+      <img src="img/site/matrix.jpg" alt="The capability matrix on this site — 37 skills against 13 projects in four collapsible categories, with a dot wherever a project demonstrates a skill" loading="lazy">
+      <figcaption>The capability matrix: 37 skills against 13 projects, 102 links between them, grouped into four
+      collapsible categories. Clicking a skill filters the project grid above. All of it is generated from the same
+      per-card attribute that feeds the filter and the chips.</figcaption>
+    </figure>
+
+    <h4>Skills &amp; tools</h4>
+    <div class="cs-skills"><span>HTML / CSS / JavaScript</span><span>three.js (WebGL)</span><span>Git &amp; GitHub Pages</span><span>AI-assisted development</span><span>Python</span></div>
   </div>
 </div>
 
