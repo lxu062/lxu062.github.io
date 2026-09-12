@@ -528,16 +528,16 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="aero" id="p-masa" data-tools="nx reveng pneumatics sourcing testing genfab">
-        <div class="ph ph--aero"><span class="tag">Aerospace</span>
-          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16M4 12l4-4M4 12l4 4M20 6v12"/></svg>
-          <span class="ph-label">Render coming soon</span>
+      <article class="card reveal card--go" data-cat="aero" id="p-masa" data-tools="nx reveng pneumatics sourcing testing genfab">
+        <div class="ph ph--aero">
+          <img src="img/masa/cover-gse.jpg" alt="Siemens NX model of MASA's launch ground-support equipment — the plumbing cart with its regulator panels and actuated valves, a bank of nitrogen bottles, and three large dewars" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" loading="lazy">
+          <span class="tag">Aerospace</span>
         </div>
         <div class="card-body">
           <h3>MASA — LGSE Purge Subsystem</h3>
-          <p>With the Michigan Aeronautical Science Association: reverse-engineered and CAD-modeled a purge / pre-press subsystem of the launch ground-support equipment from schematics, and supported fabrication.</p>
+          <p>With the Michigan Aeronautical Science Association: reverse-engineered the purge and pre-press subsystem of the launch ground-support equipment from the team’s P&amp;ID into a full Siemens NX model, and supported its fabrication. It feeds regulated 500&nbsp;psig nitrogen from a four-bottle bank to five outputs on the oxidizer and fuel sides. <strong>See the P&amp;ID, the CAD and the built cart in the details.</strong></p>
           <div class="tools" data-clamp><span class="tool">Siemens NX</span><span class="tool">Reverse engineering</span><span class="tool">Pneumatics</span><span class="tool">Sourcing &amp; procurement</span><span class="tool">Physical testing</span><span class="tool">General fabrication</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
-          <span class="card-link card-link--soon">Details coming soon</span>
+          <a class="card-link" href="#" data-study="masa">Details <span class="arrow">→</span></a>
         </div>
       </article>
 
@@ -1754,6 +1754,60 @@
 
     <h4>Skills &amp; tools</h4>
     <div class="cs-skills"><span>Autodesk Fusion</span><span>Calibration</span><span>Soldering</span><span>General fabrication</span><span>3D printing (FDM)</span><span>Assembly</span></div>
+  </div>
+</div>
+
+<!-- DETAILS: MASA LGSE Purge Subsystem -->
+<div class="cs-overlay" id="study-masa" role="dialog" aria-modal="true" aria-labelledby="csMasaTitle">
+  <div class="cs-panel">
+    <button class="cs-close" aria-label="Close details">✕</button>
+    <span class="kicker">Details</span>
+    <h3 id="csMasaTitle" style="font-size:1.6rem;margin-top:6px">MASA — LGSE Purge Subsystem</h3>
+    <p class="cs-meta">Michigan Aeronautical Science Association · team project · 2025–26 · Role: CAD from the P&amp;ID, fabrication support</p>
+    <p>MASA builds liquid-fuelled rockets, and the launch ground-support equipment (LGSE) is the cart-mounted
+    hardware that fills and pressurizes the vehicle on the pad. One piece of it is the purge and pre-press
+    system: a bank of nitrogen bottles, regulated down and switched remotely, that flushes the oxidizer and
+    fuel plumbing with inert gas and pre-pressurizes the oxidizer side. I took that subsystem from the team’s
+    P&amp;ID to a full Siemens NX model inside the launch GSE assembly, then supported its fabrication on the cart.</p>
+    <div class="cs-stats">
+      <div class="cs-stat"><div class="n">500 psig</div><div class="l">regulated purge pressure</div></div>
+      <div class="cs-stat"><div class="n">5 outputs</div><div class="l">fill lines, ox pre-press, both MPVs</div></div>
+      <div class="cs-stat"><div class="n">4 × 2K</div><div class="l">nitrogen bottles on the main circuit</div></div>
+      <div class="cs-stat"><div class="n">P&amp;ID → NX</div><div class="l">schematic to full CAD model</div></div>
+    </div>
+
+    <figure>
+      <img src="img/masa/pnid.jpg" alt="The team's P&amp;ID for the LGSE purge and pre-press system — four nitrogen bottles into a 500 psig regulator and relief valves, a header feeding five outputs through pneumatic valves, and a separate trickle-purge bottle" loading="lazy">
+      <figcaption>The team’s P&amp;ID for the purge and pre-press system — the schematic the CAD was built from.
+      Four 2K nitrogen bottles feed a 500&nbsp;psig regulator and a -8&nbsp;AN header; a separate trickle-purge
+      bottle bleeds through a 0.01&nbsp;in orifice into the main-valve lines. <em>P&amp;ID: MASA, 2025–26.</em></figcaption>
+    </figure>
+
+    <h4>How it works, and what I did</h4>
+    <div class="cs-sub"><h5>Two purge circuits</h5><p>The main circuit brings the four-bottle bank down to
+    500&nbsp;psig through one regulator, guarded by 600&nbsp;psig relief valves, and sends it to five outputs —
+    four of them switched remotely by pneumatic valves on the team’s 100&nbsp;psi pneumatics. A separate
+    trickle-purge bottle bleeds through a 0.01&nbsp;in orifice and a 50&nbsp;psig relief into the two
+    main-propellant-valve lines, keeping a small continuous flow on them.</p></div>
+    <div class="cs-sub"><h5>From schematic to NX</h5><p>The regulator, gauges, quick-disconnect manifold and
+    actuated valves are modeled as real parts on a distribution panel and a valve mount, with the tube runs
+    routed between them. The model follows the team’s part numbering and sits inside the full launch GSE
+    assembly alongside the dewars, ox fill, pneumatics and cart.</p></div>
+    <div class="cs-sub"><h5>Built on the cart</h5><p>I supported the fabrication — the photos below put the
+    built panel and valve mount next to their CAD.</p></div>
+
+    <h4>CAD vs built</h4>
+    <div class="cs-gallery" style="grid-template-columns:repeat(2,1fr)">
+      <figure><img src="img/masa/cad-panel.jpg" alt="NX model of the distribution panel — the regulator between two gauges and a quick-disconnect manifold — above the valve mount with three actuated valves" loading="lazy"><figcaption>CAD: the distribution panel — regulator between its two gauges, and the quick-disconnect manifold — above the valve mount.</figcaption></figure>
+      <figure><img src="img/masa/built-panel.jpg" alt="The built distribution panel on the GSE cart, with a brass regulator, two gauges and a manifold of quick-disconnect fittings" loading="lazy"><figcaption>Built: the same panel on the cart — brass regulator, both gauges and the quick-disconnect manifold.</figcaption></figure>
+      <figure><img src="img/masa/cad-routing.jpg" alt="NX model showing the tube runs from the panel manifolds down to the actuated valves on the valve mount" loading="lazy"><figcaption>CAD: the tube runs down from the panel manifolds to the actuated valves on the valve mount.</figcaption></figure>
+      <figure><img src="img/masa/built-valves.jpg" alt="Inside the built cart — the valve mount plates with their actuator position indicators and the bent tube runs" loading="lazy"><figcaption>Built: the valve mount plates with their actuator position indicators, and the tube runs.</figcaption></figure>
+    </div>
+
+    <p style="font-size:.9rem;color:var(--muted);margin-top:6px">A team system: the P&amp;ID and the wider launch GSE are MASA’s. My part was this subsystem’s CAD and support on its fabrication.</p>
+
+    <h4>Skills &amp; tools</h4>
+    <div class="cs-skills"><span>Siemens NX</span><span>Reverse engineering</span><span>Pneumatics</span><span>Sourcing &amp; procurement</span><span>Physical testing</span><span>General fabrication</span></div>
   </div>
 </div>
 
