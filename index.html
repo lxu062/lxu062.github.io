@@ -593,16 +593,16 @@
         </div>
       </article>
 
-      <article class="card reveal" data-cat="fab" id="p-catapult" data-tools="sourcing testing prototyping genfab assembly">
-        <div class="ph ph--fab"><span class="tag">Mechanisms</span>
-          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3.2"/><path d="M12 2v3.5M12 18.5V22M4.2 4.2l2.5 2.5M17.3 17.3l2.5 2.5M2 12h3.5M18.5 12H22M4.2 19.8l2.5-2.5M17.3 6.7l2.5-2.5"/></svg>
-          <span class="ph-label">Photos coming soon</span>
+      <article class="card reveal card--go" data-cat="fab" id="p-catapult" data-tools="sourcing testing prototyping genfab assembly">
+        <div class="ph ph--fab">
+          <img src="img/catapult/cover.jpg" alt="The finished tennis-ball launcher on a sidewalk — a timber beam with a hand winch at the back, a torsion frame of twisted rope skeins and PVC arms at the front, on a single triangulated stand" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" loading="lazy">
+          <span class="tag">Mechanisms</span>
         </div>
         <div class="card-body">
           <h3>Tennis-Ball Catapult</h3>
-          <p>A launcher built to fling a tennis ball for AP Physics — lead designer/CAD, sourced materials, and ran rapid design iterations and test launches under a tight deadline. Team project.</p>
+          <p>A torsion-powered, ballista-style tennis-ball launcher for AP Physics — lead designer/CAD, sourced materials, and ran rapid design iterations and test launches under a tight deadline. Twisted-rope skeins drive two PVC arms, a hand winch draws it back, and it was tested by firing through a hoop target. Team project. <strong>See the build and a launch in the details.</strong></p>
           <div class="tools" data-clamp><span class="tool">Sourcing &amp; procurement</span><span class="tool">Physical testing</span><span class="tool">Prototyping</span><span class="tool">General fabrication</span><span class="tool">Assembly</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
-          <span class="card-link card-link--soon">Details coming soon</span>
+          <a class="card-link" href="#" data-study="catapult">Details <span class="arrow">→</span></a>
         </div>
       </article>
 
@@ -1809,6 +1809,51 @@
 
     <h4>Skills &amp; tools</h4>
     <div class="cs-skills"><span>Siemens NX</span><span>Reverse engineering</span><span>Pneumatics</span><span>Sourcing &amp; procurement</span><span>Physical testing</span><span>General fabrication</span></div>
+  </div>
+</div>
+
+<!-- DETAILS: Tennis-Ball Catapult -->
+<div class="cs-overlay" id="study-catapult" role="dialog" aria-modal="true" aria-labelledby="csCatTitle">
+  <div class="cs-panel">
+    <button class="cs-close" aria-label="Close details">✕</button>
+    <span class="kicker">Details</span>
+    <h3 id="csCatTitle" style="font-size:1.6rem;margin-top:6px">Tennis-Ball Catapult</h3>
+    <p class="cs-meta">AP Physics · team project · May 2024 · Role: lead designer/CAD, sourcing, testing</p>
+    <p>An AP Physics build: launch a tennis ball. Ours is a torsion launcher, ballista-style — two skeins of
+    twisted rope store the energy, each drives a PVC throwing arm, and a bowstring between the arm tips drives
+    the ball along a track on the beam. I led the design, sourced the materials, and ran the build-and-test
+    loop against a tight deadline.</p>
+    <div class="cs-stats">
+      <div class="cs-stat"><div class="n">Torsion</div><div class="l">twisted-rope skeins store the energy</div></div>
+      <div class="cs-stat"><div class="n">2 arms</div><div class="l">PVC, joined by the bowstring</div></div>
+      <div class="cs-stat"><div class="n">Winch</div><div class="l">draws it back before each shot</div></div>
+      <div class="cs-stat"><div class="n">Hoop</div><div class="l">target for the test shots</div></div>
+    </div>
+
+    <h4>How it works</h4>
+    <div class="cs-sub"><h5>Energy in twisted rope</h5><p>Each arm is anchored in a skein of rope, wound around
+    metal bars at the top and bottom of the frame and twisted tight. The tighter the twist, the harder the skeins
+    throw the arms forward; we tensioned them by hand with a lever bar during the build.</p></div>
+    <div class="cs-sub"><h5>Drawn by a winch</h5><p>A hand winch at the back of the beam draws the arms back
+    before each shot, and the beam is mounted to a single triangulated stand at its marked centre of mass.</p></div>
+    <div class="cs-sub"><h5>Tested against a hoop</h5><p>Testing meant firing down a sidewalk through a hoop
+    target set on a stepladder, and iterating on the design between sessions.</p></div>
+
+    <figure>
+      <img src="img/catapult/hoop.jpg" alt="The test range — a hoop target on top of a stepladder, with the launcher at the far end of the sidewalk" loading="lazy">
+      <figcaption>The test range: a hoop target on a stepladder, with the launcher at the far end of the sidewalk.</figcaption>
+    </figure>
+
+    <h4>Build and launch</h4>
+    <div class="cs-gallery" style="grid-template-columns:repeat(2,1fr)">
+      <figure><img src="img/catapult/front-detail.jpg" alt="Front view of the torsion frame — two twisted rope skeins, the PVC arms passing through them, and a tennis ball in the middle of the frame" loading="lazy"><figcaption>Front view: the two rope skeins in the frame, the PVC arms, and a ball in the middle of the frame.</figcaption></figure>
+      <figure><img src="img/catapult/skeins.jpg" alt="Leon working on the twisted rope skeins in the torsion frame during the build" loading="lazy"><figcaption>Working on the rope skeins in the torsion frame during the build.</figcaption></figure>
+      <figure><img src="img/catapult/drawn.jpg" alt="The launcher drawn, seen from behind — both arms pulled back and the bowstring taut" loading="lazy"><figcaption>Drawn: both arms pulled back, bowstring taut.</figcaption></figure>
+      <figure><img src="img/catapult/fired.jpg" alt="0.3 seconds later — the arms thrown forward and the tennis ball in the air above the frame" loading="lazy"><figcaption>0.3&nbsp;s later: the arms thrown forward and the ball already in the air above the frame.</figcaption></figure>
+    </div>
+
+    <h4>Skills &amp; tools</h4>
+    <div class="cs-skills"><span>Sourcing &amp; procurement</span><span>Physical testing</span><span>Prototyping</span><span>General fabrication</span><span>Assembly</span></div>
   </div>
 </div>
 
