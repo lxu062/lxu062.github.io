@@ -483,7 +483,7 @@
         </div>
         <div class="card-body">
           <h3>6-DOF Robotic Arm</h3>
-          <p>A solo-designed 6-DOF arm that autonomously tends a Bambu Lab X1C — reaching through the printer door to swap the finished magnetic flex plate, dump the parts, and reload the next plate with no human in the loop. The full CAD is complete: a bevel-differential wrist and self-designed printed cycloidal reducers, guided by an arm-mounted AprilTag vision system. <strong>Pose the live 3D model in the details.</strong></p>
+          <p>A solo-designed 6-DOF arm built to tend a Bambu Lab X1C on its own — reaching through the printer door to swap the finished magnetic flex plate, dump the parts, and reload the next plate with no human in the loop. The arm itself is now printed and assembled, with a bevel-differential wrist and self-designed printed cycloidal reducers; the tending cycle, guided by an arm-mounted AprilTag vision system, is the next stage. <strong>Pose the live 3D model in the details.</strong></p>
           <div class="tools" data-clamp><span class="tool">Autodesk Inventor</span><span class="tool">Parametric optimization</span><span class="tool">Inventor stress analysis</span><span class="tool">Fusion simulation</span><span class="tool">MuJoCo motion simulation</span><span class="tool">OpenCV / vision</span><span class="tool">Ansys Mechanical</span><span class="tool">Calibration</span><span class="tool">Python</span><span class="tool">Soldering</span><span class="tool">Sourcing &amp; procurement</span><span class="tool">Design for manufacturing</span><span class="tool">Physical testing</span><span class="tool">Autodesk Fusion</span><span class="tool">Prototyping</span><span class="tool">General fabrication</span><span class="tool">3D printing (FDM)</span><span class="tool">Assembly</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
           <a class="card-link" href="#" data-study="arm">Details <span class="arrow">→</span></a>
         </div>
@@ -1472,8 +1472,8 @@
     <button class="cs-close" aria-label="Close details">✕</button>
     <span class="kicker">Details · In progress</span>
     <h3 id="csArmTitle" style="font-size:1.6rem;margin-top:6px">6-DOF Robotic Arm</h3>
-    <p class="cs-meta">Mechanical + controls design · CAD-complete, not yet fabricated · Role: everything — concept, CAD, analysis, controls</p>
-    <p>Can one robotic arm run a 3D printer with no human in the loop? This 6-DOF arm reaches into a Bambu Lab X1C, pulls the finished magnetic flex plate, flexes it over a bin to dump the parts, and reloads the next plate — the full remove–dump–restock–reload cycle. It leans on clever mechanical design and arm-mounted vision instead of expensive hardware — modeled to completion in CAD, though not yet fabricated.</p>
+    <p class="cs-meta">Mechanical + controls design · Arm built, printer tending in progress · Role: everything — concept, CAD, analysis, controls</p>
+    <p>Can one robotic arm run a 3D printer with no human in the loop? This 6-DOF arm is built to reach into a Bambu Lab X1C, pull the finished magnetic flex plate, flex it over a bin to dump the parts, and reload the next plate — the full remove–dump–restock–reload cycle. It leans on clever mechanical design and arm-mounted vision instead of expensive hardware. The arm is now printed and assembled; getting it to run that cycle is the next stage.</p>
 
     <div class="cs-3d">
       <div class="cs-3d-head">
@@ -1508,11 +1508,13 @@
     <div class="cs-sub"><h5>Inside-out AprilTag vision</h5><p>Three arm-mounted cameras track fixed AprilTags to servo the endpoint from ~5–10&nbsp;mm of raw mechanical accuracy down to a sub-millimeter target. Putting the cameras on the arm drops the errors that matter out of the measurement; bench tests set a ~12&nbsp;px detection floor before any hardware existed.</p></div>
     <div class="cs-sub"><h5>Fail-safe passive tool changer</h5><p>A spring-backed ball detent on a three-vee kinematic coupling that only releases at the dock, so a power loss never drops a tool. The first tool is a self-locking flex-plate gripper that holds grip with no power; both parts cleared Ansys FEA in carbon-filled PPA at ~2.5–3.6× safety factor.</p></div>
     <h4>Gallery</h4>
-    <div class="cs-gallery">
-      <figure><img src="img/arm/arm-printer.jpg" alt="CAD render of the 6-DOF arm beside the Bambu Lab X1C 3D printer it tends" loading="lazy"><figcaption>The arm at its corner pedestal beside the Bambu Lab X1C it tends — the AprilTag markers on the printer are what the vision system locks onto.</figcaption></figure>
-      <figure><img src="img/arm/arm-wireframe.jpg" alt="Wireframe CAD view of the arm exposing internal motors and reducers" loading="lazy"><figcaption>Wireframe cutaway exposing the motors and reducers tucked inside the links.</figcaption></figure>
+    <div class="cs-gallery" style="grid-template-columns:repeat(2,1fr)">
+      <figure><img src="img/arm/full-assembly.jpg" alt="CAD of the full work cell: the 6-DOF arm beside a Bambu Lab X1C printer marked with AprilTags, a filament spool rack on top, and the plate holder and dump station" loading="lazy"><figcaption>The full assembly: the arm beside the Bambu Lab X1C it tends, with the plate holder and dump station that complete the cycle. The AprilTags on the printer are what the vision system locks onto.</figcaption></figure>
+      <figure><img src="img/arm/built-arm.jpg" alt="The printed 6-DOF arm, assembled in black and standing on its base on a desk, holding a banana in its gripper" loading="lazy"><figcaption>Printed and assembled: the real arm, with a banana in its gripper.</figcaption></figure>
+      <figure><img src="img/arm/j3-cycloidal.jpg" alt="CAD section through the elbow joint showing the cycloidal reducer's discs, cam, rollers and output shaft" loading="lazy"><figcaption>Section through the J3 elbow: the 13:1 cycloidal reducer I designed and printed, two discs on an eccentric cam, belt-driven by a NEMA&nbsp;23.</figcaption></figure>
+      <figure><img src="img/arm/wrist-claw.jpg" alt="CAD close-up of the wrist: bevel gears inside the forearm fork, and a yellow topology-optimized claw jaw driven by a worm" loading="lazy"><figcaption>The wrist's bevel differential, and the topology-optimized claw jaw driven by a self-locking worm.</figcaption></figure>
     </div>
-    <p style="font-size:.9rem;color:var(--muted)">More coming as the build progresses — the custom carrier PCB, the visual-servoing pipeline, and fabrication photos once parts are printed and machined.</p>
+    <p style="font-size:.9rem;color:var(--muted)">More coming as the build progresses — the custom carrier PCB, the visual-servoing pipeline, and the arm running the tending cycle.</p>
     <h4>Skills &amp; tools</h4>
     <div class="cs-skills"><span>Autodesk Inventor</span><span>Parametric optimization</span><span>Inventor stress analysis</span><span>Fusion simulation</span><span>MuJoCo motion simulation</span><span>OpenCV / vision</span><span>Ansys Mechanical</span><span>Calibration</span><span>Python</span><span>Soldering</span><span>Sourcing &amp; procurement</span><span>Design for manufacturing</span><span>Physical testing</span><span>Autodesk Fusion</span><span>Prototyping</span><span>General fabrication</span><span>3D printing (FDM)</span><span>Assembly</span></div>
   </div>
