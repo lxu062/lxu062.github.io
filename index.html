@@ -259,6 +259,7 @@
   .cs-panel figcaption{font-size:.82rem;color:var(--muted);margin-top:8px}
   .cs-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin:16px 0}
   .cs-gallery figure{margin:0}
+  .cs-gallery--drawing{grid-template-columns:1fr 1.82fr}
   .cs-chart{border:1px solid var(--line);border-radius:12px;padding:18px 18px 12px;margin:16px 0;position:relative}
   .cs-chart .t{font-family:var(--font-head);font-weight:600;font-size:1rem;color:var(--ink)}
   .cs-chart .st{font-size:.84rem;color:var(--muted);margin:2px 0 14px}
@@ -313,7 +314,7 @@
   .cs-jdesc.show{display:block}
   @media (max-width:560px){.cs-joints{grid-template-columns:1fr}}
   body.cs-lock{overflow:hidden}
-  @media (max-width:640px){.cs-panel{padding:26px 20px 28px}}
+  @media (max-width:640px){.cs-panel{padding:26px 20px 28px}.cs-gallery--drawing{grid-template-columns:1fr}}
 
   /* reveal */
   .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
@@ -1957,7 +1958,7 @@
     </div>
     <div class="cs-sub"><h5>A scoop for three hats</h5><p>The scoop holds three hats in channels about 4&nbsp;in apart, the same spacing as the hooks, so one lineup hangs all three. It’s 10&nbsp;in wide, the most the 10&nbsp;×&nbsp;10&nbsp;in starting footprint allows, and it’s printed in ABS at about 62&nbsp;g. Two extension springs at the end of the arm let it self-center on its joint.</p></div>
     <div class="cs-sub"><h5>Motors at the base of the arm</h5><p>A four-stage planetary gearbox lifts the arm at the first joint through a 24-to-72-tooth gear pair. A Pololu gearmotor tilts the scoop at the second joint through an XL timing belt running up the arm, which keeps that motor’s weight on the chassis. The belt’s ends clamp into two printed tensioners, and a cable tie pulls them together to set the tension.</p></div>
-    <div class="cs-gallery" style="grid-template-columns:1fr 1.82fr">
+    <div class="cs-gallery cs-gallery--drawing">
       <figure><img src="img/me250/arm-scoop.jpg" alt="CAD of the arm and scoop at an angle: a square aluminum arm with a timing belt alongside it, a planetary gearbox and a gearmotor at its base, and a three-channel scoop at the far end" loading="lazy"><figcaption>The arm and scoop in SolidWorks, as of late October.</figcaption></figure>
       <figure><img src="img/me250/pivot-drawing.jpg" alt="Engineering drawing of the pivot joint, with a dimensioned section view, a side view and a small isometric view of the pentagon-shaped printed part" loading="lazy"><figcaption>My drawing of the pivot joint, the printed part at the second joint that carries the scoop.</figcaption></figure>
     </div>
