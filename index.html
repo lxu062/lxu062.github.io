@@ -518,12 +518,12 @@
 
       <article class="card reveal card--go" data-cat="robotics fab" id="p-me250" data-tools="solidworks dfm printing prototyping testing">
         <div class="ph ph--robotics">
-          <img src="img/me250/cover.jpg" alt="CAD of the ME 250 robot lining up three blue hats with the pegs of a hook wall: a long arm and three-channel scoop on a small chassis with orange rear wheels" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" loading="lazy">
+          <img src="img/me250/cover-final.jpg" alt="CAD of the final ME 250 robot: a two-joint arm raised over a small chassis with a three-channel scoop at the top, a planetary gearbox and a gearmotor at the arm’s base, printed omni wheels at the front and printed rear wheels" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" loading="lazy">
           <span class="tag">Robotics</span>
         </div>
         <div class="card-body">
           <h3>ME 250: Frontier Frenzy Robot</h3>
-          <p>I’m leading a team of five building a remote-controlled robot for ME 250’s Frontier Frenzy competition on December 10. We went with my concept, a two-joint arm with a printed scoop that lifts three hats off a shelf and hangs them on the hook wall together. I did the CAD for the whole robot, which we finalized in early November. <strong>Concept sketch, CAD, printed wheels and scoop versions in the details.</strong></p>
+          <p>I’m leading a team of five building a remote-controlled robot for ME 250’s Frontier Frenzy competition on December 10. We went with my concept, a two-joint arm with a printed scoop that lifts three hats off a shelf and hangs them on the hook wall together. I did the CAD for the whole robot, which we finalized in early November. <strong>Concept sketch, printed wheels, scoop versions and a 3D model in the details.</strong></p>
           <div class="tools" data-clamp><span class="tool">SolidWorks</span><span class="tool">Design for manufacturing</span><span class="tool">3D printing (FDM)</span><span class="tool">Prototyping</span><span class="tool">Physical testing</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
           <a class="card-link" href="#" data-study="me250">Details <span class="arrow">→</span></a>
         </div>
@@ -640,7 +640,7 @@
         </div>
         <div class="card-body">
           <h3>This Portfolio Site</h3>
-          <p>The site you’re reading was built with AI-assisted development, which is the part worth talking about. It’s one self-contained HTML file (no framework, no build step) with six interactive three.js CAD viewers, a flight chart plotted from a 38,889-row sensor log, and the skill filter above. Behind it is a pipeline that turns 100&nbsp;MB CAD assemblies into models under 3&nbsp;MB. <strong>A few notes on how it was built are in the details.</strong></p>
+          <p>The site you’re reading was built with AI-assisted development, which is the part worth talking about. It’s one self-contained HTML file (no framework, no build step) with seven interactive three.js CAD viewers, a flight chart plotted from a 38,889-row sensor log, and the skill filter above. Behind it is a pipeline that turns 100&nbsp;MB CAD assemblies into models under 3&nbsp;MB. <strong>A few notes on how it was built are in the details.</strong></p>
           <div class="tools" data-clamp><span class="tool">HTML / CSS / JavaScript</span><span class="tool">three.js (WebGL)</span><span class="tool">Git &amp; GitHub Pages</span><span class="tool">AI-assisted development</span><span class="tool">Python</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
           <a class="card-link" href="#" data-study="site">Details <span class="arrow">→</span></a>
         </div>
@@ -1945,6 +1945,20 @@
       <div class="cs-stat"><div class="n">7 versions</div><div class="l">of the scoop in CAD</div></div>
       <div class="cs-stat"><div class="n">Dec 10</div><div class="l">competition at the Design Expo</div></div>
     </div>
+
+    <div class="cs-3d">
+      <div class="cs-3d-head">
+        <div>
+          <div class="t">Interactive CAD model</div>
+          <div class="st">Drag to orbit · scroll to zoom · lower the arm and watch the scoop stay level</div>
+        </div>
+        <button class="btn3d" id="me250Arm" disabled aria-pressed="false">Lower the arm</button>
+      </div>
+      <div class="cs-3d-stage" id="me250Stage">
+        <button class="cs-3d-load" id="me250Load">Load 3D model<span>≈1.4 MB · WebGL · from the final CAD</span></button>
+      </div>
+    </div>
+
     <div class="cs-gallery" style="grid-template-columns:repeat(2,1fr)">
       <figure><img src="img/me250/shelf.jpg" alt="CAD of the robot in a model of the saloon, its arm raised so the scoop reaches three blue hats on a wall shelf" loading="lazy"><figcaption>At the October design review: picking three hats off the high shelf.</figcaption></figure>
       <figure><img src="img/me250/hooks.jpg" alt="CAD of the robot lining up three blue hats with the pegs of the hook wall" loading="lazy"><figcaption>Lining up on the hook wall to hang all three.</figcaption></figure>
@@ -1954,10 +1968,10 @@
     <p>We each sketched two concepts and scored all ten in a weighted decision matrix. Mine came out on top and became the final design, and I’m leading the team through the build. I designed the arm, the scoop and the wheels, a few of the arm parts with a teammate, and I did the CAD for the whole robot. The chassis started as a teammate’s draft based on the course’s example assembly, and I reworked it into its final form. My teammates are drawing and fabricating most of the parts, and I’m drawing and printing the pivot joint, the belt tensioners, all four wheels and a few small spacers myself.</p>
     <div class="cs-gallery" style="grid-template-columns:repeat(2,1fr)">
       <figure><img src="img/me250/sketch.jpg" alt="Hand-drawn top view of the robot concept with labels: three hats on a 10 inch wide scoop, a spring-loaded self-centering joint, a cutout in the base plate for reaching floor hats, and a belted drive to joint 2" loading="lazy"><figcaption>My concept sketch: a scoop for three hats on a spring-loaded joint, with a belted drive to the second joint.</figcaption></figure>
-      <figure><img src="img/me250/top-view.jpg" alt="Top view of the arm and scoop in CAD, turned to match the sketch: the scoop at the top, the arm below it, and at its base a gearmotor with a timing belt on one side and a planetary gearbox with a gear pair on the other" loading="lazy"><figcaption>The arm and scoop in CAD, from the same angle. The gear pair is at the first joint and the belt runs up to the second.</figcaption></figure>
+      <figure><img src="img/me250/top-final.jpg" alt="Top view of the final robot in CAD: the scoop across the front, the arm running back to its motors, the control box on the left, the planetary gearbox on the right and a printed wheel at each corner" loading="lazy"><figcaption>The final robot in CAD from the same angle, with the arm’s two motors at its base.</figcaption></figure>
     </div>
     <div class="cs-sub"><h5>A scoop for three hats</h5><p>The scoop holds three hats in channels about 4&nbsp;in apart, the same spacing as the hooks, so one lineup hangs all three. It’s 10&nbsp;in wide, the most the 10&nbsp;×&nbsp;10&nbsp;in starting footprint allows, and it’s printed in ABS at about 62&nbsp;g. Two extension springs at the end of the arm let it self-center on its joint.</p></div>
-    <div class="cs-sub"><h5>Motors at the base of the arm</h5><p>A four-stage planetary gearbox lifts the arm at the first joint through a 24-to-72-tooth gear pair. A Pololu gearmotor tilts the scoop at the second joint through an XL timing belt running up the arm, which keeps that motor’s weight on the chassis. The belt’s ends clamp into two printed tensioners, and a cable tie pulls them together to set the tension.</p></div>
+    <div class="cs-sub"><h5>Motors at the base of the arm</h5><p>A four-stage planetary gearbox lifts the arm at the first joint through a 24-to-72-tooth gear pair. A Pololu gearmotor tilts the scoop at the second joint through an XL timing belt running up the arm, which keeps that motor’s weight on the chassis. Its pulley sits on the first joint’s axis and matches the pulley at the scoop, so while that motor holds still, the scoop stays level as the arm swings. The belt’s ends clamp into two printed tensioners, and a cable tie pulls them together to set the tension.</p></div>
     <div class="cs-gallery cs-gallery--drawing">
       <figure><img src="img/me250/arm-scoop.jpg" alt="CAD of the arm and scoop at an angle: a square aluminum arm with a timing belt alongside it, a planetary gearbox and a gearmotor at its base, and a three-channel scoop at the far end" loading="lazy"><figcaption>The arm and scoop in SolidWorks, as of late October.</figcaption></figure>
       <figure><img src="img/me250/pivot-drawing.jpg" alt="Engineering drawing of the pivot joint, with two dimensioned section views, a side view and a small isometric view of the pentagon-shaped printed part" loading="lazy"><figcaption>My drawing of the pivot joint, the printed part at the second joint that carries the scoop.</figcaption></figure>
@@ -1988,7 +2002,7 @@
     </div>
     <p>On a printed prototype before the review, the arm moved too fast to control at 6&nbsp;V. We timed the 90° swing across a range of voltages and settled on 2.2 to 2.5&nbsp;V for the planetary gearbox.</p>
     <div class="cs-gallery" style="grid-template-columns:repeat(2,1fr)">
-      <figure><img src="img/me250/full-robot.jpg" alt="CAD of the full robot: the arm and scoop raised over a chassis with a control box, orange rear wheels and grey front wheels" loading="lazy"><figcaption>The full robot in CAD at the design review.</figcaption></figure>
+      <figure><img src="img/me250/side-final.jpg" alt="Side view of the final robot in CAD: the arm raised over the chassis with the scoop held level at the top, the control box behind it, and a printed rear wheel and front omni wheel" loading="lazy"><figcaption>The final robot in CAD, from the side.</figcaption></figure>
       <figure><img src="img/me250/prototype.jpg" alt="A black 3D-printed arm and scoop clamped to a bench, with two people holding it during a test and wires running to the motor" loading="lazy"><figcaption>The printed prototype arm clamped to the bench for the voltage test.</figcaption></figure>
     </div>
     <p style="font-size:.9rem;color:var(--muted)">This is a team project, and the strategy, analysis, drawings and fabrication are shared across the five of us. The game and field belong to ME 250.</p>
@@ -2011,7 +2025,7 @@
     catch them.</p>
     <div class="cs-stats">
       <div class="cs-stat"><div class="n">1 file</div><div class="l">~235 KB · no framework, no build step</div></div>
-      <div class="cs-stat"><div class="n">6 viewers</div><div class="l">interactive CAD, loaded on demand</div></div>
+      <div class="cs-stat"><div class="n">7 viewers</div><div class="l">interactive CAD, loaded on demand</div></div>
       <div class="cs-stat"><div class="n">144×</div><div class="l">biggest CAD-to-web size reduction</div></div>
       <div class="cs-stat"><div class="n">37 × 13</div><div class="l">skills × projects, one source of truth</div></div>
     </div>
@@ -2024,7 +2038,7 @@
     the model’s real vertices, for the worst angle in a full rotation, then checked by projecting every
     vertex into screen space.</p></div>
     <div class="cs-sub"><h5>Plain HTML</h5><p>It’s one file with one style block and one script block, and there’s
-    nothing to install. None of the 9.4&nbsp;MB of CAD models downloads until you ask, and deploying is
+    nothing to install. None of the 10.7&nbsp;MB of CAD models downloads until you ask, and deploying is
     <code>git push</code>.</p></div>
     <div class="cs-sub"><h5>One source of truth for the skills</h5><p>Each card lists its skills once, as a
     data attribute, and the filter, the chips and the capability matrix are all generated from it, so the
@@ -2688,6 +2702,41 @@
     cam:[0.643, 0.272, 0.919], targetY:-0.050,
     feature: function(api, btn){
       return slideToggle(api.pick('bed'), btn, -0.085, 'Run the bed down', 'Raise the bed');
+    }
+  });
+
+  // ME 250 robot — swing the arm about joint 1 and counter-rotate the scoop about joint 2, which is
+  // what the 1:1 belt does while the scoop motor holds still (that motor's pulley sits on the joint-1
+  // axis). Pivots are in the GLB's own frame (metres), printed by tools/make_me250_glb.py; both axes
+  // run along X. -1.1618 rad takes the arm from its 66.6 deg CAD pose to horizontal, a sweep that was
+  // checked for clearance against the chassis.
+  window.__csViewer({
+    load:'me250Load', stage:'me250Stage', btn:'me250Arm', modal:'study-me250',
+    url:'img/me250/me250.glb', handle:'__me2503d',
+    cam:[-0.821, 0.391, -1.173], targetY:-0.130,
+    feature: function(api, btn){
+      var arm = api.pick('arm'), scoop = api.pick('scoop');
+      if(!arm || !scoop || !btn){ if(btn) btn.remove(); return null; }
+      var J1 = new THREE.Vector3(0.78471, 0.97854, 1.48980), J2 = new THREE.Vector3(0.78471, 1.21158, 1.38878);
+      var X = new THREE.Vector3(1, 0, 0), j1 = new THREE.Group(), j2 = new THREE.Group();
+      api.root.add(j1); j1.position.copy(J1);
+      j1.add(j2); j2.position.copy(J2).sub(J1);
+      api.root.updateMatrixWorld(true);
+      j1.attach(arm); j2.attach(scoop);          // attach() keeps each part where it is
+      var on = false, a = 0, END = -1.1618;
+      btn.disabled = false;
+      btn.addEventListener('click', function(){
+        on = !on;
+        btn.classList.toggle('active', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.textContent = on ? 'Raise the arm' : 'Lower the arm';
+      });
+      return function(){
+        var t = on ? END : 0;
+        a = Math.abs(a - t) < 1e-4 ? t : a + (t - a) * .06;
+        j1.quaternion.setFromAxisAngle(X, a);
+        j2.quaternion.setFromAxisAngle(X, -a);
+      };
     }
   });
 
