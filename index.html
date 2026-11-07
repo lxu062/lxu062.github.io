@@ -413,6 +413,7 @@
           <label class="fd-item"><input type="checkbox" value="solidworks"><span>SolidWorks</span><b></b></label>
           <label class="fd-item"><input type="checkbox" value="creo"><span>PTC Creo</span><b></b></label>
           <label class="fd-item"><input type="checkbox" value="dfm"><span>Design for manufacturing</span><b></b></label>
+          <label class="fd-item"><input type="checkbox" value="gdt"><span>GD&amp;T</span><b></b></label>
           <label class="fd-item"><input type="checkbox" value="paramopt"><span>Parametric optimization</span><b></b></label>
           <label class="fd-item"><input type="checkbox" value="reveng"><span>Reverse engineering</span><b></b></label>
           <label class="fd-item"><input type="checkbox" value="scanning"><span>3D scanning</span><b></b></label>
@@ -516,7 +517,7 @@
         </div>
       </article>
 
-      <article class="card reveal card--go" data-cat="robotics fab" id="p-me250" data-tools="solidworks dfm printing prototyping testing">
+      <article class="card reveal card--go" data-cat="robotics fab" id="p-me250" data-tools="solidworks gdt dfm printing prototyping testing">
         <div class="ph ph--robotics">
           <img src="img/me250/cover-final.jpg" alt="CAD of the final ME 250 robot: a two-joint arm raised over a small chassis with a three-channel scoop at the top, a planetary gearbox and a gearmotor at the arm’s base, printed omni wheels at the front and printed rear wheels" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" loading="lazy">
           <span class="tag">Robotics</span>
@@ -524,7 +525,7 @@
         <div class="card-body">
           <h3>ME 250: Frontier Frenzy Robot</h3>
           <p>I’m leading a team of five building a remote-controlled robot for ME 250’s Frontier Frenzy competition on December 10. We went with my concept, a two-joint arm with a printed scoop that lifts three hats off a shelf and hangs them on the hook wall together. I did the CAD for the whole robot, which we finalized in early November. <strong>Concept sketch, printed wheels, scoop versions and a 3D model in the details.</strong></p>
-          <div class="tools" data-clamp><span class="tool">SolidWorks</span><span class="tool">Design for manufacturing</span><span class="tool">3D printing (FDM)</span><span class="tool">Prototyping</span><span class="tool">Physical testing</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
+          <div class="tools" data-clamp><span class="tool">SolidWorks</span><span class="tool">GD&amp;T</span><span class="tool">Design for manufacturing</span><span class="tool">3D printing (FDM)</span><span class="tool">Prototyping</span><span class="tool">Physical testing</span><button type="button" class="tools-more" hidden aria-label="Show all skills"></button></div>
           <a class="card-link" href="#" data-study="me250">Details <span class="arrow">→</span></a>
         </div>
       </article>
@@ -659,7 +660,7 @@
     </div>
     <div class="mx-tools reveal">
       <button type="button" id="mxAll" class="mx-toggle-all" aria-controls="mxTable">Expand all</button>
-      <span class="mx-hint">37 skills &middot; 13 projects &middot; 101 links</span>
+      <span class="mx-hint">38 skills &middot; 13 projects &middot; 102 links</span>
     </div>
     <div class="mx-wrap reveal"><table class="mx" id="mxTable">
       <caption class="sr-only">Skills against the projects that used them. Rows are skills grouped by category; columns are projects.</caption>
@@ -680,7 +681,7 @@
       </tr></thead>
       <tbody class="cat" data-cat="cad">
         <tr class="mx-cat">
-          <th scope="row"><button type="button" class="mx-catbtn" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>Design <i><span class="mx-lg">10 skills &middot; 27 links</span><span class="mx-sm">10 &middot; 27</span></i></button></th>
+          <th scope="row"><button type="button" class="mx-catbtn" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>Design <i><span class="mx-lg">11 skills &middot; 28 links</span><span class="mx-sm">11 &middot; 28</span></i></button></th>
           <td data-c="0" class="agg on"><span></span></td>
           <td data-c="1" class="agg on"><span></span></td>
           <td data-c="2" class="agg on"><span></span></td>
@@ -781,6 +782,21 @@
           <td data-c="7"></td>
           <td data-c="8"></td>
           <td data-c="9"></td>
+          <td data-c="10"></td>
+          <td data-c="11"></td>
+          <td data-c="12"></td>
+        </tr>
+        <tr class="mx-row" hidden><th scope="row"><b>1</b><button type="button" class="mx-skill" data-skill="gdt"><span class="mx-lg">GD&amp;T</span><span class="mx-sm">GD&amp;T</span></button></th>
+          <td data-c="0"></td>
+          <td data-c="1"></td>
+          <td data-c="2"></td>
+          <td data-c="3"></td>
+          <td data-c="4"></td>
+          <td data-c="5"></td>
+          <td data-c="6"></td>
+          <td data-c="7"></td>
+          <td data-c="8"></td>
+          <td data-c="9" class="on"><span></span><span class="sr-only">used</span></td>
           <td data-c="10"></td>
           <td data-c="11"></td>
           <td data-c="12"></td>
@@ -1974,7 +1990,7 @@
     <div class="cs-sub"><h5>Motors at the base of the arm</h5><p>A four-stage planetary gearbox lifts the arm at the first joint through a 24-to-72-tooth gear pair. A Pololu gearmotor tilts the scoop at the second joint through an XL timing belt running up the arm, which keeps that motor’s weight on the chassis. Its pulley sits on the first joint’s axis and matches the pulley at the scoop, so while that motor holds still, the scoop stays level as the arm swings. The belt’s ends clamp into two printed tensioners, and a cable tie pulls them together to set the tension.</p></div>
     <div class="cs-gallery cs-gallery--drawing">
       <figure><img src="img/me250/arm-scoop.jpg" alt="CAD of the arm and scoop at an angle: a square aluminum arm with a timing belt alongside it, a planetary gearbox and a gearmotor at its base, and a three-channel scoop at the far end" loading="lazy"><figcaption>The arm and scoop in SolidWorks, as of late October.</figcaption></figure>
-      <figure><img src="img/me250/pivot-drawing.jpg" alt="Engineering drawing of the pivot joint, with two dimensioned section views, a side view and a small isometric view of the pentagon-shaped printed part" loading="lazy"><figcaption>My drawing of the pivot joint, the printed part at the second joint that carries the scoop.</figcaption></figure>
+      <figure><img src="img/me250/pivot-drawing.jpg" alt="Engineering drawing of the pivot joint, with two dimensioned section views, a side view and a small isometric view of the pentagon-shaped printed part" loading="lazy"><figcaption>My drawing of the pivot joint, the printed part at the second joint that carries the scoop. Datum A is the face that sits on the build plate when it prints.</figcaption></figure>
     </div>
     <div class="cs-sub"><h5>Seven versions of the scoop</h5><p>The first version was 7&nbsp;in wide with tall dividers between its three pockets. By the second it had grown to the full 10&nbsp;in, and the later versions reworked the dividers into raised guides. The seventh and final version moved the two mounting holes and counterbored them to clear the nuts.</p></div>
     <div class="cs-gallery">
@@ -2027,7 +2043,7 @@
       <div class="cs-stat"><div class="n">1 file</div><div class="l">~235 KB · no framework, no build step</div></div>
       <div class="cs-stat"><div class="n">7 viewers</div><div class="l">interactive CAD, loaded on demand</div></div>
       <div class="cs-stat"><div class="n">144×</div><div class="l">biggest CAD-to-web size reduction</div></div>
-      <div class="cs-stat"><div class="n">37 × 13</div><div class="l">skills × projects, one source of truth</div></div>
+      <div class="cs-stat"><div class="n">38 × 13</div><div class="l">skills × projects, one source of truth</div></div>
     </div>
 
     <h4>How it was built</h4>
@@ -2042,7 +2058,7 @@
     <code>git push</code>.</p></div>
     <div class="cs-sub"><h5>One source of truth for the skills</h5><p>Each card lists its skills once, as a
     data attribute, and the filter, the chips and the capability matrix are all generated from it, so the
-    101 links can’t get out of sync.</p></div>
+    102 links can’t get out of sync.</p></div>
 
     <h4>Skills &amp; tools</h4>
     <div class="cs-skills"><span>HTML / CSS / JavaScript</span><span>three.js (WebGL)</span><span>Git &amp; GitHub Pages</span><span>AI-assisted development</span><span>Python</span></div>
